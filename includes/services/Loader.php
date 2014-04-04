@@ -9,6 +9,7 @@
          private $view_path = './public/view/';
          private $template_path = './public/templates/';
 	 private $service_path='./includes/services/';
+	 private $controller_path = '.includes/controller/';
 	 
 	 private $css_path ;
 	 
@@ -62,8 +63,15 @@
 	       break;
 	   }
 	  }
-	 
-    }
+	}
+	
+	public function controller($file=""){
+	  if(file_exists($this->controller_path.$file)){
+                require($this->controller_path.$file);
+            }else{
+            	throw new Exception('File "'.$file.'"does not exist in this directory"');
+            }
+	}
 }
 
 ?>

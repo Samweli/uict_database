@@ -58,11 +58,11 @@ require_once('./includes/services/Loader.php');
 	
      </div>
 	 <div class="ui_form">
-     <form name="login" action="<?php echo URL; ?>user/index" method="post">
+     <form name="login" action="<?php echo URL; ?>login/auth" method="post">
        <label for="reg_number"></label>
-       <input type="text" name="reg_number" id="reg_number" required placeholder="Registration number" class="form-control">
+       <input type="text" name="reg_number" id="reg_number" required placeholder="Registration number" class="form-control sensitive_info">
        <label for="password"></label>
-       <input type="password" name="password" id="password" required placeholder="Password" class="form-control">
+       <input type="password" name="password" id="password" required placeholder="Password" class="form-control sensitive_info">
        <label for="login"></label>
        <input type="submit" value="Login" id="login" class="btn btn-info">
        <span><a href="reset-password.php">Forgot password?</a></span>

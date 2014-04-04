@@ -309,3 +309,9 @@ border-top-left-radius: 4px;
 .lower_row{
     margin-top:-130px;
 }
+
+/*for the login page input*/
+.sensitive_info{
+    font-size:18px;
+   
+}

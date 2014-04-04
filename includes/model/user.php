@@ -25,6 +25,25 @@
    	  public $role;
    	  public $status;
    	  private $password;
+	  
+	  public function __construct($id="",$first_name="",$last_name="",$reg_number="",$grad_year="",$program_id="",
+				      $year_of_study="",$active_status="",$gender="",$email_address="",$phone_number="",$role="",$status=""){
+					  
+	      $this->id = $id;
+	      $this->first_name = $first_name;
+	      $this->last_name = $last_name;
+	      $this->reg_number = $reg_number;
+	      $this->grad_year = $grad_year;
+	      $this->program_id = $program_id;
+	      $this->year_of_study = $year_of_study;
+	      $this->active_status = $active_status;
+	      $this->gender = $gender;
+	      $this->email_address = $email_address;
+	      $this->phone_number = $phone_number;
+	      $this->role = $role;
+	      $this->status = $status;
+	      
+	  }
 
    	  public function set_password($pass = ""){
          if(!empty($pass)){
@@ -86,16 +105,21 @@
           }
    	  }
 
-   	  public function get_user($user_id = ""){
+   	  public static function get_user($user_id = ""){
           if(!empty($user_id)){
              $sql = "SELECT * FROM users WHERE id = ".$user_id." LIMIT 1";
              global $db;
              if($user = $db->db_query($sql)){
-                 return $db->db_first_row($user);
+                 $array =  $db->db_first_row($user);
+		 
+		 $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
+			      $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
+			      $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
+	          return $returnedUser;
              }
           }
    	  }
-
+	  
    }
 
    $user = new User();
