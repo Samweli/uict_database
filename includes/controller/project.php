@@ -1,6 +1,5 @@
 <?php
- require ('./includes/model/project.php');
- require ('./includes/services/Loader.php');
+require_once('./includes/model/project.php');
 
 class ProjectController extends Controller {
     protected $loader;
@@ -20,7 +19,7 @@ class ProjectController extends Controller {
         $projects = $projects -> get_all();
         
         try{
-          $this->loader->view('projects.php',$projects);
+          $this->loader->view('projects',$projects);
         }catch(Exception $e){
           echo 'Message: '. $e->getMessage();
         }

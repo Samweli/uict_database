@@ -4,7 +4,9 @@
  * This is the "base controller class". All other "real" controllers extend this class.
  */
 
- include('./includes/model/database.php');
+ require_once('./includes/model/database.php');
+ require_once('./includes/services/loader.php');
+
  
  
  
@@ -14,14 +16,16 @@ class Controller
      * @var null Database Connection
      */
     public $db = null;
+    public $loader;
 
     /**
      * Whenever a controller is created, open a database connection too. The idea behind is to have ONE connection
      * that can be used by multiple models (there are frameworks that open one connection per model).
      */
-    function __construct()
+    public function __construct()
     {
         $this->openDatabaseConnection();
+        $this->loader = new Loader();
     }
 
     /**

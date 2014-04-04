@@ -1,6 +1,6 @@
 <?php
 
-        define('URL', 'http://localhost/uict_database/');
+    define('URL', 'http://localhost/uict_database/');
 	define('DB_TYPE', 'mysql');
 	
 	

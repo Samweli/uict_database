@@ -1,11 +1,10 @@
 <?php
-    require_once('./includes/services/Loader.php');
     $loader = new Loader();
     try{
        
-       $loader->service('Template.php');
-       $loader->service('CurrentPage.php');
-       $community_project = $data;
+       $loader->service('Template');
+       $loader->service('CurrentPage');
+       $community_project = $projects;
        
        $template = new Template();
        
@@ -27,7 +26,7 @@
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
+	    echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';
 	    }
 	    
 	    ?>

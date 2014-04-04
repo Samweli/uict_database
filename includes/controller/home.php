@@ -1,18 +1,33 @@
 <?php
 
 class HomeController extends Controller{
-    
+
     public function index(){
-        require ('./public/view/index.php');
+        $this->loader->view('index');
     }
+
     public function about(){
-        require('./public/view/about.php');
+        $this->loader->view('about');
     }
+
     public function login(){
-        require ('./public/view/login.php');
+        $this->loader->view('login');
     }
+
     public function registration(){
-        require('./public/view/registration.php');
+        $this->loader->view('registration');
+    }
+
+    public function projects(){
+        $this->loader->view('about-projects');
+    }
+
+    public function charity(){
+        $this->loader->view('about-charity');
+    }
+
+    public function sports(){
+        $this->loader->view('about-sports');
     }
 }
 

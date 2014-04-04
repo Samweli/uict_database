@@ -69,6 +69,6 @@
 
    }
 
-   $project = new Project();
+   //$project = new Project();
 
 ?>
