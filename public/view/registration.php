@@ -65,7 +65,7 @@ $template = new Template();
                         <!-- banner -->
                       <!-- header -->
                      <div class="row">
-			<form action="<?php echo URL; ?>home/register" class="form-horizontal u_row" method="post" role="form">
+			<form action="<?php echo URL; ?>includes/controller/home/register" class="form-horizontal u_row" method="post" role="form">
 			<div class="col-lg-6 u_row">
 				
 				    
