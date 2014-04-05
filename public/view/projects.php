@@ -1,15 +1,8 @@
 <?php
     require_once('../../includes/services/loader.php');
     require_once('../../includes/services/Template.php');
-    require_once('../../includes/model/projects.php');
-	
-	  include('../../includes/services/CurrentPage.php');
-	  $projects = new Project();
-      $community_project = $projects->get_projects();
-
-		 CurrentPage::$currentPage = "projects";
-         $template = new Template();
-
+    require_once('../../includes/model/project.php');
+    $community_project = $project->get_all();
     /*
     try{
        $load->model('project.php');

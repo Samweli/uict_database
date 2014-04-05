@@ -1,14 +1,6 @@
 <?php //require_once('../includes/helper/initialize.php'); 
         require_once('../../includes/services/functions.php');
         require_once('../../includes/services/Template.php');
-		 
-		 
-      include('../../includes/services/CurrentPage.php');
- 
- CurrentPage::$currentPage = "signin";
- 
-
-$template = new Template();
 ?>
 <!DOCTYPE html>
 <html lang="en">
