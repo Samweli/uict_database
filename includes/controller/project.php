@@ -1,6 +1,9 @@
 <?php
  require ('./includes/model/project.php');
- require ('./includes/services/Loader.php');
+ 
+ /* now it is only require_once in first index.php
+require_once('./includes/services/Loader.php');
+*/
 
 class ProjectController extends Controller {
     protected $loader;

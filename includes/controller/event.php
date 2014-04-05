@@ -1,5 +1,7 @@
 <?php
-include('./includes/services/Loader.php');
+/* now it is only require_once in first index.php
+require_once('./includes/services/Loader.php');
+*/
 include('./includes/model/event.php');
 
 class EventController extends Controller{

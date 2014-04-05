@@ -9,9 +9,9 @@
    */
 ?>
 <?php
-echo 'Reached home page';
+
 $loader = new Loader();
-echo 'Reached home page';
+
 
 try{
 $loader->service('Template.php');
