@@ -16,9 +16,8 @@ class HomeController extends Controller{
     }
     public function register(){
         require('./includes/model/user.php');
-        
-        $user = new User();
-        $user->first_name= $_POST['firstname'];
+
+        $user->first_name = $_POST['firstname'];
         
         $user->last_name = $_POST['lastname'];
         $user->reg_number = $_POST['registrationID'];
@@ -37,8 +36,11 @@ class HomeController extends Controller{
         //$user->password = $_POST['password'];
         $user->set_password($_POST['password']);
         $repeatPassword = $_POST['repeatedPassword'];
-
-        $last_id = $user->add_user();
+        if(true){
+            require('./public/view/login.php');
+        }
+        //$user->add_user();
+        
 
 
     }
