@@ -20,7 +20,8 @@
    	  public $year_of_study;
    	  public $active_status;
    	  public $gender;
-   	  public $email_address;
+      public $mailing_address;
+      public $email_address;
    	  public $phone_number;
    	  public $role;
    	  public $status;
@@ -64,9 +65,9 @@
 
    	  public function add_user(){
    	  	 $sql = "INSERT INTO users (first_name,last_name,reg_number,grad_year,program_id,year_of_study,";
-   	  	 $sql .= "gender,email_address,phone_number,role,status,password) VALUES('".$this->first_name."',";
+   	  	 $sql .= "gender,mailing_address,email_address,phone_number,role,status,password) VALUES('".$this->first_name."',";
    	  	 $sql .= "'".$this->last_name."','".$this->reg_number."','".$this->grad_year."','".$this->program_id."',";
-   	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->email_address."','".$this->phone_number."',";
+   	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->mailing_address."','".$this->email_address."','".$this->phone_number."',";
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
          global $db;
          if($db->db_query($sql)){
@@ -78,7 +79,7 @@
    	  	 if(!empty($user_id)){
 	   	  	 $sql = "UPDATE users SET first_name = '".$this->first_name."',last_name = '".$this->last_name."',";
 	   	  	 $sql .=" reg_number = '".$this->reg_number."',grad_year = '".$this->grad_year."',program_id = '".$this->program_id."',";
-	   	  	 $sql .= "year_of_study = '".$this->year_of_study."',gender = '".$this->gender."',email_address = '".$this->email_address."',";
+	   	  	 $sql .= "year_of_study = '".$this->year_of_study."',gender = '".$this->gender."',mailing_address='".$this->mailing_address."',email_address = '".$this->email_address."',";
 	   	  	 $sql .= "phone_number = '".$this->phone_number."',role = '".$this->role."',status = '".$this->status."' WHERE id ='".$user_id."'";
 	  	 	 global $db;
 	  	 	 if($db->db_query($sql)){
@@ -122,6 +123,7 @@
    	  }
 	  
    }
+
 
    $user = new User();
 
