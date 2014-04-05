@@ -84,24 +84,46 @@ $template = new Template();
 					<input name="lastname" type="text" class="form-control" />
 				      </div>
 				    </div>
+
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label" >Degree Program:</label>
+				      <label class="col-sm-2 control-label" >Registration NO:</label>
 				      <div class="col-sm-6">
-					<input name="degree_program" type="text" class="form-control" />
+					<input name="registrationID" type="text" class="form-control" />
 				      </div>
 				    </div>
+
+				    <div class="form-group">
+				      <label class="col-sm-2 control-label" >Degree Program</label>
+				      <div class="col-sm-6">
+					<input name="program" type="text" class="form-control" />
+				      </div>
+				    </div>
+
+				    <div class="form-group">
+				      <label class="col-sm-2 control-label" >Year of study</label>
+				      <div class="col-sm-6">
+							<select name ="year_study">
+								<option selected="selected" value="">Select year</option>
+								<option value = "1">First year</option>
+								<option value = "2">Second year</option>
+								<option value = "3">Third year</option>
+								<option value = "4">Fourth year</option>
+							</select>
+				      </div>
+				    </div>
+
 				    
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label" >Sex:</label>
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="gender" type="radio" class="form-control" value="male" selected="selected" /> Male
+					<input name="gender" type="radio" class="form-control" value="M" selected="selected" /> Male
 					</label>
 				      </div>
 				      
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="gender" type="radio" class="form-control" value="female"/> Female
+					<input name="gender" type="radio" class="form-control" value="F"/> Female
 					</label>
 				      </div>
 				    </div>

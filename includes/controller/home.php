@@ -21,15 +21,21 @@ class HomeController extends Controller{
         $user->first_name= $_POST['firstname'];
         
         $user->last_name = $_POST['lastname'];
-        //$user-> = $_POST['degree_program'];
+        $user->reg_number = $_POST['registrationID'];
+        //$user->program_id= $_POST['pro_ID'];
+        $user->year_of_study= $_POST['year_study'];
         $user->gender = $_POST['gender'];
-        $user->status = $_POST['maritial_status'];
+        //$user->status = $_POST['maritial_status'];
         //$user-> = $_POST['mailing_address'];
-        $user->email_address = $_POST['email'];
-        $user->phone_number = $_POST['phonenumber'];
+        $user->mailing_address= $_POST['mailing_address'];
+        
+        $user->email_address= $_POST['email'];
+
+        $user->phone_number= $_POST['phonenumber'];
         $skill = $_POST['skills'];
         $hobbies = $_POST['hobbies'];
-       // $user->password = $_POST['password'];
+        //$user->password = $_POST['password'];
+        $user->set_password($_POST['password']);
         $repeatPassword = $_POST['repeatedPassword'];
 
         $last_id = $user->add_user();
