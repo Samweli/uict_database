@@ -22,10 +22,14 @@ class LoginController extends Controller{
 			$password = $db->db_escape_values($_POST['password']);
 	     
 		    if($member = $user->authenticate($reg_number,$password)){
+			
 			$session->login($member);
+			
 			//echo "Welcome :".$member['first_name'];
 			$home = new HomeController();
-			$home->userhome($member[0]);
+			$home->userhome($member->id);
+			header('Location:'.URL.'home/userhome');
+			
 			
 		    }else{
 		       $message = "Invalid registration number or password. Please try again!";

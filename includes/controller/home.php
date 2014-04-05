@@ -22,10 +22,11 @@ class HomeController extends Controller{
     }
     public function userhome($user_id=""){
         
-        $user = User::get_user($user_id);
-        echo 'Message no error till here';
+        $user = (new User())->get_user($user_id);
+        
+        
         $loader = new Loader();
-        echo 'Message no error till here';
+        
         
         try{
         $loader->view('home.php',$user);

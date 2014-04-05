@@ -17,3 +17,5 @@ require 'libs/controller.php';
 
 // start the application
 $app = new Application();
+
+?>

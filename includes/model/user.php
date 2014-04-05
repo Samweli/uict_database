@@ -56,7 +56,8 @@
               $sql = "SELECT * FROM users WHERE reg_number = '".$reg_number."' AND password = '".sha1($pass)."' LIMIT 1"; 
               global $db;
               if($user = $db->db_query($sql)){
-                  return $db->db_first_row($user);
+                   $user = $db->db_first_row($user);
+		   return $this->get_user($user[0]);
               }
           }
       }
@@ -105,7 +106,7 @@
           }
    	  }
 
-   	  public static function get_user($user_id = ""){
+   	  public function get_user($user_id = ""){
           if(!empty($user_id)){
              $sql = "SELECT * FROM users WHERE id = ".$user_id." LIMIT 1";
              global $db;

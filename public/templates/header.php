@@ -1,8 +1,11 @@
 <?php
 $loader = new Loader();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 ?>
+
 <header class="navbar navbar-static-top bs-docs-nav u_header" id="top" role="banner">
               <div class="container">
                  <div class="navbar-header">
@@ -22,7 +25,16 @@ $loader = new Loader();
                             <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>project/allProjects" >Projects</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>event/allEvents">Events</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "about"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/about">About</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "signin"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/login">Sign In</a></li>
+			   
+			    <?php
+			    
+			       if(!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true)){
+				  echo  '<li class="'.(CurrentPage::$currentPage == 'signin'?'active':'list').'"> <a href="'.URL.'home/login">Sign In</a></li>';
+			       }else{
+			           echo '<li class="'.(CurrentPage::$currentPage == "signin"?'active':'list').'"><a href="'.URL.'logout/auth">Sign Out</a></li>';
+			       }
+			    ?>
+			    
                             <li ><a><i  title="click to search" data-toggle="dropdown"
 				class="dropdown-toggle glyphicon glyphicon-search"></i>
                                 </a>

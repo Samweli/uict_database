@@ -12,10 +12,12 @@
        public $logged_in = false;
 
        public function __construct(){
+	if(session_status() == PHP_SESSION_NONE){
        	  session_start();
+	}
        }
 
-       public function login($user = NULL){
+       public function login($user){
           if(($user != NULL) && is_object($user)){
           	 $this->logged_in = true;
              $_SESSION['logged_in'] = $this->logged_in;
@@ -32,7 +34,7 @@
        			unset($_SESSION['user_id']);
        			unset($_SESSION['first_name']);
        			unset($_SESSION['last_name']);
-       			session_destroy();
+       			//session_destroy();
        		}
        }
 
