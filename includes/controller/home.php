@@ -38,11 +38,7 @@ class HomeController extends Controller{
        
     }
     
-    public function register(){
-        require ('./public/view/login.php'); 
-    }
-}
-
+   
     public function profile(){
         require('./public/view/home.php');
     }
@@ -62,14 +58,16 @@ class HomeController extends Controller{
         $skill = $_POST['skills'];
         $hobbies = $_POST['hobbies'];
        // $user->password = $_POST['password'];
+       
         $repeatPassword = $_POST['repeatedPassword'];
 
 
-         if(true){
-         //$user->add_user()){
+        
+         if($user->add_user()){
             require('./public/view/welcome.php');
-         }
+        
      }
+    }
 
 }
 ?>

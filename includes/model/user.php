@@ -69,11 +69,11 @@
    	  	 $sql .= "'".$this->last_name."','".$this->reg_number."','".$this->grad_year."','".$this->program_id."',";
    	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->mailing_address."','".$this->email_address."','".$this->phone_number."',";
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
-         global $db;
-         if($db->db_query($sql)){
-             return $db->db_last_insert_id();
-         }
-   	  }
+                 global $db;
+                if($db->db_query($sql)){
+                  return $db->db_last_insert_id();
+                 }
+       }
 
    	  public function edit_user($user_id = ""){
    	  	 if(!empty($user_id)){

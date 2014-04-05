@@ -51,7 +51,7 @@
                 throw new Exception('File "'.$file.'"does not exist in this directory"');
             }
          }
-<<<<<<< HEAD
+
 	 public function css(){
 	  
 	  foreach ($this->essentialCssFiles as $file){
@@ -76,23 +76,7 @@
             	throw new Exception('File "'.$dir.'"does not exist in this directory"');
             }
 	}
-=======
-     public function css(){
 
-      foreach ($this->essentialCssFiles as $file){
-       $dir = $this->css_path.$file;
-
-       if(file_exists($dir)){
-           echo '<link rel="stylesheet" type="text/css" href="'.$dir.'" />';
-       }
-       else{
-           throw new Exception('File "'.$dir.'"does not exist in this directory"');
-           break;
-       }
-      }
-
-    }
->>>>>>> c8cd788e3c53681ea64452b6f0ae9be58a07522e
 }
 
 ?>
