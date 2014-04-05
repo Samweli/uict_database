@@ -14,6 +14,9 @@ class HomeController extends Controller{
     public function registration(){
         require('./public/view/registration.php');
     }
+    public function profile(){
+        require('./public/view/home.php');
+    }
     public function register(){
         require('./includes/model/user.php');
         
@@ -32,11 +35,11 @@ class HomeController extends Controller{
        // $user->password = $_POST['password'];
         $repeatPassword = $_POST['repeatedPassword'];
 
-        $last_id = $user->add_user();
+         if(true){
+         //$user->add_user()){
+            require('./public/view/welcome.php');
+         }
+     }
 
-
-    }
 }
-
-
 ?>

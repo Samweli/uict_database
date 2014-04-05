@@ -309,3 +309,65 @@ border-top-left-radius: 4px;
 .lower_row{
     margin-top:-130px;
 }
+
+.welcome 
+{
+    height:400px;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    border:1px thin #E0E0E0;
+    background-color:#E8E8E8;
+    font-size:21px;
+    line-height: 1.7;
+    border-radius:8px;
+  
+}
+#right_panel
+{
+
+    float: right;
+    background-color:;
+    height: 340px;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+#left_panel
+{
+    float:left;
+    border-right: 1px solid gray;
+    height: 340px;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+.profIcon{
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.u_button{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#message{
+    margin-left:40px;
+    font-family:Gabriola,Arial,Verdana,sans-serif;
+    font-size:40px;
+    color:steelblue;
+
+}
+#line1
+{
+    margin-left: 65px;
+    margin-right: 65px;
+}
+#line2
+{
+    margin-left: 100px;
+    margin-right: 100px;
+}
