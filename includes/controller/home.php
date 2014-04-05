@@ -36,10 +36,11 @@ class HomeController extends Controller{
         //$user->password = $_POST['password'];
         $user->set_password($_POST['password']);
         $repeatPassword = $_POST['repeatedPassword'];
+
         if(true){
             require('./public/view/login.php');
         }
-        //$user->add_user();
+        $user->add_user();
         
 
 
