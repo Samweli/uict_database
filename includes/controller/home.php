@@ -58,12 +58,14 @@ class HomeController extends Controller{
         $skill = $_POST['skills'];
         $hobbies = $_POST['hobbies'];
        // $user->password = $_POST['password'];
+        $user->set_password($_POST['password']);
        
-        $repeatPassword = $_POST['repeatedPassword'];
-
-
+        //$repeatPassword = $_POST['repeatedPassword'];
         
-         if($user->add_user()){
+         echo 'Value after input'.$user->add_user();
+         
+         echo "error ".User::$user_error;
+         if(true){
             require('./public/view/welcome.php');
         
      }

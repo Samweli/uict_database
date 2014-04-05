@@ -22,7 +22,7 @@ class LoginController extends Controller{
 			$password = $db->db_escape_values($_POST['password']);
 	     
 		    if($member = $user->authenticate($reg_number,$password)){
-			
+			 echo '';
 			$session->login($member);
 			
 			//echo "Welcome :".$member['first_name'];

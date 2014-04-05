@@ -20,12 +20,14 @@
    	  public $year_of_study;
    	  public $active_status;
    	  public $gender;
-      public $mailing_address;
-      public $email_address;
+          public $mailing_address;
+          public $email_address;
    	  public $phone_number;
    	  public $role;
    	  public $status;
    	  private $password;
+	  
+	  public static $user_error;
 	  
 	  public function __construct($id="",$first_name="",$last_name="",$reg_number="",$grad_year="",$program_id="",
 				      $year_of_study="",$active_status="",$gender="",$email_address="",$phone_number="",$role="",$status=""){
@@ -57,6 +59,8 @@
               $sql = "SELECT * FROM users WHERE reg_number = '".$reg_number."' AND password = '".sha1($pass)."' LIMIT 1"; 
               global $db;
               if($user = $db->db_query($sql)){
+		    
+		    
                    $user = $db->db_first_row($user);
 		   return $this->get_user($user[0]);
               }
@@ -71,8 +75,12 @@
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
                  global $db;
                 if($db->db_query($sql)){
+		     echo 'Executed in add user';
                   return $db->db_last_insert_id();
-                 }
+                 }else{
+		     $this::$user_error = $db->last_query;
+		     
+		 }
        }
 
    	  public function edit_user($user_id = ""){
