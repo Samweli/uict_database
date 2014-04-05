@@ -1,8 +1,17 @@
 <?php
 
- include('../../includes/services/Template.php');
- include('../../includes/services/CurrentPage.php');
- 
+include('./includes/services/Loader.php');
+$loader = new Loader();
+
+try{
+$loader->service('Template.php');
+$loader->service('CurrentPage.php');
+}
+catch(Exception $e){
+ echo 'Message: '. $e->getMessage();
+}
+
+
  CurrentPage::$currentPage = "home";
  
 
@@ -17,13 +26,19 @@ $template = new Template();
         <head>
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
-            <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-            <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet"> 
-
-            <link rel="stylesheet" type="text/css" href="../css/style.css" />
+	   <?php
+	  
+	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
+	    
+	    foreach($cssFiles as $file){
+	    echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';	    }
+	    
+	    ?>
+             
+           
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+           
             
         </head>
         <body>
@@ -48,7 +63,7 @@ $template = new Template();
                             <div class="container">
                             <div class="content" >
                             <div class="signup_button">
-                                <a href="registration.php" class="u_button" >Sign Up, It is fast</a>
+                                <a href="<?php echo URL; ?>home/registration" class="u_button" >Sign Up, It is fast</a>
                             </div>
                             </div>
                             </div>
@@ -74,7 +89,7 @@ $template = new Template();
                             </p>
                             
                             <div id="u_link">
-                                <a href="about.php">Read More</a>
+                                <a href="<?php echo URL; ?>home/about">Read More</a>
                             </div>
                             
                            
@@ -88,33 +103,41 @@ $template = new Template();
                               <div class="u_heading">
                             <h4>Project Based Learning</h4>
                             </div>
-                              <img  src="../img/projects.jpg" alt="project image"  width="225" height="150"/> 
+                              <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/projects.jpg" alt="project image"  width="225" height="150"/>':
+			                 '<img  src="../public/img/projects.jpg" alt="project image"  width="225" height="150"/>';
+			      ?>
                               <p>Share and develop your skills with us by joining project execution teams </p>
-                              <a href="about-projects.php">Read More</a>
+                              <a href="<?php echo URL; ?>project/about-projects">Read More</a>
                             </div>
                         
                            <div class="col-md-3">
                               <div class="u_heading">
                             <h4>Sport and Socialization</h4>
                             </div>
-                              <img  src="../img/sports.jpg" alt="sports image"  width="225" height="150"/>
+                              <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/sports.jpg" alt="sports image"  width="225" height="150"/>':
+			                 '<img  src="../public/img/about-sports.jpg" alt="sports image"  width="225" height="150"/>';
+			       ?>
                               <p>Have fun and grow your network outside class by joining in our sports bonanza </p>
-                              <a href="#more_on_uict">Read More</a>
+                              <a href="<?php echo URL; ?>home/charity">Read More</a>
                             </div>
                         <div class="col-md-3">
                               <div class="u_heading">
                             <h4>Charity</h4>
                             </div>
-                              <img  src="../img/charity.png" alt="charity image"  width="225" height="150"/>
+			      <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/charity.png" alt="charity image"  width="225" height="150"/>':
+			               '<img  src="../public/img/charity.png" alt="charity image"  width="225" height="150"/>';
+                              ?>
                               <p>Become part of others solution by joining hands with us to serve the outside society </p>
-                              <a href="#more_on_uict">Read More</a>
+                              <a href="<?php echo URL; ?>home/about-sports">Read More</a>
                             </div>
                         
                          <div class="col-md-3">
                               <div class="u_heading">
                             <h4>Sport and Socialization</h4>
                             </div>
-                              <img  src="../img/sports.jpg" alt="sports image"  width="225" height="150"/>
+			    <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/sports.jpg" alt="sports image"  width="225" height="150"/>':
+			                 '<img  src="../public/img/sports.jpg" alt="sports image"  width="225" height="150"/>';
+			       ?>
                               <p>Have fun and grow your network outside class by joining in our sports bonanza </p>
                               <a href="#more_on_uict">Read More</a>
                             </div>

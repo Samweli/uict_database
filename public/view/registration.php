@@ -1,9 +1,19 @@
 <?php
 
- include('../../includes/services/Template.php');
- 
+
+include('./includes/services/Loader.php');
+$loader = new Loader();
+
+try{
+$loader->service('Template.php');
+$loader->service('CurrentPage.php');
+}
+catch(Exception $e){
+ echo 'Message: '. $e->getMessage();
+}
 
 $template = new Template();
+
 
 // variable to detect the index page
 
@@ -14,13 +24,19 @@ $template = new Template();
         <head>
             <meta charset="utf-8" />
             <title>Registration</title>
-            <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-            <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet"> 
-
-            <link rel="stylesheet" type="text/css" href="../css/style.css" />
+	    
+	    <?php
+	  
+	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
+	    
+	    foreach($cssFiles as $file){
+	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
+	    
+	    ?>
+	    
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+        
             
         </head>
         <body>
@@ -49,7 +65,7 @@ $template = new Template();
                         <!-- banner -->
                       <!-- header -->
                      <div class="row">
-			<form action="" class="form-horizontal u_row" role="form">
+			<form action="<?php echo URL; ?>home/register" class="form-horizontal u_row" method="post" role="form">
 			<div class="col-lg-6 u_row">
 				
 				    
@@ -79,13 +95,13 @@ $template = new Template();
 				      <label class="col-sm-2 control-label" >Sex:</label>
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="gender" type="radio" class="form-control" value="male" /> Male
+					<input name="gender" type="radio" class="form-control" value="male" selected="selected" /> Male
 					</label>
 				      </div>
 				      
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="gender" type="radio" class="form-control" value="female" /> Female
+					<input name="gender" type="radio" class="form-control" value="female"/> Female
 					</label>
 				      </div>
 				    </div>
@@ -95,13 +111,13 @@ $template = new Template();
 				      <label class="col-sm-2 control-label" >Marital status:</label>
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="maritial_status" type="radio" class="form-control" value="single" /> Single
+					<input name="maritial_status" type="radio" class="form-control" value="single" selected="selected" /> Single
 					</label>
 				      </div>
 				      
 				      <div class="radio col-sm-3">
 					<label>
-					<input name="maritial_status" type="radio" class="form-control" value="married" /> Married
+					<input name="maritial_status" type="radio" class="form-control" value="married"  /> Married
 				        </label>
 				    </div>
 				      </div>
@@ -153,13 +169,19 @@ $template = new Template();
 				    <textarea name="hobbies" rows="3" cols="60" class="form-control" ></textarea>
 				  </div>
 				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" >Upload Picture:</label>
+				  <div class="col-sm-6">
+				    <input type="file" class="f" name="picture" /> 
+				  </div>
+				</div>
 				
 				
 
                       
 			    </div>
 			  <div class="col-lg-6 u_row">
-		              <div class="u_row">
+		              <div >
 			
 				<legend>Sensitive Details:</legend>
 				
