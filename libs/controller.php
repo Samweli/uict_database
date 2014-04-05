@@ -4,7 +4,7 @@
  * This is the "base controller class". All other "real" controllers extend this class.
  */
 
- include('./includes/model/database.php');
+ require_once('./includes/model/database.php');
  
  
  

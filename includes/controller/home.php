@@ -1,6 +1,12 @@
 <?php
 
+
+
 class HomeController extends Controller{
+   
+    public function __construct(){
+        
+    }
     
     public function index(){
         require ('./public/view/index.php');
@@ -15,10 +21,23 @@ class HomeController extends Controller{
         require('./public/view/registration.php');
     }
     public function userhome($user_id=""){
+        
         $user = User::get_user($user_id);
+        echo 'Message no error till here';
+        $loader = new Loader();
+        echo 'Message no error till here';
         
+        try{
+        $loader->view('home.php',$user);
+        }catch(Exception $e){
+            echo 'Message:'.$e->getMessage();
+        }
         
-        $loader->view("home.php",$user_id);
+       
+    }
+    
+    public function register(){
+        require ('./public/view/login.php'); 
     }
 }
 

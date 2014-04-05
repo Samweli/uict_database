@@ -1,6 +1,6 @@
 <?php
 
-include('./includes/services/Loader.php');
+include_once('./includes/services/Loader.php');
 $loader = new Loader();
 
 try{

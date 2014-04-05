@@ -1,6 +1,6 @@
 <?php
     /* 
-     * Loader Object for loading files
+     * Loader Class for loading files
      */
    
     class Loader{
@@ -9,7 +9,7 @@
          private $view_path = './public/view/';
          private $template_path = './public/templates/';
 	 private $service_path='./includes/services/';
-	 private $controller_path = '.includes/controller/';
+	 private $controller_path = './includes/controller/';
 	 
 	 private $css_path ;
 	 
@@ -66,10 +66,12 @@
 	}
 	
 	public function controller($file=""){
-	  if(file_exists($this->controller_path.$file)){
+	  $dir = $this->controller_path.$file;
+	  
+	  if(file_exists($dir)){
                 require($this->controller_path.$file);
             }else{
-            	throw new Exception('File "'.$file.'"does not exist in this directory"');
+            	throw new Exception('File "'.$dir.'"does not exist in this directory"');
             }
 	}
 }

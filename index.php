@@ -1,5 +1,7 @@
 <?php
 
+require_once('./includes/services/Loader.php');
+
 
 // load the (optional) Composer auto-loader
 if (file_exists('vendor/autoload.php')) {

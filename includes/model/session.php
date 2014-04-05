@@ -45,5 +45,5 @@
        }
    }
 
-   $session = new Session();
+  
 ?>

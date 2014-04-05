@@ -1,7 +1,5 @@
 <?php
 
-
-include('./includes/services/Loader.php');
 $loader = new Loader();
 
 try{
@@ -66,7 +64,7 @@ $template = new Template();
                         <!-- banner -->
                       <!-- header -->
                      <div class="row">
-			<form action="" class="form-horizontal u_row" role="form">
+			<form action="<?php echo URL?>home/register" method="post" class="form-horizontal u_row" role="form">
 			<div class="col-lg-6 u_row">
 				
 				    

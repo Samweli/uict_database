@@ -1,4 +1,4 @@
-=<?php
+<?php
     require_once('./includes/services/Loader.php');
     $loader = new Loader();
     try{
