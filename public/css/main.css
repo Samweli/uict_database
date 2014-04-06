@@ -397,5 +397,7 @@ border-top-left-radius: 4px;
 }
 .event_container
 {
-    float:right;
+    position: absolute;
+    left:1000px;
+    top:500px;
 }

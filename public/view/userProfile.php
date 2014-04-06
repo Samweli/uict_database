@@ -189,6 +189,22 @@ $template = new Template();
 		       </div>
 		</div>
 	       </div>
+
+	       	<div class = "event_container">
+               <h3>Events attended</h3> 
+               <ul class="nav">
+				       <li class="activity_li">3rd July 2014: <a>Orhanage visit</a></li>
+				       <li class="activity_li">1st May 2014: <a>Friendly match</a></li>
+				       <li class="activity_li">22nd April 2013: <a>Muhimbili Hospital Visit</a></li>
+				       <li class="activity_li">More than year ago: <a>Football match</a></li>
+				       
+				</ul>
+				<div class="edit_button">
+				
+				</div>
+
+		  	</div>
+		  
 	</div>
 	
 
