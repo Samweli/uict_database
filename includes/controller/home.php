@@ -63,7 +63,6 @@ class HomeController extends Controller{
         //$repeatPassword = $_POST['repeatedPassword'];
         
          if($user->add_user()){
-            echo 'User id '.$user->id;
             
             $session = new Session();
             $db = new Database();
@@ -71,12 +70,10 @@ class HomeController extends Controller{
             $reg_number = $db->db_escape_values($_POST['reg_number']);
 	    $password = $db->db_escape_values($_POST['password']);
             
-            echo $reg_number.'  '.$password;
-	     
             
             $member = $user->authenticate($reg_number,$password);
          
-         if(isset($member)){
+            if(isset($member)){
 		$session->login($member);
                 try{
                   
@@ -84,9 +81,7 @@ class HomeController extends Controller{
                 }catch(Exception $e){
                     echo 'Message'.$e->getMessage();
                 }
-         }else{
-            echo 'User'.User::$user_error;
-         }
+            }
          }
     }
 

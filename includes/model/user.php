@@ -61,8 +61,6 @@
               if($user = $db->db_query($sql)){
                    $user = $db->db_first_row($user);
 		   
-		    $this::$user_error = ' id atuh '.$user[0];
-		   
 		   return $this->get_user($user[0]);
 	      
               }else{
