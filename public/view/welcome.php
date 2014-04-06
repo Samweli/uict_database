@@ -71,7 +71,7 @@ $template = new Template();
 			<div id = "right_panel">
             <img  src="../public/img/graduated.png" class="profIcon" alt="profile Icon"  width="200" height="200"/>
             
-                                <a href="<?php echo URL; ?>home/profile" class="u_button" >view profile</a>
+                                <a href="<?php echo URL; ?>home/profile" class="u_button u_button_welcome" >view profile</a>
             </div>
 		</div>
 	</div>

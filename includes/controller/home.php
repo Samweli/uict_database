@@ -22,18 +22,17 @@ class HomeController extends Controller{
     }
 
     public function userhome($user_id=""){
+         $loader = new Loader();
+         $user = (new User())->get_user($user_id);
         
-        $user = (new User())->get_user($user_id);
-        
-        
-        $loader = new Loader();
-        
-        
+       
         try{
         $loader->view('home.php',$user);
         }catch(Exception $e){
             echo 'Message:'.$e->getMessage();
         }
+        
+        
         
        
     }

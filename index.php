@@ -1,6 +1,7 @@
 <?php
 
 require_once('./includes/services/Loader.php');
+require_once('./includes/model/user.php');
 
 
 // load the (optional) Composer auto-loader

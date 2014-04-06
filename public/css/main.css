@@ -357,7 +357,7 @@ border-top-left-radius: 4px;
     margin-right: 50px;
 
 }
-.u_button{
+.u_button_welcome{
     margin-left: 100px;
     margin-right: 100px;
 }
@@ -378,4 +378,7 @@ border-top-left-radius: 4px;
     margin-left: 100px;
     margin-right: 100px;
 }
-
+/* for customizing error message in login*/
+.error_message_login{
+    color:#CE0C0C;
+}

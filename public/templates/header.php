@@ -12,8 +12,11 @@ if (session_status() == PHP_SESSION_NONE) {
                  <?php
 		  if(CurrentPage::$currentPage == "home"){
                      echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';
-		  }else{
-	             echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../public/img/uict.jpg" alt="uict logo"/></a>';  	
+		  }
+		  elseif(CurrentPage::$currentPage == "userhome"){
+			    echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	
+	          }else{
+	             echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../public/img/uict.jpg" alt="uict logo"/></a>';  	
 		  }
 		 ?>
                  
@@ -29,7 +32,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			    <?php
 			    
 			       if(!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true)){
-				  echo  '<li class="'.(CurrentPage::$currentPage == 'signin'?'active':'list').'"> <a href="'.URL.'home/login">Sign In</a></li>';
+				  echo  '<li class="'.(CurrentPage::$currentPage == 'signin'?'active':'list').'"> <a href="'.URL.'login/index">Sign In</a></li>';
 			       }else{
 			           echo '<li class="'.(CurrentPage::$currentPage == "signin"?'active':'list').'"><a href="'.URL.'logout/auth">Sign Out</a></li>';
 			       }

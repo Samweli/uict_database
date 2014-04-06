@@ -8,7 +8,7 @@
     * 6. Retrieve all users
     * 7. Retrieve single user
     */
-   require_once('database.php');
+
 
    class User{
    	  public $id;

@@ -21,6 +21,7 @@ catch(Exception $e){
  echo 'Message: '. $e->getMessage();
 }
 
+CurrentPage::$currentPage = "userhome";
 
 $template = new Template();
 
@@ -37,7 +38,7 @@ $template = new Template();
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
+	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    }
 	    
 	    ?>
              
@@ -63,7 +64,7 @@ $template = new Template();
 		  <div class="row ">
 			 
 			 <div class="col-lg-3">
-				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
+				<img class="img img-thumbnail" src="../../public/img/profile_photo.jpg" />
 			 <a href="profile.php" title="Checkout Profile" >Samweli Twesa</a>
 			 </div>
 			 <div class="col-lg-6 col-md-offset-3">
@@ -106,7 +107,7 @@ $template = new Template();
 			 <div class="main_content">
 				<div class="a_content">
 				   
-				  <h3><span><img src="../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
+				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
 				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
 				  </p>
 				  <ul class="nav navbar-nav">
@@ -119,7 +120,7 @@ $template = new Template();
 			 
 				<div class="a_content">
 				   
-				  <h3><span><img src="../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
+				  <h3><span><img src="../../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
 				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
 				  </p>
 				  <ul class="nav navbar-nav">
@@ -132,7 +133,7 @@ $template = new Template();
 			 
 				<div class="a_content">
 				   
-				  <h3><span><img src="../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
+				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
 				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
 				  </p>
 				  <ul class="nav navbar-nav">
@@ -145,7 +146,7 @@ $template = new Template();
 			 
 				<div class="a_content">
 				   
-				  <h3><span><img src="../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
+				  <h3><span><img src="../../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
 				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
 				  </p>
 				  <ul class="nav navbar-nav">
@@ -158,7 +159,7 @@ $template = new Template();
 		       
 				<div class="a_content">
 				   
-				  <h3><span><img src="../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
+				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
 				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
 				  </p>
 				  <ul class="nav navbar-nav">
