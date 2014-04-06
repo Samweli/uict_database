@@ -1,10 +1,10 @@
 <?php //require_once('../includes/helper/initialize.php'); 
   
-require_once('./includes/services/Loader.php');
+require_once('./includes/services/loader.php');
     $loader = new Loader();
     try{
        
-       $loader->service('Template.php');
+       $loader->service('template.php');
        $loader->service('CurrentPage.php');
        $loader->service('functions.php');
        

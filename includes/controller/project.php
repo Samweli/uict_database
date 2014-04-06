@@ -2,7 +2,7 @@
 require_once('./includes/model/project.php');
 
 class ProjectController extends Controller {
-    protected $loader;
+    public $loader;
     
     public function __construct(){
         $this->loader = new Loader();
@@ -16,10 +16,10 @@ class ProjectController extends Controller {
         
         
         $projects = new Project();
-        $projects = $projects -> get_all();
+        $commmunity_project = $projects->get_all();
         
         try{
-          $this->loader->view('projects',$projects);
+          $this->loader->view('projects',$community_project);
         }catch(Exception $e){
           echo 'Message: '. $e->getMessage();
         }

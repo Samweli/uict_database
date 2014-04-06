@@ -7,13 +7,13 @@ class EventController extends Controller{
     
     public function __construct(){
         $this->loader = new Loader();
+        $event = new Event();
     }
     public function allEvents(){
-       $event = new Event();
        
        $events = $event->get_all();
         try{
-          $this->loader->view('events.php',$events);
+          $this->loader->view('events',$events);
         }catch(Exception $e){
           echo 'Message: '. $e->getMessage();
         }

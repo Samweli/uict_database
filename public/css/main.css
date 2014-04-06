@@ -309,3 +309,35 @@ border-top-left-radius: 4px;
 .lower_row{
     margin-top:-130px;
 }
+
+
+/**** USER FORMS FOR ADDING EVENTS & PROJECTS *******/
+.user_form{
+  margin-top: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.user_form input[type=submit], .user_form input[type=reset]{
+    margin-top: 10px;
+    float: right;
+    margin-left: 10px;
+}
+
+.user_photo img{
+    width: 120px;
+    height: 120px;
+}
+
+.user_photo a{
+    display: block;
+    margin-top: 10px;
+}
+
+.user_photo a:hover{
+    text-decoration: none;
+}
+
+.user_nav{
+    margin-top: 10px;
+}

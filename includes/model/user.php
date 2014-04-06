@@ -77,7 +77,7 @@
          }
    	  }	
 
-   	  public function get_all_users(){
+   	  public function get_all(){
    	  	  $sql = "SELECT * FROM users";
    	  	  global $db;
           if($results = $db->db_query($sql)){

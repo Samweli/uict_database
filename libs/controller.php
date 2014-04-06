@@ -10,8 +10,7 @@
  
  
  
-class Controller
-{
+class Controller{
     /**
      * @var null Database Connection
      */

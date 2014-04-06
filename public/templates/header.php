@@ -19,10 +19,10 @@ $loader = new Loader();
                
                      <ul class="nav navbar-nav navbar-right">
                             <li class= "<?php echo CurrentPage::$currentPage == "home"?'active':'list'; ?>" ><a href="<?php echo URL; ?>index.php">Home</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>projects" >Projects</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>event/allEvents">Events</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>user/add_project" >Projects</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>events">Events</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "about"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/about">About</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "signin"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/login">Sign In</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "signin"?'active':'list'; ?>"><a href="<?php echo URL; ?>user/add_new_project">Sign In</a></li>
                             <li ><a><i  title="click to search" data-toggle="dropdown"
 				class="dropdown-toggle glyphicon glyphicon-search"></i>
                                 </a>

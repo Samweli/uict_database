@@ -8,20 +8,23 @@
     * 6. Delete project plan
     */
 
+   //require_once('./libs/model.php');
    require_once('database.php');
 
-   class Project{
-       private $title;
-       private $descriptiion;
-       private $begin_date;
-       private $initiator_id;
+   class Project extends Model{
+       public $title;
+       public $descriptiion;
+       public $begin_date;
+       public $initiator_id;
 
        public function add_project(){
-          $sql = "INSERT INTO projects (title,description,initiator_id,begin_date) VALUES('".$this->title."',";
-          $sql = "'".$this->description."','".$this->begin_date."','".$this->initiator_id."'";
-          global $db;
-          if($db->db_query($sql)){
-              return $db->db_insert_id;
+          if($this->is_project_defined()){
+              $sql = "INSERT INTO projects (title,description,initiator_id,begin_date) VALUES('".$this->title."',";
+              $sql = "'".$this->description."','".$this->begin_date."','".$this->initiator_id."'";
+              global $db;
+              if($db->db_query($sql)){
+                  return $db->db_insert_id;
+              }
           }
        }
 
@@ -65,6 +68,14 @@
               $projects = $db->fetch_array($result);
               return $projects;
            }
+       }
+
+       private function is_project_defined(){
+          if(isset($this->title) && isset($this->description) && isset($this->begin_date) && isset($this->initiator_id)){
+              return TRUE;
+          }else{
+              return FALSE;
+          }
        }
 
    }
