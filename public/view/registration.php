@@ -91,7 +91,7 @@ $template = new Template();
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label" >Registration NO:</label>
 				      <div class="col-sm-6">
-					<input name="registrationID" type="text" class="form-control" />
+					<input name="reg_number" type="text" class="form-control" />
 				      </div>
 				    </div>
 

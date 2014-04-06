@@ -53,7 +53,7 @@ class HomeController extends Controller{
         
         $user = new User();
         $user->first_name= $_POST['firstname'];
-        
+        $user->reg_number= $_POST['reg_number'];
         $user->last_name = $_POST['lastname'];
         //$user-> = $_POST['degree_program'];
         $user->gender = $_POST['gender'];
@@ -75,6 +75,36 @@ class HomeController extends Controller{
             require('./public/view/welcome.php');
         
      }
+    }
+
+    public function editUser(){
+
+       require('./includes/model/user.php');
+        
+        $user = new User();
+        $user->first_name= $_POST['firstname'];
+        
+        $user->last_name = $_POST['lastname'];
+        //$user-> = $_POST['degree_program'];
+        $user->gender = $_POST['gender'];
+        $user->status = $_POST['maritial_status'];
+        //$user-> = $_POST['mailing_address'];
+        $user->email_address = $_POST['email'];
+        $user->phone_number = $_POST['phonenumber'];
+        $skill = $_POST['skills'];
+        $hobbies = $_POST['hobbies'];
+       // $user->password = $_POST['password'];
+        $user->set_password($_POST['password']);
+       
+        //$repeatPassword = $_POST['repeatedPassword'];
+        
+         echo 'Value after input'.$user->edit_user($_SESSION['user_id'] );
+         
+         echo "error ".User::$user_error;
+         if(true){
+            require('./public/view/welcome.php');
+        
+     } 
     }
 
 }
