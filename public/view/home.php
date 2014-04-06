@@ -9,13 +9,13 @@
    */
 ?>
 <?php
-
 $loader = new Loader();
 
 
 try{
-$loader->service('Template.php');
-$loader->service('CurrentPage.php');
+$loader->service('template');
+$loader->service('CurrentPage');
+$members = $data;
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -104,70 +104,37 @@ $template = new Template();
 				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-bookmark"></i> Enrolled Projects</a></li>
 			 </ul>
 		       </div>
-		       <div class="col-md-offset-6">
-			 <div class="main_content">
+		   <div class="col-md-offset-6">
+			 <div class="main_content user_form">
 				<div class="a_content">
 				   
-				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
-				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
-				  </p>
-				  <ul class="nav navbar-nav">
-				       <li class="links_project"><a href="../controller/information.php" ><i class=" diff glyphicon glyphicon-envelope"> </i>  Inform a friend</a></li>
-				       <li class="links_project"><a ><i class="diff glyphicon glyphicon-trash"></i>  Leave Project</a></li>
-				       <li class="links_project pull-right"><a> Read More</a></li>
-				  </ul>
-				 
-				</div>
-			 
-				<div class="a_content">
-				   
-				  <h3><span><img src="../../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
-				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
-				  </p>
-				  <ul class="nav navbar-nav">
-				       <li class="links_project"><a href="../controller/information.php" ><i class=" diff glyphicon glyphicon-envelope"> </i>  Inform a friend</a></li>
-				       <li class="links_project"><a ><i class="diff glyphicon glyphicon-trash"></i>  Leave Project</a></li>
-				       <li class="links_project pull-right"><a> Read More</a></li>
-				  </ul>
-				 
-				</div>
-			 
-				<div class="a_content">
-				   
-				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
-				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
-				  </p>
-				  <ul class="nav navbar-nav">
-				       <li class="links_project"><a href="../controller/information.php" ><i class=" diff glyphicon glyphicon-envelope"> </i>  Inform a friend</a></li>
-				       <li class="links_project"><a ><i class="diff glyphicon glyphicon-trash"></i>  Leave Project</a></li>
-				       <li class="links_project pull-right"><a> Read More</a></li>
-				  </ul>
-				 
-				</div>
-			 
-				<div class="a_content">
-				   
-				  <h3><span><img src="../../public/img/jack.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
-				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
-				  </p>
-				  <ul class="nav navbar-nav">
-				       <li class="links_project"><a href="../controller/information.php" ><i class=" diff glyphicon glyphicon-envelope"> </i>  Inform a friend</a></li>
-				       <li class="links_project"><a ><i class="diff glyphicon glyphicon-trash"></i>  Leave Project</a></li>
-				       <li class="links_project pull-right"><a> Read More</a></li>
-				  </ul>
-				 
-				</div>
-		       
-				<div class="a_content">
-				   
-				  <h3><span><img src="../../public/img/leader.jpg" class="img col-sm-2" title="Project Leader"/></span>Project heading</h3>
-				  <p>As a response to the inherent need for plore technological challenges embedded with innovation opportunities, UICT Community serves as a pla, University Information and Communication Technologies Community.The community engages in various
-				  </p>
-				  <ul class="nav navbar-nav">
-				       <li class="links_project"><a href="../controller/information.php" ><i class=" diff glyphicon glyphicon-envelope"> </i>  Inform a friend</a></li>
-				       <li class="links_project"><a ><i class="diff glyphicon glyphicon-trash"></i>  Leave Project</a></li>
-				       <li class="links_project pull-right"><a> Read More</a></li>
-				  </ul>
+				  <form role="form" action="#" method="post">
+				    <label for="title"></label>
+				    <input type="text" name="title" class="form-control" required id="title" placeholder="Project title" />
+				    <label for="description"></label>
+				    <textarea name="description" class="form-control" id="description" placeholder="Project description"></textarea>
+				    <label for="begin_date"></label>
+				    <input type="date" name="begin_date" class="form-control" required id="begin_date"/>
+				    <label for="initiator"></label>
+				    <select class="form-control" name="initiator_id" id="initiator">
+				       <option value="0">--Project Initiator--</option>
+				       <?php
+				          foreach($members as $member){
+				          	echo '<option value="'.$member[id];
+				          	
+				          	if(defined($_POST)){
+                               if($member['id'] == $_POST['initiator_id']){
+                                  echo 'selected="selected">'.$member['first_name'].' '.$member['last_name'].'</option>';
+                               }
+				          	}else{
+				          	   echo '">'.$member['first_name'].' '.$member['last_name'].'</option>';
+				            }
+				          }
+				       ?>
+				    </select>
+				    <input type="reset" value="Clear" class="btn btn-primary" required />
+				    <input type="submit" value="Add Project" class="btn btn-primary" required />
+				  </form>
 				 
 				</div>
 			 </div>

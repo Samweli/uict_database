@@ -1,13 +1,15 @@
 <?php
+
 /* now it is only require_once in first index.php
 require_once('./includes/services/Loader.php');
 */
+
     $loader = new Loader();
     try{
        
-       $loader->service('Template.php');
-       $loader->service('CurrentPage.php');
-       
+       $loader->service('template');
+       $loader->service('CurrentPage');
+       $events = $data;
        
        $template = new Template();
        
@@ -17,7 +19,6 @@ require_once('./includes/services/Loader.php');
        echo "Message: ".$e->getMessage();
     }
     
-    
 ?>
 <!DOCTYPE html>
     <html lang='en'>
@@ -25,17 +26,16 @@ require_once('./includes/services/Loader.php');
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
             <?php
-	    
-	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
-	    
-	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
-	    }
-	    
-	    ?>
+      
+      $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
+      
+      foreach($cssFiles as $file){
+      echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';
+      }
+      
+      ?>
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            
             
         </head>
         <body>
@@ -58,18 +58,31 @@ require_once('./includes/services/Loader.php');
                          </div><!-- end col-md-12 -->
                        </div><!-- end container -->
                     </div><!-- end row page header -->
-                    <div class="row u_row">
-                      <div class="col-md-4">
+                    <div class="row u_row search">
+                      <div class="col-md-4" >
                          <div class="row search_events">
-                             <input type="text" id="search_by_start_date" placeholder="Search by title"/> 
+                             <form role="form" name="search_events">
+                               <label for="search_by_title">Search by title</label>
+                               <input type="text" class="form-control" id="search_by_title" placeholder="Event title"/> 
+                               <input type="submit" value="Search" class="btn btn-default submit"/>
+                             </form><!-- end search_event -->
                          </div><!-- end row search_events -->
+                         <div class="row other">
+                              <!-- content not yet defined -->
+                         </div><!-- end row other -->
                       </div><!-- end col-md-4 -->
                       <div class="col-md-8">
                         <div class="row search_events">
-                           <form name="search_events">
-                             <input type="text" id="search_by_start_date" placeholder="Search by start date"/>
-                             <input type="text" id="search_by_end_date" placeholder="Search by end date"/>
-                             <input type="submit" id="submit" value="Search"/>
+                           <form role="form" name="search_events">
+                             <div class="col-md-6">
+                               <label for="search_by_begin_date">Search by begin date</label>
+                               <input type="date" id="search_by_begin_date" placeholder="Begin date" class="form-control"/>
+                             </div><!-- end of col -->
+                             <div  class="col-md-6">
+                               <label for="search_by_end_date">Search by end date</label>
+                               <input type="date" id="search_by_end_date" placeholder="End date" class="form-control"/>
+                               <input type="submit" value="Search" class="btn btn-default submit"/>
+                             </div>
                            </form><!-- end search_event -->
                         </div><!-- end row for search boxes-->
                         <div class="row">
@@ -77,12 +90,16 @@ require_once('./includes/services/Loader.php');
                              if(isset($events) && is_array($events)){
                                foreach($events as $event){
                                    echo '<div class="event">';
-                                      echo '<span class="event_tag"></span><span class="event_title">'.$event['title'].'</span>';
-                                      //echo '<span class="event_title">'.$event['category'].'</span>';
+                                      echo '<div class="event-wrapper">';
+                                      echo '<span class="event_tag"></span><span class="event_title"><a href="';
+                                      echo 'community-event.php?id='.urlencode($event['id']).'">'.$event['title'].'</a></span>';
                                       echo '<span class="event_tag">Description </span><span class="event_description">'.$event['description'].'</span>';
-                                      echo '<span class="event_more"><a href="#">Read more</a></span>';
+                                      echo '<span class="event_more"><a href="community-event.php?id=';
+                                      echo urlencode($event['id']).'">Read more</a></span>';
                                       echo '<span class="event_tag">Date & Time </span><span class="event_time">'.$event['date'].'</span>';
-                                      echo '<span class="event_tag">Posted By </span><span class="event_publisher">Faith Assenga - Communication Director</span>';
+                                      echo '<span class="event_tag">Posted By </span><span class="event_publisher">'.$event['first_name'];
+                                      echo ' '.$event['last_name'].'</span>';
+                                      echo '</div>';
                                    echo '</div>';
                                 }
                              }
@@ -96,12 +113,12 @@ require_once('./includes/services/Loader.php');
                       <!-- content -->
                       <div class="content">
                       <?php
-                   try{
-                       $template->render('footer.php');
-                   }catch(Exception $e){
-                       echo "Message: ". $e->getMessage();
-                   }
-               ?>
+                          try{
+                             $template->render('footer.php');
+                          }catch(Exception $e){
+                             echo "Message: ".$e->getMessage();
+                          }
+                      ?>
                     </div>
                 
             </div>

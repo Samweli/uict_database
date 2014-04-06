@@ -1,3 +1,4 @@
+
 <?php //require_once('../includes/helper/initialize.php');
 
  /* now it is only require_once in first index.php
@@ -7,7 +8,7 @@ require_once('./includes/services/Loader.php');
     $loader = new Loader();
     try{
        
-       $loader->service('Template.php');
+       $loader->service('template.php');
        $loader->service('CurrentPage.php');
        $loader->service('functions.php');
        
