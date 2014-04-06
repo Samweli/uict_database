@@ -14,7 +14,7 @@ $loader = new Loader();
 try{
 $loader->service('template');
 $loader->service('CurrentPage');
-$members = $data;
+$event_category = $data;
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -69,8 +69,8 @@ $template = new Template();
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
 				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
-				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item active"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
-				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>	
+				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>	
+				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item active"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
 			</div>
 		 </div><!-- end of row for info -->
 
@@ -88,26 +88,26 @@ $template = new Template();
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
-			    <form role="form" action="<?php echo URL;?>projects/add_project" method="post">
+			    <form role="form" action="#" method="post">
 				    <lable for="title"></lable>
-				    <input type="text" name="title" class="form-control" required id="title" placeholder="Project title"/>
+				    <input type="text" name="title" class="form-control" required id="title" placeholder="Event title"/>
 				    <label for="description"></label>
-				    <textarea name="description" class="form-control" id="description" placeholder="Project description"></textarea>
-				    <label for="begin_date">Begin Date</label>
-				    <input type="date" name="begin_date" class="form-control" required id="begin_date"/>
-				    <label for="initiator"></label>
-				    <select class="form-control" name="initiator_id" id="initiator">
-				       <option value="0">--Project Initiator--</option>
+				    <textarea name="description" class="form-control" id="description" placeholder="Event description"></textarea>
+				    <label for="event_date">Event Date</label>
+				    <input type="date" name="begin_date" class="form-control" required id="event_date"/>
+				    <label for="category"></label>
+				    <select class="form-control" name="category_id" id="category">
+				       <option value="0">--Event Category--</option>
 				       <?php
-				          foreach($members as $member){
-				          	echo '<option value="'.$member[id];
+				          foreach($event_category as $category){
+				          	echo '<option value="'.$category[id];
 				          	
 				          	if(defined($_POST)){
-                               if($member['id'] == $_POST['initiator_id']){
-                                  echo 'selected="selected">'.$member['first_name'].' '.$member['last_name'].'</option>';
+                               if($category['id'] == $_POST['category_id']){
+                                  echo 'selected="selected">'.$category['category'].'</option>';
                                }
 				          	}else{
-				          	   echo '">'.$member['first_name'].' '.$member['last_name'].'</option>';
+				          	   echo '">'.$category['category'].'</option>';
 				            }
 				          }
 				       ?>

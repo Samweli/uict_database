@@ -14,7 +14,7 @@ $loader = new Loader();
 try{
 $loader->service('template');
 $loader->service('CurrentPage');
-$members = $data;
+$projects = $data;
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -66,10 +66,10 @@ $template = new Template();
 		 <div class="row user_nav">
             <div class="list-group">
 				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
-				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
+				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item active"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
-				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
-				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item active"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
+				 <a href="#" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
+				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
 				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>	
 			</div>
 		 </div><!-- end of row for info -->
@@ -88,33 +88,27 @@ $template = new Template();
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
-			    <form role="form" action="<?php echo URL;?>projects/add_project" method="post">
-				    <lable for="title"></lable>
-				    <input type="text" name="title" class="form-control" required id="title" placeholder="Project title"/>
-				    <label for="description"></label>
-				    <textarea name="description" class="form-control" id="description" placeholder="Project description"></textarea>
-				    <label for="begin_date">Begin Date</label>
-				    <input type="date" name="begin_date" class="form-control" required id="begin_date"/>
-				    <label for="initiator"></label>
-				    <select class="form-control" name="initiator_id" id="initiator">
-				       <option value="0">--Project Initiator--</option>
-				       <?php
-				          foreach($members as $member){
-				          	echo '<option value="'.$member[id];
-				          	
-				          	if(defined($_POST)){
-                               if($member['id'] == $_POST['initiator_id']){
-                                  echo 'selected="selected">'.$member['first_name'].' '.$member['last_name'].'</option>';
-                               }
-				          	}else{
-				          	   echo '">'.$member['first_name'].' '.$member['last_name'].'</option>';
-				            }
-				          }
-				       ?>
-				    </select>
-				    <input type="submit" value="Publish Project" class="btn btn-primary" required />
-				    <input type="reset" value="Clear" class="btn btn-default" required />
-				  </form>
+			    <!-- All Projects list-->
+                 <?php
+                    foreach($projects as $project){
+                      echo '<div class="content_list">';
+                        echo '<h3 class="title"><span><img src="../public/img/members/leader.jpg" class="img col-sm-2" title="Project Title"/></span>';
+                        echo $project['title'].'</h3>';
+                        echo '<span class="tag tag-description">Description</span>';
+                        echo '<p class="_description">'.$project['description'].'</p>';
+                        echo '<p class="initiator"><span class="tag">Initiated By </span>';
+                        echo $project['first_name'].' '.$project['last_name'].'<span class="tag"> on </span>'.$project['begin_date'].'</p>'; 
+                        echo '<ul class="nav nav-pills content_nav">';
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-share"></span> Inform a friend</a></li>';
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>'; 
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Join a team</a></li>';
+                        echo '</ul>';
+                      echo '</div>';
+                    }
+                 ?> 
+
+
+
 			 </div><!-- end of row for user form -->
 
          </div><!-- end of col-md-6 -->

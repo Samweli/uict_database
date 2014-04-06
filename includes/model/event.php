@@ -33,6 +33,15 @@
             }
           }
        }
+
+       public function get_categories(){
+           $sql = "SELECT * FROM events_categories";
+           global $db;
+           if($result = $db->db_query($sql)){
+              $categories = $db->db_fetch_array($result);
+              return $categories;
+           }
+       }
    }
 
    $event = new Event();

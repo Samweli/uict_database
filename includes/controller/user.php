@@ -8,8 +8,6 @@ class UserController extends Controller{
 	public function __construct(){
 		$this->loader = new Loader();
 		$this->db = new Database();
-		$this->loader->service('functions');
-		$this->loader->model('user');
 		$this->user = new User();
 	}
     
@@ -39,6 +37,32 @@ class UserController extends Controller{
     public function add_new_project(){
     	$users = $this->user->get_all();
     	$this->loader->view('add_project',$users);
+    }
+
+    public function add_new_event(){
+    	$this->loader->model('event');
+    	$event = new Event();
+    	$event_categories = $event->get_categories();
+    	$this->loader->view('add_event',$event_categories);
+    }
+
+    public function all_events(){
+    	$this->loader->model('event');
+    	$event = new Event();
+    	$events = $event->get_all();
+    	$this->loader->view('all_events',$events);
+    }
+
+    public function all_projects(){
+    	$this->loader->model('project');
+    	$project = new Project();
+    	$projects = $project->get_all();
+    	$this->loader->view('all_projects',$projects);
+    }
+
+    public function all_members(){
+    	$users = $this->user->get_all();
+    	$this->loader->view('all_members',$users);
     }
    
 }

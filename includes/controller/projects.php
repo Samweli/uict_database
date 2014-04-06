@@ -38,6 +38,20 @@
               }
           }
        }
+
+       public function add_project(){
+            global $db;
+            $this->project->title = $db->db_escape_values($_POST['title']);
+            $this->project->description = $db->db_escape_values($_POST['description']);
+            $this->project->begin_date = $db->db_escape_values($_POST['begin_date']);
+            $this->project->initiator_id = $db->db_escape_values($_POST['initiator_id']);
+            $this->project->category_id = 1;
+            if($this->project->add_project()){
+               redirect(URL.'user/all_projects');
+            }else{
+              echo "Error occured";
+            }
+       }
    }
 ?>
 

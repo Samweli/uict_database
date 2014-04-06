@@ -7,23 +7,22 @@
     * 5. Edit project plan
     * 6. Delete project plan
     */
+ 
 
-   //require_once('./libs/model.php');
-   require_once('database.php');
-
-   class Project extends Model{
+   class Project{
        public $title;
        public $descriptiion;
+       public $category_id;
        public $begin_date;
        public $initiator_id;
 
        public function add_project(){
           if($this->is_project_defined()){
-              $sql = "INSERT INTO projects (title,description,initiator_id,begin_date) VALUES('".$this->title."',";
-              $sql = "'".$this->description."','".$this->begin_date."','".$this->initiator_id."'";
+              $sql = "INSERT INTO projects (title,description,category_id,begin_date,initiator_id) VALUES('".$this->title."','";
+              $sql .= $this->description."','".$this->category_id."','".$this->begin_date."','".$this->initiator_id."')";
               global $db;
               if($db->db_query($sql)){
-                  return $db->db_insert_id;
+                  return $db->db_last_insert_id();
               }
           }
        }
@@ -71,7 +70,8 @@
        }
 
        private function is_project_defined(){
-          if(isset($this->title) && isset($this->description) && isset($this->begin_date) && isset($this->initiator_id)){
+          if(isset($this->title) && isset($this->description) && 
+                isset($this->begin_date) && isset($this->begin_date) && isset($this->initiator_id)){
               return TRUE;
           }else{
               return FALSE;

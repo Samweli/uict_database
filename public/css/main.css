@@ -315,7 +315,6 @@ border-top-left-radius: 4px;
 .user_form{
   margin-top: 100px;
   padding-left: 10px;
-  padding-right: 10px;
 }
 
 .user_form input[type=submit], .user_form input[type=reset]{
@@ -338,6 +337,24 @@ border-top-left-radius: 4px;
     text-decoration: none;
 }
 
+.user_form label{
+    font-size: 12px;
+    color: 444;
+}
+
 .user_nav{
     margin-top: 10px;
+}
+
+.initiator{
+    margin-left: 14px;
+}
+
+.tag{
+    font-size: 14px;
+    color: 444;
+}
+
+.content_list{
+    border-left: 8px solid steelblue;
 }

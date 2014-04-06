@@ -1,5 +1,5 @@
 <?php
-require_once('./includes/services/loader.php');
+
     $loader = new Loader();
     try{
        
