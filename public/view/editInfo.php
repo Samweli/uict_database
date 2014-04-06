@@ -91,7 +91,7 @@ $template = new Template();
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label" >Registration NO:</label>
 				      <div class="col-sm-6">
-					<input name="registrationID" type="text" class="form-control"  value="<?php echo $_SESSION['reg_number'];?>"/>
+					<input name="reg_number" type="text" class="form-control"  value="<?php echo $_SESSION['reg_number'];?>"/>
 				      </div>
 				    </div>
 

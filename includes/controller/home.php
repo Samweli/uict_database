@@ -53,8 +53,9 @@ class HomeController extends Controller{
         
         $user = new User();
         $user->first_name= $_POST['firstname'];
-        $user->reg_number= $_POST['reg_number'];
+        
         $user->last_name = $_POST['lastname'];
+        $user->reg_number= $_POST['reg_number'];
         //$user-> = $_POST['degree_program'];
         $user->gender = $_POST['gender'];
         $user->status = $_POST['maritial_status'];
@@ -85,6 +86,7 @@ class HomeController extends Controller{
         $user->first_name= $_POST['firstname'];
         
         $user->last_name = $_POST['lastname'];
+        $user->reg_number= $_POST['reg_number'];
         //$user-> = $_POST['degree_program'];
         $user->gender = $_POST['gender'];
         $user->status = $_POST['maritial_status'];
@@ -94,7 +96,7 @@ class HomeController extends Controller{
         $skill = $_POST['skills'];
         $hobbies = $_POST['hobbies'];
        // $user->password = $_POST['password'];
-        $user->set_password($_POST['password']);
+        //$user->set_password($_POST['password']);
        
         //$repeatPassword = $_POST['repeatedPassword'];
         
