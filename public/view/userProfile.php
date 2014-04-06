@@ -57,7 +57,7 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" >Samweli Twesa</a>
+			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
 			 </div>
 			 <div class="col-lg-6 col-md-offset-3">
 				<form action="../controller/search.php" method="get">
@@ -93,14 +93,14 @@ $template = new Template();
 		  	<div class = "container_info">
                <h3>Personal info</h3> 
                <ul class="nav">
-				       <li class="activity_li">Registration Number: <a>2012-04-02392</a></li>
+				       <li class="activity_li">Registration Number: <a><?php echo  $_SESSION['reg_number'];?></a></li>
 				       <li class="activity_li">Degree program: <a>Computer Science</a></li>
-				       <li class="activity_li">Email: <a>kimollomick17@gmail.com</a></li>
-				       <li class="activity_li">Phone Number: <a>0712-509309</a></li>
+				       <li class="activity_li">Email: <a><?php echo $_SESSION['email_address'];?></a></li>
+				       <li class="activity_li">Phone Number: <a><?php echo $_SESSION['phone_number']; ?></a></li>
 				       
 				</ul>
 				<div class="edit_button">
-				<a href="<?php echo URL; ?>home/registration" class="u_button">edit</a>
+				<a href="<?php echo URL; ?>home/editInfo" class="u_button">edit</a>
 				</div>
 
 		  	</div>

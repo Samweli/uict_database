@@ -41,6 +41,10 @@ class HomeController extends Controller{
     public function userProfile(){
         require('./public/view/userProfile.php');
     }
+
+    public function editInfo(){
+        require('./public/view/editInfo.php');
+    }
     public function profile(){
         require('./public/view/home.php');
     }

@@ -64,7 +64,7 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" >Samweli Twesa</a>
+			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
 			 </div>
 			 <div class="col-lg-6 col-md-offset-3">
 				<form action="../controller/search.php" method="get">
