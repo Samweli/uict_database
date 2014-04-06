@@ -1,17 +1,5 @@
-<?php 
-  /*
-   require_once('../includes/model/session.php');
-   require_once('../includes/helper/functions.php');
-
-   if($session->is_logged_in == false){
-       redirect('login.php');
-   }
-   */
-?>
 <?php
-
 $loader = new Loader();
-
 
 try{
 $loader->service('Template.php');
@@ -29,7 +17,7 @@ $template = new Template();
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Home | UICT Community</title>
+<title><?php //echo user name ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <?php
@@ -43,8 +31,8 @@ $template = new Template();
              
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-
- <body>
+</head> <!-- end of header -->
+<body>
 	<div id="page">
 	<div id="header">
 	      <?php
@@ -56,7 +44,12 @@ $template = new Template();
 		}
 	      
 	      ?>
-	      </div>
+	    </div>
+
+	</div>
+	<!-- end of header-->
+		
+
 	<div class="container">
 	 <div class="row u_row">
 		<div class="col-lg-6">
@@ -75,33 +68,54 @@ $template = new Template();
 				       </span>
 				       </div>
 				</form>
-				
 			 </div>
+			 <!-- end of the search bar -->
+
+			
 			 <div class="container">
 		       <div class="col-lg-3 pull-right recent">
 				<div class="recent_activity">
-				 <h3>Recent Activities</h3> 
+				 <h3>Enrolled projects</h3> 
 				</div>
 				<ul class="nav">
-				       <li class="activity_li">Today: <a>Shared OOP book</a></li>
-				       <li class="activity_li">Yesterday: <a>Joined Project Logo</a></li>
-				       <li class="activity_li">Yesterday: <a>Commented on Charity Event</a></li>
-				       <li class="activity_li">Last Week: <a>Left Project Together</a></li>
+				       <li class="activity_li">Today: <a>UICT Database design</a></li>
+				       <li class="activity_li">Yesterday: <a>T shirt logo design</a></li>
+				       <li class="activity_li">Yesterday: <a>Swiming ROBOT</a></li>
+				       <li class="activity_li">Last Week: <a>Radio frequence transmission</a></li>
 				       
 				</ul>
 			 </div>
-		       </div>
+		       </div> 
 		       
-		  </div>
+		  </div> 
+		  <!-- begin of personal infomations -->
+		  
+		  	<div class = "container_info">
+               <h3>Personal info</h3> 
+               <ul class="nav">
+				       <li class="activity_li">Registration Number: <a>2012-04-02392</a></li>
+				       <li class="activity_li">Degree program: <a>Computer Science</a></li>
+				       <li class="activity_li">Email: <a>kimollomick17@gmail.com</a></li>
+				       <li class="activity_li">Phone Number: <a>0712-509309</a></li>
+				       
+				</ul>
+				<div class="edit_button">
+				<a href="<?php echo URL; ?>home/registration" class="u_button">edit</a>
+				</div>
+
+		  	</div>
+		  
+
+		  
 		  <div class="row u_row lower_row">
-		       <div class="col-lg-6">
+		      <!-- <div class="col-lg-6">
 			 <ul class="nav navigation-menu" >
 				<li  class="active-menu list-menu"><a><i class="diff glyphicon glyphicon-pushpin"></i> Enrolled Projects</a></li>
 				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-book"></i> OnGoing Projects</a></li>
 				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-map-marker"></i> Enrolled Projects</a></li>
 				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-bookmark"></i> Enrolled Projects</a></li>
 			 </ul>
-		       </div>
+		       </div> -->
 		       <div class="col-md-offset-6">
 			 <div class="main_content">
 				<div class="a_content">
@@ -169,13 +183,19 @@ $template = new Template();
 				 
 				</div>
 			 </div>
-			 </div>
+			 </div> 
 			      <!-- end u_main_content -->
 			    </div>
 		       </div>
 		</div>
 	       </div>
 	</div>
+	
+
+
+
+
+	<!-- start of a footer-->
 	<div class="content">
 	       <?php
 		try{
@@ -187,7 +207,6 @@ $template = new Template();
 	      
 	      ?>
 	      </div>
-	</div>
- </body>
 
+</body>
 </html>

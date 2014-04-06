@@ -360,6 +360,7 @@ border-top-left-radius: 4px;
 .u_button{
     margin-left: 100px;
     margin-right: 100px;
+
 }
 #message{
     margin-left:40px;
@@ -379,3 +380,22 @@ border-top-left-radius: 4px;
     margin-right: 100px;
 }
 
+.container_info{
+    border-radius: 5px;
+    float:left;
+    position: absolute;
+    top:200px;
+    left:2px;
+
+}
+
+.edit_button
+{
+
+ margin-top:20px;
+
+}
+.event_container
+{
+    float:right;
+}

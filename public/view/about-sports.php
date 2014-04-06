@@ -8,7 +8,7 @@
 
 <!DOCTYPE html>
     <html lang='en'>
-        <head>
+        <head> 
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
             <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
