@@ -75,7 +75,7 @@
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
                  global $db;
                 if($db->db_query($sql)){
-		     echo 'Executed in add user';
+		     
                   return $db->db_last_insert_id();
                  }else{
 		     $this::$user_error = $db->last_query;
@@ -92,7 +92,10 @@
 	  	 	 global $db;
 	  	 	 if($db->db_query($sql)){
 	  	 		return $db->db_affected_rows();
-	  	 	 }
+	  	 	 }else{
+         $this::$user_error = $db->last_query;
+         
+     }
   	 	}
    	  }	
 
@@ -129,8 +132,27 @@
              }
           }
    	  }
-	  
-   }
+      public function get_user_by_reg_number($reg_number=""){
+        if(!empty($reg_number)){
+             $sql = "SELECT * FROM users WHERE reg_number = '".$reg_number."' LIMIT 1";
+             global $db;
+             if($user = $db->db_query($sql)){
+                 $array =  $db->db_first_row($user);
+
+                 $this::$user_error="executed in get by user reg ".$user[0];
+
+                 $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
+            $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
+            $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
+
+            return $returnedUser;
+	          }else{
+              $this::$user_error = $db->last_query;
+         
+            }
+ }
+}
+}
 
 
    $user = new User();

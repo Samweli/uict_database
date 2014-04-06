@@ -99,8 +99,14 @@ class HomeController extends Controller{
         //$user->set_password($_POST['password']);
        
         //$repeatPassword = $_POST['repeatedPassword'];
+
+        echo 'firs reg no'.$user->reg_number;
         
-         echo 'Value after input'.$user->edit_user($_SESSION['user_id'] );
+        $query_user = $user->get_user_by_reg_number($user->reg_number);
+
+        echo 'query user id '.$query_user->id;
+        $user->edit_user($query_user->id);
+        
          
          echo "error ".User::$user_error;
          if(true){
