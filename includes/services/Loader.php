@@ -37,6 +37,9 @@
 
          public function view($file="",$data=""){
             $dir = $this->view_path.$file;
+	    
+	    echo 'Id in view'.$data->id;
+	    
             if(file_exists($dir)){
                 require($dir);
             }else{

@@ -59,11 +59,16 @@
               $sql = "SELECT * FROM users WHERE reg_number = '".$reg_number."' AND password = '".sha1($pass)."' LIMIT 1"; 
               global $db;
               if($user = $db->db_query($sql)){
-		    
-		    
                    $user = $db->db_first_row($user);
+		   
+		    $this::$user_error = ' id atuh '.$user[0];
+		   
 		   return $this->get_user($user[0]);
-              }
+	      
+              }else{
+		     $this::$user_error = $db->last_query;
+		     
+		 }
           }
       }
 
@@ -74,10 +79,10 @@
    	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->mailing_address."','".$this->email_address."','".$this->phone_number."',";
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
                  global $db;
-                if($db->db_query($sql)){
-		     echo 'Executed in add user';
+                 if($db->db_query($sql)){
+		   
                   return $db->db_last_insert_id();
-                 }else{
+                  }else{
 		     $this::$user_error = $db->last_query;
 		     
 		 }
@@ -125,7 +130,10 @@
 		 $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
 			      $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
 			      $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
-	          return $returnedUser;
+	          
+		 
+		  
+		  return $returnedUser;
              }
           }
    	  }

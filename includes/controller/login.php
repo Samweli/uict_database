@@ -1,6 +1,6 @@
 <?php
 
-include('./includes/model/session.php');
+
 include('./includes/controller/home.php');
    
 class LoginController extends Controller{
@@ -25,13 +25,11 @@ class LoginController extends Controller{
 			$password = $db->db_escape_values($_POST['password']);
 	     
 		    if($member = $user->authenticate($reg_number,$password)){
-			 echo '';
+			 
 			$session->login($member);
 			
 			//echo "Welcome :".$member['first_name'];
 			header('Location:'.URL.'home/userhome/'.$member->id);
-			
-			
 			
 		    }else{
 		       $this->error_message = "Invalid registration number or password. Please try again!";
