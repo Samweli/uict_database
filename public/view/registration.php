@@ -88,6 +88,7 @@ $template = new Template();
 			       </div>
 			     </div>
 
+
 			     <div class="form-group">
 			       <label class="col-sm-2 control-label" >Registration NO:</label>
 			       <div class="col-sm-6">

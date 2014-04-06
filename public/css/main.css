@@ -363,6 +363,7 @@ border-top-left-radius: 4px;
 .u_button_welcome{
     margin-left: 100px;
     margin-right: 100px;
+
 }
 #message{
     margin-left:40px;
@@ -381,7 +382,32 @@ border-top-left-radius: 4px;
     margin-left: 100px;
     margin-right: 100px;
 }
+
 /* for customizing error message in login*/
 .error_message_login{
     color:#CE0C0C;
+}
+
+.container_info{
+    border-radius: 5px;
+    float:left;
+    position: absolute;
+    top:200px;
+    left:2px;
+
+}
+
+.edit_button
+{
+
+ margin-top:20px;
+ float:right;
+
+}
+.event_container
+{
+    position: absolute;
+    left:1000px;
+    top:500px;
+
 }
