@@ -77,13 +77,30 @@ class HomeController extends Controller{
        
     }
     
-    public function userProfile(){
-        require('./public/view/userProfile.php');
+    public function userProfile($user_id){
+        $user = (new User)->get_user($user_id);
+
+        $loader = new Loader();
+        try{
+            $loader->view('userProfile.php',$user);
+        }catch(Exception $e){
+            echo 'Message'.$e->getMessage();
+        }
         
     }
 
-    public function editInfo(){
-        require('./public/view/editInfo.php');
+    public function editInfo($user_id){
+
+        $user = (new User)->get_user($user_id);
+
+        $loader = new Loader();
+
+        try{
+            $loader->view('editInfo.php',$user);
+        }catch(Exception $e){
+            echo 'Message'.$e->getMessage();
+        }
+       
     }
     public function profile(){
         require('./public/view/home.php');
@@ -96,20 +113,17 @@ class HomeController extends Controller{
         
         $user->last_name = $_POST['lastname'];
         $user->reg_number= $_POST['reg_number'];
-        //$user->program_id= $_POST['selected_program'];
+
+        $user->program_id= $_POST['selected_course'];
+
         $user->gender = $_POST['gender'];
         $user->status = $_POST['maritial_status'];
         $user->mailing_address = $_POST['mailing_address'];
         $user->email_address = $_POST['email'];
         $user->phone_number = $_POST['phonenumber'];
-        
-        $user->reg_number = $_POST['reg_number'];
-        
-       // $user->password = $_POST['password'];
+           
         $user->set_password($_POST['password']);
        
-        //$repeatPassword = $_POST['repeatedPassword'];
-        
          if($user->add_user()){
             
             $session = new Session();
@@ -165,8 +179,10 @@ class HomeController extends Controller{
         
          
          echo "error ".User::$user_error;
+         $loader = new Loader();
          if(true){
-            require('./public/view/welcome.php');
+            $loader->view('welcome.php',$user);
+           
         
      } 
     }

@@ -42,7 +42,7 @@
 
          public function view($file="",$data=""){
             $dir = $this->view_path.$file;
-	   
+	
             if(file_exists($dir)){
                 require($dir);
             }else{

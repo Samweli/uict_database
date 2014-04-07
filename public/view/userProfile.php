@@ -1,9 +1,10 @@
 <?php
 $loader = new Loader();
 if(isset($data)){
-$users = $data;
+$user = $data;
 }else{
-	$users =null;
+	$users = null;
+	$result_not_found = "results not found";
 }
 try{
 $loader->service('Template.php');
@@ -29,7 +30,7 @@ $template = new Template();
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
+	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    }
 	    
 	    ?>
              
@@ -61,7 +62,7 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php 
+			 <a href="<?php echo URL; ?>home/userProfile/" title="Checkout Profile" ><?php 
 
 			 echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
 			 </div>
@@ -78,10 +79,14 @@ $template = new Template();
 				       
 				</form>
 				<div class="results">
-					<?php if(isset($users)){
+					<?php if(isset($users)&& $users!=NULL){
+						echo '<h4>Results</h4>';
 						foreach ($users as $user ) {
-							echo '<a href="'.URL.'home/userhome/'.$user['id'].'" >'.$user['first_name'].' '.$user['last_name'].'</a><br />';
+							
+							echo '<a href="'.URL.'home/userhome/'.$user->id.'" >'.$user->first_name.' '.$user->last_name.'</a><br />';
 						}
+					}else{
+						echo '<h4>No member found</h4>';
 					}
 					?>
 				</div>
@@ -118,7 +123,7 @@ $template = new Template();
 				       
 				</ul>
 				<div class="edit_button">
-				<a href="<?php echo URL; ?>home/editInfo" class="u_button">edit</a>
+				<?php echo '<a href="'.URL.'home/editInfo/'.$user->id.'" class="u_button">edit</a>' ?>
 				</div>
 
 		  	</div>

@@ -93,9 +93,10 @@ echo 'Message: '. $e->getMessage();
 <select name ="selected_course">
 <option selected="selected" value="">Select Course</option>
 <option value = "1">Bsc. Computer eng.</option>
-<option value = "2">Bsc. Telecom</option>
-<option value = "3">Bsc. Computer science</option>
-<option value = "4">Bsc. Electronics</option>
+<option value = "2">Bsc. in Computer Science</option>
+<option value = "3">Bsc. with Computer Science</option>
+<option value = "4">Bsc. in Electronics and Communication</option>
+<option value="5"> Bsc. in Telecommunication Engineering</option>
 </select>
 
 <!--<input name="program" type="text" class="form-control" />-->

@@ -10,6 +10,7 @@
     */
 
 
+require("./includes/model/program.php");
    class User{
    	  public $id;
    	  public $first_name;
@@ -30,7 +31,7 @@
 	  public static $user_error;
 	  
 	  public function __construct($id="",$first_name="",$last_name="",$reg_number="",$grad_year="",$program_id="",
-				      $year_of_study="",$active_status="",$gender="",$email_address="",$phone_number="",$role="",$status=""){
+				      $year_of_study="",$active_status="",$gender="",$mailing_address="",$email_address="",$phone_number="",$role="",$status=""){
 					  
 	      $this->id = $id;
 	      $this->first_name = $first_name;
@@ -41,6 +42,7 @@
 	      $this->year_of_study = $year_of_study;
 	      $this->active_status = $active_status;
 	      $this->gender = $gender;
+        $this->mailing_address = $mailing_address;
 	      $this->email_address = $email_address;
 	      $this->phone_number = $phone_number;
 	      $this->role = $role;
@@ -133,7 +135,7 @@
 		 
 		 $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
 			      $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
-			      $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
+			      $array['gender'],$array['mailing_address'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
 	          
 		 
 		  
@@ -177,7 +179,15 @@
           $this::$user_error = $db->last_query;
         }
       }
-}
+
+      public function get_program($program_id){
+            $program = Program::get_program($program_id);
+       
+              return $program;
+      }
+          
+    }
+
 
 
    $user = new User();
