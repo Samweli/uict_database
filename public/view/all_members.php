@@ -12,8 +12,8 @@
 $loader = new Loader();
 
 try{
-$loader->service('template');
-$loader->service('CurrentPage');
+$loader->service('Template.php');
+$loader->service('CurrentPage.php');
 $members = $data;
 }
 catch(Exception $e){
@@ -61,16 +61,19 @@ $template = new Template();
          <div class="col-md-3">
              <div class="row user_photo">
              <img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="profile.php" title="Checkout Profile" >Samweli Twesa</a>
+			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
             <div class="list-group">
 				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
-				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item active"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
+				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
-				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
+				 <a href="<?php echo URL;?>user/all_members" class="list-group-item active"><span class="glyphicon glyphicon-user"></span> Community Members</a>
 				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
-				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>	
+				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
+				 <a href="<?php echo URL;?>user/add_income" class="list-group-item"><span class="glyphicon glyphicon-plus"></span> Income</a>	
+				 <a href="<?php echo URL;?>user/add_expense" class="list-group-item"><span class="glyphicon glyphicon-minus"></span> Expenses</a>	
+				 <a href="<?php echo URL;?>user/financial_report" class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Finacial Report</a>		
 			</div>
 		 </div><!-- end of row for info -->
 
@@ -91,9 +94,32 @@ $template = new Template();
 			    <!-- All Events list-->
                  <?php
                     foreach($members as $member){
-                        echo $member['first_name'];
+                      echo '<div class="content_list">';
+                        echo '<h3 class="title"><span><img src="../public/img/members/leader.jpg" class="img col-sm-2" title="Project Title"/></span>';
+                        echo $member['first_name'].' '.$member['last_name'].'</h3>';
+                        echo '<span class="tag">'.$member['program'];
+
+                        if($member['year_of_study'] == 1){
+                             echo ' - First Year</span>';
+                        }else if($member['year_of_study'] == 2){
+                             echo ' - Second Year</span>';
+                        }else if($member['year_of_study'] == 3){
+                        	echo ' - Third Year</span>';
+                        }else{
+                        	echo ' - Fourth Year</span>';
+                        }
+                        
+                        //echo '<p class="_description"></p>';
+                        //echo '<p class="initiator"><span class="tag">Published By </span>';
+                        //echo $event['first_name'].' '.$event['last_name'].'<span class="tag"> Up Coming On </span>'.$event['event_date'].'</p>'; 
+                        echo '<ul class="nav nav-pills content_nav">';
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>';
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Profile</a></li>'; 
+                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Subscribe</a></li>';
+                        echo '</ul>';
+                      echo '</div>';
                     }
-                 ?>
+                 ?> 
 
 
 

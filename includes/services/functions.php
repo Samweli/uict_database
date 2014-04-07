@@ -1,7 +1,7 @@
 <?php
-   function redirect($url = NULLL){
-      if($url != NULL){
-         header('Location: '.$url);
+   function redirect($location = NULL){
+      if($location != NULL){
+         header('Location:'.URL.$location);
          exit;
       }
    }

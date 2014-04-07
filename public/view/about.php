@@ -1,9 +1,14 @@
 <?php
-    
+
+/* now it is only require_once in first index.php
+require_once('./includes/services/Loader.php');
+*/
+    $loader = new Loader();
+
     try{
        $loader = new Loader();
-       $loader->service('template');
-       $loader->service('CurrentPage');
+       $loader->service('Template.php');
+       $loader->service('CurrentPage.php');
        $template = new Template();
        
        CurrentPage::$currentPage = "about";

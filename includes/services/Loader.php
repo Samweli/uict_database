@@ -1,6 +1,7 @@
 <?php
     /* 
-     * Loader Class for loading models, views and services
+
+     * Loader Class for loading files
      */
    
     class Loader{
@@ -8,59 +9,83 @@
          protected $model_path = './includes/model/';
          private $view_path = './public/view/';
          private $template_path = './public/templates/';
-	     private $service_path='./includes/services/';
-	     private $css_path ;
-	     private $essentialCssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 
+
+	 private $service_path='./includes/services/';
+	 private $controller_path = './includes/controller/';
 	 
+	 private $css_path ;
+	 
+	 private $essentialCssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
+
          public function model($file=""){
-         	$dir = $this->model_path.$file.'.php';
+
+            $dir = $this->model_path.$file;
+
             if(file_exists($dir)){
                 require($dir);
             }else{
-            	throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
+                throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
             }
          }
 
          public function template($file=""){
-         	$dir = $this->template_path.$file.'.php';
+
+            $dir = $this->template_path.$file;
+
             if(file_exists($dir)){
                 require($dir);
             }else{
-            	throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
+                throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
             }
          }
 
          public function view($file="",$data=""){
-            $dir = $this->view_path.$file.'.php';
+
+            $dir = $this->view_path.$file;
+	   
             if(file_exists($dir)){
                 require($dir);
             }else{
-            	throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
+                throw new Exception('File "'.$file.'" does not exist in directory "'.$dir.'"');
             }
          }
 
          public function service($file=""){
-            $dir = $this->service_path.$file.'.php';
+            $dir = $this->service_path.$file;
             if(file_exists($dir)){
                 require($dir);
             }else{
-            	throw new Exception('File "'.$file.'"does not exist in this directory"');
+                throw new Exception('File "'.$file.'"does not exist in this directory"');
             }
          }
 
-    	 public function css(){
-        	  foreach ($this->essentialCssFiles as $file){
-        	       $dir = $this->css_path.$file;
-            	   if(file_exists($dir)){
-            	       echo '<link rel="stylesheet" type="text/css" href="'.$dir.'" />';
-            	   }
-            	   else{
-            	       throw new Exception('File "'.$dir.'"does not exist in this directory"');
-            	       break;
-            	   }
-    	      }
-        }
+
+	 public function css(){
+	  
+	  foreach ($this->essentialCssFiles as $file){
+	   $dir = $this->css_path.$file;
+	  
+	   if(file_exists($dir)){
+	       echo '<link rel="stylesheet" type="text/css" href="'.$dir.'" />';
+	   }
+	   else{
+	       throw new Exception('File "'.$dir.'"does not exist in this directory"');
+	       break;
+	   }
+	  }
+	}
+	
+	public function controller($file=""){
+	  $dir = $this->controller_path.$file;
+	  
+	  if(file_exists($dir)){
+                require($this->controller_path.$file);
+            }else{
+            	throw new Exception('File "'.$dir.'"does not exist in this directory"');
+            }
+	}
+
 }
 
 ?>

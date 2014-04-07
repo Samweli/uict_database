@@ -1,9 +1,14 @@
 <?php
-   $loader = new Loader();
+
+/* now it is only require_once in first index.php
+require_once('./includes/services/Loader.php');
+*/
+$loader = new Loader();
+
 
 try{
-   $loader->service('template');
-   $loader->service('CurrentPage');
+   $loader->service('Template.php');
+   $loader->service('CurrentPage.php');
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();

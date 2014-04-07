@@ -13,8 +13,11 @@ $loader = new Loader();
 
 try{
 $loader->service('Template.php');
-   $loader->service('CurrentPage.php');
-$event_category = $data;
+$loader->service('CurrentPage.php');
+$income = $data['income'];
+$expenses = $data['expenses'];
+$total_income = $data['total_income'];
+$total_expenses = $data['total_expenses'];
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -69,8 +72,11 @@ $template = new Template();
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
 				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
-				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>	
-				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item active"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
+				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
+				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
+				 <a href="<?php echo URL;?>user/add_income" class="list-group-item"><span class="glyphicon glyphicon-plus"></span> Income</a>	
+				 <a href="<?php echo URL;?>user/add_expense" class="list-group-item"><span class="glyphicon glyphicon-minus"></span> Expenses</a>	
+				 <a href="<?php echo URL;?>finance/report" class="list-group-item active"><span class="glyphicon glyphicon-usd"></span> Finacial Report</a>		
 			</div>
 		 </div><!-- end of row for info -->
 
@@ -88,34 +94,55 @@ $template = new Template();
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
-			    <form role="form" action="<?php echo URL;?>event/add_event" method="post">
-				    <lable for="title"></lable>
-				    <input type="text" name="title" class="form-control" required id="title" placeholder="Event title"/>
-				    <label for="description"></label>
-				    <textarea name="description" class="form-control" id="description" placeholder="Event description"></textarea>
-				    <label for="event_date">Event Date</label>
-				    <input type="date" name="event_date" class="form-control" required id="event_date"/>
-				    <input type="hidden" name="publisher_id" class="form-control" value="<?php echo $_SESSION['user_id'];?>" required id="event_date"/>
-				    <label for="category"></label>
-				    <select class="form-control" name="category_id" id="category">
-				       <option value="0">--Event Category--</option>
-				       <?php
-				          foreach($event_category as $category){
-				          	echo '<option value="'.$category[id];
-				          	
-				          	if(defined($_POST)){
-                               if($category['id'] == $_POST['category_id']){
-                                  echo 'selected="selected">'.$category['category'].'</option>';
-                               }
-				          	}else{
-				          	   echo '">'.$category['category'].'</option>';
-				            }
-				          }
-				       ?>
-				    </select>
-				    <input type="submit" value="Publish Project" class="btn btn-primary" required />
-				    <input type="reset" value="Clear" class="btn btn-default" required />
-				  </form>
+			    <!-- All Events list-->
+                <div class="col-md-6 income">
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">Income</div>
+                      <div class="panel-body">
+                          <ul>
+                      	  <?php
+                            foreach($income as $cash){
+                             echo '<li>Tsh ';
+                              echo $cash['amount'].' /=';
+                              echo '<span class="tag">From ';
+                              if($cash['donor_name'] != NULL){
+                                 echo '<span>'.$cash['donor_name'].'</span>';
+                              }else{
+                                 echo '<span>'.$cash['first_name'].' '.$cash['last_name'].' </span>';
+                              }
+                              echo '</span>';
+                              echo '<span class="tag">For <span class="cash_category">'.$cash['category'].'</span></span>';
+                              echo '</li>';
+                            }
+                          ?>
+                          </ul>
+                      </div><!-- end of panel-body -->
+                      <div class="panel-footer">Total Income: <?php echo $total_income;?></div>
+                   </div><!-- end of panel -->
+  
+                </div><!-- end income report -->
+                <div class="col-md-6 expenses">
+                   <div class="panel panel-default">
+	                   <div class="panel-heading">Expenses</div>
+	                      <div class="panel-body">
+	                         <ul>
+	                      	 <?php
+	                             foreach($expenses as $cash){
+	                               echo '<li>Tsh ';
+	                               echo $cash['amount'].' /=';
+	                               echo '<span class="tag">For ';
+	                               echo '<span>'.$cash['description'].'</span>';
+	                               echo '</span></li>';
+	                             }
+	                         ?>
+                             </ul>
+	                      </div><!-- end of panel-body -->
+	                      <div class="panel-footer">Total Expenses: <?php echo $total_expenses;?></div>
+                   </div><!-- end of panel -->
+                   
+                </div><!-- end expenses report -->
+
 			 </div><!-- end of row for user form -->
 
          </div><!-- end of col-md-6 -->

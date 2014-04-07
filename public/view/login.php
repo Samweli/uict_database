@@ -1,10 +1,16 @@
-<?php 
+
+<?php //require_once('../includes/helper/initialize.php');
+
+ /* now it is only require_once in first index.php
+require_once('./includes/services/Loader.php');
+*/
+ 
     $loader = new Loader();
     try{
        
-       $loader->service('template.php');
+       $loader->service('Template.php');
        $loader->service('CurrentPage.php');
-       $loader->service('functions.php');
+    
        
        
        $template = new Template();
@@ -52,15 +58,20 @@
 	 
 	      <h3>Sign in</h3>
 	 </div>    
-     <div class="message">
-	
-     </div>
+     
 	 <div class="ui_form">
-     <form name="login" action="<?php echo URL; ?>user/index" method="post">
+	    <div class="error_message_login">
+	<?php if(isset($data)){
+	       echo $data;
+	       $data="";
+	      }
+	 ?>
+     </div>
+     <form name="login" action="<?php echo URL; ?>login/auth" method="post">
        <label for="reg_number"></label>
-       <input type="text" name="reg_number" id="reg_number" required placeholder="Registration number" class="form-control">
+       <input type="text" name="reg_number" id="reg_number" required placeholder="Registration number" class="form-control sensitive_info">
        <label for="password"></label>
-       <input type="password" name="password" id="password" required placeholder="Password" class="form-control">
+       <input type="password" name="password" id="password" required placeholder="Password" class="form-control sensitive_info">
        <label for="login"></label>
        <input type="submit" value="Login" id="login" class="btn btn-info">
        <span><a href="reset-password.php">Forgot password?</a></span>

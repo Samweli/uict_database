@@ -2,8 +2,8 @@
 require_once('./includes/services/loader.php');
     $loader = new Loader();
     try{ 
-       $loader->service('template');
-       $loader->service('CurrentPage');
+       $loader->service('Template.php');
+       $loader->service('CurrentPage.php');
        $com_project = $data['community_project'];
        $comments = $data['comments'];
        $template = new Template();

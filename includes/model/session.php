@@ -6,22 +6,27 @@
     * 4. Set session message
     */
 
-   require_once('database.php');
 
    class Session{
        public $logged_in = false;
 
        public function __construct(){
+	if(session_status() == PHP_SESSION_NONE){
        	  session_start();
+	}
        }
 
-       public function login($user = NULL){
+       public function login($user){
           if(($user != NULL) && is_object($user)){
           	 $this->logged_in = true;
              $_SESSION['logged_in'] = $this->logged_in;
              $_SESSION['user_id'] = $user->id;
              $_SESSION['first_name'] = $user->first_name;
              $_SESSION['last_name'] = $user->last_name;
+             $_SESSION['reg_number'] = $user->reg_number;
+             $_SESSION['grad_year'] = $user->grad_year;
+             $_SESSION['email_address'] = $user->email_address;
+             $_SESSION['phone_number'] = $user->phone_number;
           }
        }
 
@@ -32,7 +37,11 @@
        			unset($_SESSION['user_id']);
        			unset($_SESSION['first_name']);
        			unset($_SESSION['last_name']);
-       			session_destroy();
+            unset($_SESSION['reg_number']);
+            unset($_SESSION['grad_year']);
+            unset($_SESSION['email_address']);
+            unset($_SESSION['phone_number']);
+       			//session_destroy();
        		}
        }
 
@@ -45,5 +54,5 @@
        }
    }
 
-   $session = new Session();
+  
 ?>

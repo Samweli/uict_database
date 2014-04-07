@@ -4,11 +4,9 @@
  * This is the "base controller class". All other "real" controllers extend this class.
  */
 
- //require_once('./includes/model/database.php');
- require_once('./includes/services/loader.php');
 
- 
- 
+ require_once('./includes/model/database.php');
+
  
 class Controller{
     /**

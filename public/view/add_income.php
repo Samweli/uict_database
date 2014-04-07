@@ -13,8 +13,9 @@ $loader = new Loader();
 
 try{
 $loader->service('Template.php');
-   $loader->service('CurrentPage.php');
-$event_category = $data;
+$loader->service('CurrentPage.php');
+$members = $data['users'];
+$income_category = $data['income_categories'];
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -69,8 +70,11 @@ $template = new Template();
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
 				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
-				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>	
-				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item active"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
+				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
+				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>
+				 <a href="<?php echo URL;?>user/add_income" class="list-group-item active"><span class="glyphicon glyphicon-plus"></span> Income</a>	
+				 <a href="<?php echo URL;?>user/add_expense" class="list-group-item"><span class="glyphicon glyphicon-minus"></span> Expenses</a>	
+				 <a href="<?php echo URL;?>finance/report" class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Finacial Report</a>		
 			</div>
 		 </div><!-- end of row for info -->
 
@@ -88,23 +92,27 @@ $template = new Template();
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
-			    <form role="form" action="<?php echo URL;?>event/add_event" method="post">
-				    <lable for="title"></lable>
-				    <input type="text" name="title" class="form-control" required id="title" placeholder="Event title"/>
-				    <label for="description"></label>
-				    <textarea name="description" class="form-control" id="description" placeholder="Event description"></textarea>
-				    <label for="event_date">Event Date</label>
-				    <input type="date" name="event_date" class="form-control" required id="event_date"/>
-				    <input type="hidden" name="publisher_id" class="form-control" value="<?php echo $_SESSION['user_id'];?>" required id="event_date"/>
-				    <label for="category"></label>
-				    <select class="form-control" name="category_id" id="category">
-				       <option value="0">--Event Category--</option>
+			    <!-- All Events list-->
+                <form role="form" action="<?php echo URL;?>finance/add_income" method="post">
+                   <label for="amount"></label>
+                   <div class="input-group">
+                     <span class="input-group-btn">
+                       <button class="btn btn-default">TSH</button>
+                     </span>
+                     <input type="number" min="0" step="500" name="amount" class="form-control" placeholder="Income amount" required/>
+                     <span class="input-group-btn">
+                       <button class="btn btn-default">/=</button>
+                     </span>
+                   </div><!-- end input group -->
+                   <label for="income_category"></label>
+                   <select class="form-control" name="category_id" id="income_category">
+				       <option value="0">--Income Category--</option>
 				       <?php
-				          foreach($event_category as $category){
+				          foreach($income_category as $category){
 				          	echo '<option value="'.$category[id];
 				          	
 				          	if(defined($_POST)){
-                               if($category['id'] == $_POST['category_id']){
+                               if($category['id'] == $_POST['initiator_id']){
                                   echo 'selected="selected">'.$category['category'].'</option>';
                                }
 				          	}else{
@@ -113,9 +121,40 @@ $template = new Template();
 				          }
 				       ?>
 				    </select>
-				    <input type="submit" value="Publish Project" class="btn btn-primary" required />
+                   <label for="description"></label>
+                   <textarea name="description" id="description" class="form-control" placeholder="Income description"></textarea>
+                   <div class="radio-controls">
+	                   <label class="radio-inline" for="member_income">
+	                        <input type="radio" name="income_source" value="member_income" id="member_income" checked="checked"/>
+                              Income from community member
+	                   </label>
+	                   <label class="radio-inline" for="member_donor">
+	                        <input type="radio" name="income_source" value="donor_income" id="donor_income" />
+	                          Income from external donor
+	                   </label>
+	               </div><!-- end of radio-controls -->
+                   <label for="contributor"></label>
+                   <select class="form-control" name="member_id" id="contributor">
+				       <option value="0">--Contributing Member--</option>
+				       <?php
+				          foreach($members as $member){
+				          	echo '<option value="'.$member[id];
+				          	
+				          	if(defined($_POST)){
+                               if($member['id'] == $_POST['initiator_id']){
+                                  echo 'selected="selected">'.$member['first_name'].' '.$member['last_name'].'</option>';
+                               }
+				          	}else{
+				          	   echo '">'.$member['first_name'].' '.$member['last_name'].'</option>';
+				            }
+				          }
+				       ?>
+				    </select>
+				    <label for="donor"></label>
+				    <input type="text" name="donor_name"id="donor" class="form-control" placeholder="Donor name" />
+				    <input type="submit" value="Add Income" class="btn btn-primary" required />
 				    <input type="reset" value="Clear" class="btn btn-default" required />
-				  </form>
+                </form>
 			 </div><!-- end of row for user form -->
 
          </div><!-- end of col-md-6 -->

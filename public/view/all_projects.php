@@ -12,8 +12,8 @@
 $loader = new Loader();
 
 try{
-$loader->service('template');
-$loader->service('CurrentPage');
+$loader->service('Template.php');
+   $loader->service('CurrentPage.php');
 $projects = $data;
 }
 catch(Exception $e){
@@ -68,7 +68,7 @@ $template = new Template();
 				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item active"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
-				 <a href="#" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
+				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
 				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
 				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>	
 			</div>
@@ -97,7 +97,7 @@ $template = new Template();
                         echo '<span class="tag tag-description">Description</span>';
                         echo '<p class="_description">'.$project['description'].'</p>';
                         echo '<p class="initiator"><span class="tag">Initiated By </span>';
-                        echo $project['first_name'].' '.$project['last_name'].'<span class="tag"> on </span>'.$project['begin_date'].'</p>'; 
+                        echo $project['first_name'].' '.$project['last_name'].'<span class="tag"> On </span>'.$project['begin_date'].'</p>'; 
                         echo '<ul class="nav nav-pills content_nav">';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-share"></span> Inform a friend</a></li>';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>'; 

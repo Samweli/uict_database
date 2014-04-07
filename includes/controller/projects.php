@@ -48,8 +48,6 @@
             $this->project->category_id = 1;
             if($this->project->add_project()){
                redirect(URL.'user/all_projects');
-            }else{
-              echo "Error occured";
             }
        }
    }
