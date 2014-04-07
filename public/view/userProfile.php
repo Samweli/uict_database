@@ -108,14 +108,7 @@ $template = new Template();
 
 		  
 		  <div class="row u_row lower_row">
-		      <!-- <div class="col-lg-6">
-			 <ul class="nav navigation-menu" >
-				<li  class="active-menu list-menu"><a><i class="diff glyphicon glyphicon-pushpin"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-book"></i> OnGoing Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-map-marker"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-bookmark"></i> Enrolled Projects</a></li>
-			 </ul>
-		       </div> -->
+		    
 		       <div class="col-md-offset-6">
 			 <div class="main_content">
 				<div class="a_content">

@@ -6,7 +6,6 @@
     * 4. Set session message
     */
 
-   require_once('database.php');
 
    class Session{
        public $logged_in = false;

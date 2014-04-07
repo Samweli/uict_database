@@ -162,6 +162,9 @@ list-style:none;
 .u_row{
    margin-top:35px;
 }
+.u_row_lg{
+    margin-top:70px;
+}
 
 .u_activity{
     width:200px;
@@ -357,7 +360,7 @@ border-top-left-radius: 4px;
     margin-right: 50px;
 
 }
-.u_button{
+.u_button_welcome{
     margin-left: 100px;
     margin-right: 100px;
 
@@ -382,7 +385,6 @@ border-top-left-radius: 4px;
 
 .container_info{
     border-radius: 5px;
-    float:left;
     position: absolute;
     top:200px;
     left:2px;
@@ -401,4 +403,7 @@ border-top-left-radius: 4px;
     position: absolute;
     left:1000px;
     top:500px;
+}
+.error_message_login{
+    color:#CE0C0C;
 }

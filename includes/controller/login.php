@@ -1,14 +1,17 @@
 <?php
-include('./includes/services/functions.php');
-include('./includes/model/user.php');
-include('./includes/model/session.php');
+
+
 include('./includes/controller/home.php');
    
 class LoginController extends Controller{
-
+	public $error_message="";
+        
 	
 	public function __construct(){
 		
+	}
+	public function index(){
+	    require ('./public/view/login.php');
 	}
 	
 	
@@ -22,23 +25,31 @@ class LoginController extends Controller{
 			$password = $db->db_escape_values($_POST['password']);
 	     
 		    if($member = $user->authenticate($reg_number,$password)){
-			 echo '';
+			 
 			$session->login($member);
 			
 			//echo "Welcome :".$member['first_name'];
-			$home = new HomeController();
-			$home->userhome($member->id);
-			header('Location:'.URL.'home/userhome');
-			
+			header('Location:'.URL.'home/userhome/'.$member->id);
 			
 		    }else{
-		       $message = "Invalid registration number or password. Please try again!";
-			   redirect('../../public/view/login.php?message='.urlencode($message));
+		       $this->error_message = "Invalid registration number or password. Please try again!";
+			   $this->denied();
+			   header('Location:'.URL.'login/denied');
 		    }
 		}else{
-		       $message = "Empty registration number or password. Please try again!";
-		       redirect('../../public/view/login.php?message='.urlencode($message));
+		      $this->index();
+		      
 		}
+	}
+	public function denied(){
+		$loader = new Loader();
+		
+		try{
+		$loader->view('login.php',$this->error_message);
+		}catch(Exception $e){
+			echo 'Message:'.$e->getMessage();
+		}
+		
 	}
    
 }

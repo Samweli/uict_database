@@ -22,18 +22,17 @@ class HomeController extends Controller{
     }
 
     public function userhome($user_id=""){
+         $loader = new Loader();
+         $user = (new User())->get_user($user_id);
         
-        $user = (new User())->get_user($user_id);
-        
-        
-        $loader = new Loader();
-        
-        
+       
         try{
         $loader->view('home.php',$user);
         }catch(Exception $e){
             echo 'Message:'.$e->getMessage();
         }
+        
+        
         
        
     }
@@ -49,7 +48,7 @@ class HomeController extends Controller{
         require('./public/view/home.php');
     }
     public function register(){
-        require('./includes/model/user.php');
+        $loader = new Loader();
         
         $user = new User();
         $user->first_name= $_POST['firstname'];
@@ -62,20 +61,35 @@ class HomeController extends Controller{
         //$user-> = $_POST['mailing_address'];
         $user->email_address = $_POST['email'];
         $user->phone_number = $_POST['phonenumber'];
-        $skill = $_POST['skills'];
-        $hobbies = $_POST['hobbies'];
+        
+        $user->reg_number = $_POST['reg_number'];
+        
        // $user->password = $_POST['password'];
         $user->set_password($_POST['password']);
        
         //$repeatPassword = $_POST['repeatedPassword'];
         
-         echo 'Value after input'.$user->add_user();
+         if($user->add_user()){
+            
+            $session = new Session();
+            $db = new Database();
+            
+            $reg_number = $db->db_escape_values($_POST['reg_number']);
+	    $password = $db->db_escape_values($_POST['password']);
+            
+            
+            $member = $user->authenticate($reg_number,$password);
          
-         echo "error ".User::$user_error;
-         if(true){
-            require('./public/view/welcome.php');
-        
-     }
+            if(isset($member)){
+		$session->login($member);
+                try{
+                  
+                $loader->view('welcome.php',$member);
+                }catch(Exception $e){
+                    echo 'Message'.$e->getMessage();
+                }
+            }
+         }
     }
 
     public function editUser(){
