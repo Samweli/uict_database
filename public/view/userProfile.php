@@ -1,6 +1,11 @@
 <?php
 $loader = new Loader();
-
+if(isset($data)){
+$user = $data;
+}else{
+	$users = null;
+	$result_not_found = "results not found";
+}
 try{
 $loader->service('Template.php');
 $loader->service('CurrentPage.php');
@@ -25,7 +30,7 @@ $template = new Template();
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
+	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    }
 	    
 	    ?>
              
@@ -57,17 +62,35 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
+			 <a href="<?php echo URL; ?>home/userProfile/" title="Checkout Profile" ><?php 
+
+			 echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
 			 </div>
 			 <div class="col-lg-6 col-md-offset-3">
-				<form action="../controller/search.php" method="get">
+				<form action="<?php echo URL; ?>home/search" method="get">
 				       <div class="input-group">
-				       <input type="text" class="form-control-min" size="40" placeholder="Search a colleague"  />
+				       <input type="text" required= "" name="search_request" class="form-control-min" size="40" placeholder="Search a colleague"  />
 				       <span class="input-group-btn">
 				       <input type="submit" class="btn btn-primary" value="Search" />
+
 				       </span>
+				       
 				       </div>
+				       
 				</form>
+				<div class="results">
+					<?php if(isset($users)&& $users!=NULL){
+						echo '<h4>Results</h4>';
+						foreach ($users as $user ) {
+							
+							echo '<a href="'.URL.'home/userhome/'.$user->id.'" >'.$user->first_name.' '.$user->last_name.'</a><br />';
+						}
+					}else{
+						echo '<h4>No member found</h4>';
+					}
+					?>
+				</div>
+				
 			 </div>
 			 <!-- end of the search bar -->
 
@@ -100,7 +123,7 @@ $template = new Template();
 				       
 				</ul>
 				<div class="edit_button">
-				<a href="<?php echo URL; ?>home/editInfo" class="u_button">edit</a>
+				<?php echo '<a href="'.URL.'home/editInfo/'.$user->id.'" class="u_button">edit</a>' ?>
 				</div>
 
 		  	</div>
@@ -108,14 +131,7 @@ $template = new Template();
 
 		  
 		  <div class="row u_row lower_row">
-		      <!-- <div class="col-lg-6">
-			 <ul class="nav navigation-menu" >
-				<li  class="active-menu list-menu"><a><i class="diff glyphicon glyphicon-pushpin"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-book"></i> OnGoing Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-map-marker"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-bookmark"></i> Enrolled Projects</a></li>
-			 </ul>
-		       </div> -->
+		    
 		       <div class="col-md-offset-6">
 			 <div class="main_content">
 				<div class="a_content">

@@ -15,6 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
                      echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';
 		  }
 		  elseif(CurrentPage::$currentPage == "userhome"){
+
 			    echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	
 	          }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
 			 echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	   

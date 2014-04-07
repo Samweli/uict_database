@@ -389,7 +389,6 @@ border-top-left-radius: 4px;
 
 .container_info{
     border-radius: 5px;
-    float:left;
     position: absolute;
     top:200px;
     left:2px;
@@ -408,6 +407,9 @@ border-top-left-radius: 4px;
     position: absolute;
     left:1000px;
     top:500px;
+}
+.error_message_login{
+    color:#CE0C0C;
 }
 
 /**** USER FORMS FOR ADDING EVENTS & PROJECTS *******/
@@ -456,6 +458,7 @@ border-top-left-radius: 4px;
 
 .content_list{
     border-left: 8px solid steelblue;
+
 
 }
 /* for the denied page */

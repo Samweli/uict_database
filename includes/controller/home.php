@@ -74,13 +74,30 @@ class HomeController extends Controller{
       
     }
     
-    public function userProfile(){
-        require('./public/view/userProfile.php');
+    public function userProfile($user_id){
+        $user = (new User)->get_user($user_id);
+
+        $loader = new Loader();
+        try{
+            $loader->view('userProfile.php',$user);
+        }catch(Exception $e){
+            echo 'Message'.$e->getMessage();
+        }
         
     }
 
-    public function editInfo(){
-        require('./public/view/editInfo.php');
+    public function editInfo($user_id){
+
+        $user = (new User)->get_user($user_id);
+
+        $loader = new Loader();
+
+        try{
+            $loader->view('editInfo.php',$user);
+        }catch(Exception $e){
+            echo 'Message'.$e->getMessage();
+        }
+       
     }
     
     public function register(){
@@ -91,20 +108,17 @@ class HomeController extends Controller{
         
         $user->last_name = $_POST['lastname'];
         $user->reg_number= $_POST['reg_number'];
-        //$user-> = $_POST['degree_program'];
+
+        $user->program_id= $_POST['selected_course'];
+
         $user->gender = $_POST['gender'];
         $user->status = $_POST['maritial_status'];
-        //$user-> = $_POST['mailing_address'];
+        $user->mailing_address = $_POST['mailing_address'];
         $user->email_address = $_POST['email'];
         $user->phone_number = $_POST['phonenumber'];
-        
-        $user->reg_number = $_POST['reg_number'];
-        
-       // $user->password = $_POST['password'];
+           
         $user->set_password($_POST['password']);
        
-        //$repeatPassword = $_POST['repeatedPassword'];
-        
          if($user->add_user()){
             
             $session = new Session();
@@ -126,6 +140,7 @@ class HomeController extends Controller{
                 }
             }
          }
+
     }
 
     public function editUser(){
@@ -159,11 +174,14 @@ class HomeController extends Controller{
         
          
          echo "error ".User::$user_error;
+         $loader = new Loader();
          if(true){
-            require('./public/view/welcome.php');
+            $loader->view('welcome.php',$user);
+           
         
      } 
     }
+
     
     public function denied($error){
            $loader = new Loader();
@@ -173,6 +191,23 @@ class HomeController extends Controller{
             echo 'Message'.$e->getMessage();
            }
         
+
+    public function search(){
+      
+     $user = new User();
+
+        $array_results= $user->get_user_by_firstname($_GET['search_request']);
+    
+       
+
+        if(isset($array_results)){
+            try{
+        $this->loader->view('userProfile.php',$array_results);
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+        
+        }
     }
 
 }

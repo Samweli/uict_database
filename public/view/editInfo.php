@@ -3,7 +3,7 @@
 require_once('./includes/services/Loader.php');
 */
 $loader = new Loader();
-
+$member = $data;
 try{
 $loader->service('Template.php');
 $loader->service('CurrentPage.php');
@@ -30,7 +30,7 @@ $template = new Template();
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
+	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';
 	    }
 	    
 	    ?>
@@ -98,7 +98,14 @@ $template = new Template();
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label" >Degree Program</label>
 				      <div class="col-sm-6">
-					<input name="program" type="text" class="form-control" />
+					<select name ="selected_course">
+						<option selected="selected" value="">Select Course</option>
+						<option value = "1">Bsc. Computer eng.</option>
+						<option value = "2">Bsc. in Computer Science</option>
+						<option value = "3">Bsc. with Computer Science</option>
+						<option value = "4">Bsc. in Electronics and Communication</option>
+						<option value="5"> Bsc. in Telecommunication Engineering</option>
+						</select>
 				      </div>
 				    </div>
 
@@ -155,7 +162,7 @@ $template = new Template();
 		               <div class="form-group">
 				  <label class="col-sm-2 control-label" >Mailing Address:</label>
 				  <div class="col-sm-6">
-				    <input class="form-control" name="mailing_address" type="text"/>
+				    <?php echo '<input class="form-control" name="mailing_address" type="text" value="'.$member->mailing_address.'"/>' ?>
 				  </div>
 				</div>
 			       <div class="form-group">
