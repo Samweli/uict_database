@@ -10,7 +10,7 @@
     */
 
 
-require("./includes/model/program.php");
+
    class User{
    	  public $id;
    	  public $first_name;

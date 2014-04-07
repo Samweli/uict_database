@@ -145,8 +145,6 @@ class HomeController extends Controller{
 
     public function editUser(){
 
-       require('./includes/model/user.php');
-        
         $user = new User();
         $user->first_name= $_POST['firstname'];
         
@@ -165,18 +163,16 @@ class HomeController extends Controller{
        
         //$repeatPassword = $_POST['repeatedPassword'];
 
-        echo 'firs reg no'.$user->reg_number;
+      
         
         $query_user = $user->get_user_by_reg_number($user->reg_number);
 
-        echo 'query user id '.$query_user->id;
         $user->edit_user($query_user->id);
         
          
-         echo "error ".User::$user_error;
          $loader = new Loader();
          if(true){
-            $loader->view('welcome.php',$user);
+            header('Location:'.URL.'home/userProfile/'.$query_user->id);
            
         
      } 
@@ -190,7 +186,7 @@ class HomeController extends Controller{
            }catch(Exception $e){
             echo 'Message'.$e->getMessage();
            }
-        
+    }   
 
     public function search(){
       

@@ -68,7 +68,7 @@ $template = new Template();
 				<img class="img img-thumbnail" src="../../public/img/profile_photo.jpg" alt="profile picture" />
 			 <?php echo '<a href="'.URL.'home/userProfile/'.$members->id.'" title="Checkout Profile" >
 			  '.$members->first_name.''.$members->last_name.' </a>' ;?>
-              ?>
+          
 
 			 <div class="col-lg-6 col-md-offset-3">
 				<form action="../controller/search.php" method="get">
