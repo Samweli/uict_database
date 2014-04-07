@@ -68,7 +68,7 @@ $template = new Template();
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
             <div class="list-group">
-				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
+				 <a href="<?php echo URL;?>user" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
 				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
