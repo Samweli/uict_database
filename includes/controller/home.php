@@ -5,31 +5,60 @@
 class HomeController extends Controller{
 
     public function index(){
-        $this->loader->view('index');
+        try{
+        $this->loader->view('index.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function about(){
-        $this->loader->view('about');
+        try{
+        $this->loader->view('about.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function login(){
-        $this->loader->view('login');
+        try{
+        $this->loader->view('login.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function registration(){
-        $this->loader->view('registration');
+        try{
+        $this->loader->view('registration.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+        
     }
 
     public function projects(){
-        $this->loader->view('about-projects');
+        try{
+        $this->loader->view('about-projects.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function charity(){
+        try{
         $this->loader->view('about-charity');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function sports(){
+        try{
         $this->loader->view('about-sports');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function userhome($user_id=""){
@@ -50,6 +79,7 @@ class HomeController extends Controller{
     
     public function userProfile(){
         require('./public/view/userProfile.php');
+        
     }
 
     public function editInfo(){

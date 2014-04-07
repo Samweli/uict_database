@@ -7,8 +7,8 @@ require_once('./includes/services/Loader.php');
     $loader = new Loader();
     try{
        
-       $loader->service('template');
-       $loader->service('CurrentPage');
+       $loader->service('Template.php');
+       $loader->service('CurrentPage.php');
        $events = $data;
        
        $template = new Template();

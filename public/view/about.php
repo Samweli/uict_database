@@ -7,8 +7,8 @@ require_once('./includes/services/Loader.php');
 
     try{
        $loader = new Loader();
-       $loader->service('template');
-       $loader->service('CurrentPage');
+       $loader->service('Template.php');
+       $loader->service('CurrentPage.php');
        $template = new Template();
        
        CurrentPage::$currentPage = "about";

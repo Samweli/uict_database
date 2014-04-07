@@ -1,8 +1,8 @@
 <?php
  try{
    $loader = new Loader();
-   $loader->service('template');
-   $loader->service('CurrentPage');
+   $loader->service('Template.php');
+   $loader->service('CurrentPage.php');
    $template = new Template();
  }catch(Exception $e){
    echo "Message: ".$e.getMessage();

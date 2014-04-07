@@ -8,9 +8,9 @@ require_once('./includes/services/Loader.php');
     $loader = new Loader();
     try{
        
-       $loader->service('template.php');
+       $loader->service('Template.php');
        $loader->service('CurrentPage.php');
-       $loader->service('functions.php');
+    
        
        
        $template = new Template();

@@ -7,8 +7,8 @@ $loader = new Loader();
 
 
 try{
-   $loader->service('template');
-   $loader->service('CurrentPage');
+   $loader->service('Template.php');
+   $loader->service('CurrentPage.php');
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();

@@ -12,8 +12,8 @@
 $loader = new Loader();
 
 try{
-$loader->service('template');
-$loader->service('CurrentPage');
+$loader->service('Template.php');
+   $loader->service('CurrentPage.php');
 $projects = $data;
 }
 catch(Exception $e){
