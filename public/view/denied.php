@@ -27,7 +27,11 @@ $template = new Template();
 	          <?php
 	              $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
           	    foreach($cssFiles as $file){
+		     if(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
           	       echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    
+		     }else{
+			echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    
+		     }
                 }  
           	?>
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
