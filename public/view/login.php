@@ -1,6 +1,4 @@
-<?php //require_once('../includes/helper/initialize.php'); 
-  
-require_once('./includes/services/loader.php');
+<?php 
     $loader = new Loader();
     try{
        
