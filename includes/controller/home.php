@@ -3,22 +3,62 @@
 
 
 class HomeController extends Controller{
-   
-    public function __construct(){
+
+    public function index(){
+        try{
+        $this->loader->view('index.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+    }
+
+    public function about(){
+        try{
+        $this->loader->view('about.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+    }
+
+    public function login(){
+        try{
+        $this->loader->view('login.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+    }
+
+    public function registration(){
+        try{
+        $this->loader->view('registration.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
         
     }
-    
-    public function index(){
-        require ('./public/view/index.php');
+
+    public function projects(){
+        try{
+        $this->loader->view('about-projects.php');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
-    public function about(){
-        require('./public/view/about.php');
+
+    public function charity(){
+        try{
+        $this->loader->view('about-charity');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
-    public function login(){
-        require ('./public/view/login.php');
-    }
-    public function registration(){
-        require('./public/view/registration.php');
+
+    public function sports(){
+        try{
+        $this->loader->view('about-sports');
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
     }
 
     public function userhome($user_id=""){
@@ -39,6 +79,7 @@ class HomeController extends Controller{
     
     public function userProfile(){
         require('./public/view/userProfile.php');
+        
     }
 
     public function editInfo(){

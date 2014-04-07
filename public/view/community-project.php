@@ -1,20 +1,19 @@
 <?php
-    require_once('../../includes/model/project.php');
-    require_once('../../includes/services/functions.php');
-    require_once('../../includes/services/Template.php');
-    require_once('../../includes/model/comment.php');
-
-    if(urldecode($_GET['id'])){
-    	$project_id = urldecode($_GET['id']);
-        $com_project = $project->get_project($project_id);
-        try{
-		    $comment->source_id = $com_project['id'];
-		    $comment->category = "project";
-		    $comments = $comment->get_comments();
-		}catch(Exception $e){
-		    echo "Messsage: ".$e->getMessage();
-		}
-	}
+require_once('./includes/services/loader.php');
+    $loader = new Loader();
+    try{ 
+       $loader->service('Template.php');
+       $loader->service('CurrentPage.php');
+       $com_project = $data['community_project'];
+       $comments = $data['comments'];
+       $template = new Template();
+       
+       CurrentPage::$currentPage = "projects";
+       
+    }catch(Exception $e){
+       echo "Message: ".$e->getMessage();
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +21,15 @@
         <head>
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
-            <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-            <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet"> 
-
-            <link rel="stylesheet" type="text/css" href="../css/style.css" />
+            <?php
+      
+                $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
+                foreach($cssFiles as $file){
+                   echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';
+                }
+            ?>
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-            <link rel="stylesheet" type="text/css" href="../css/events.css"/>
-            
         </head>
         <body>
             <div id="page">
@@ -48,7 +47,7 @@
                     <div class="row">
                        <div class="container">
                          <div class="col-md-12 header_events">
-                           <h3><a href="events.php">Projects</a> >> <?php echo $com_project['title']; ?></h3>
+                           <h3><a href="<?php echo URL;?>projects">Projects</a> >> <?php echo $com_project['title']; ?></h3>
                          </div><!-- end col-md-12 -->
                        </div><!-- end container -->
                     </div><!-- end row page header -->

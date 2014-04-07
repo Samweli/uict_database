@@ -25,9 +25,10 @@ if (session_status() == PHP_SESSION_NONE) {
                
                      <ul class="nav navbar-nav navbar-right">
                             <li class= "<?php echo CurrentPage::$currentPage == "home"?'active':'list'; ?>" ><a href="<?php echo URL; ?>index.php">Home</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>project/allProjects" >Projects</a></li>
-                            <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>event/allEvents">Events</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>project" >Projects</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>event">Events</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "about"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/about">About</a></li>
+
 			   
 			    <?php
 			    

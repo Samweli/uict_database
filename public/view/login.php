@@ -1,3 +1,4 @@
+
 <?php //require_once('../includes/helper/initialize.php');
 
  /* now it is only require_once in first index.php
@@ -9,7 +10,7 @@ require_once('./includes/services/Loader.php');
        
        $loader->service('Template.php');
        $loader->service('CurrentPage.php');
-       $loader->service('functions.php');
+    
        
        
        $template = new Template();

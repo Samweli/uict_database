@@ -1,8 +1,10 @@
 <?php
 
+require_once('config/config.php');
 require_once('./includes/services/Loader.php');
 require_once('./includes/model/user.php');
-include('./includes/model/session.php');
+require_once('./includes/model/session.php');
+require_once('./includes/services/functions.php');
 
 
 // load the (optional) Composer auto-loader
@@ -11,7 +13,7 @@ if (file_exists('vendor/autoload.php')) {
 }
 
 // load application config (error reporting etc.)
-require 'config/config.php';
+
 
 // load application class
 require 'libs/application.php';

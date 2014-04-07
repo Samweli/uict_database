@@ -89,4 +89,4 @@ $template = new Template();
 	      ?>
 	      </div>
 	</body>
-	</head>
+	</html>

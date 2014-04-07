@@ -1,5 +1,6 @@
 <?php
     /* 
+
      * Loader Class for loading files
      */
    
@@ -9,6 +10,7 @@
          private $view_path = './public/view/';
          private $template_path = './public/templates/';
 
+
 	 private $service_path='./includes/services/';
 	 private $controller_path = './includes/controller/';
 	 
@@ -16,9 +18,10 @@
 	 
 	 private $essentialCssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 
-
          public function model($file=""){
+
             $dir = $this->model_path.$file;
+
             if(file_exists($dir)){
                 require($dir);
             }else{
@@ -27,7 +30,9 @@
          }
 
          public function template($file=""){
+
             $dir = $this->template_path.$file;
+
             if(file_exists($dir)){
                 require($dir);
             }else{
@@ -36,8 +41,9 @@
          }
 
          public function view($file="",$data=""){
+
             $dir = $this->view_path.$file;
-	    
+	   
             if(file_exists($dir)){
                 require($dir);
             }else{
@@ -46,12 +52,14 @@
          }
 
          public function service($file=""){
-            if(file_exists($this->service_path.$file)){
-                require($this->service_path.$file);
+            $dir = $this->service_path.$file;
+            if(file_exists($dir)){
+                require($dir);
             }else{
                 throw new Exception('File "'.$file.'"does not exist in this directory"');
             }
          }
+
 
 	 public function css(){
 	  

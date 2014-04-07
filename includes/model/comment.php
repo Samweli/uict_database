@@ -58,6 +58,4 @@
           }
     }
 
-    $comment = new Comment();
-    
 ?>

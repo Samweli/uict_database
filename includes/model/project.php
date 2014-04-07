@@ -7,21 +7,23 @@
     * 5. Edit project plan
     * 6. Delete project plan
     */
-
-   require_once('database.php');
+ 
 
    class Project{
-       private $title;
-       private $descriptiion;
-       private $begin_date;
-       private $initiator_id;
+       public $title;
+       public $descriptiion;
+       public $category_id;
+       public $begin_date;
+       public $initiator_id;
 
        public function add_project(){
-          $sql = "INSERT INTO projects (title,description,initiator_id,begin_date) VALUES('".$this->title."',";
-          $sql = "'".$this->description."','".$this->begin_date."','".$this->initiator_id."'";
-          global $db;
-          if($db->db_query($sql)){
-              return $db->db_insert_id;
+          if($this->is_project_defined()){
+              $sql = "INSERT INTO projects (title,description,category_id,begin_date,initiator_id) VALUES('".$this->title."','";
+              $sql .= $this->description."','".$this->category_id."','".$this->begin_date."','".$this->initiator_id."')";
+              global $db;
+              if($db->db_query($sql)){
+                  return $db->db_last_insert_id();
+              }
           }
        }
 
@@ -67,8 +69,17 @@
            }
        }
 
+       private function is_project_defined(){
+          if(isset($this->title) && isset($this->description) && 
+                isset($this->begin_date) && isset($this->begin_date) && isset($this->initiator_id)){
+              return TRUE;
+          }else{
+              return FALSE;
+          }
+       }
+
    }
 
-   $project = new Project();
+   //$project = new Project();
 
 ?>

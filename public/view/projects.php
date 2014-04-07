@@ -1,7 +1,5 @@
 <?php
-   /* now it is only require_once in first index.php
-  require_once('./includes/services/Loader.php');
-   */
+
     $loader = new Loader();
     try{
        
@@ -17,7 +15,6 @@
        echo "Message: ".$e->getMessage();
     }
     
-    
 ?>
 <!DOCTYPE html>
     <html lang='en'>
@@ -25,23 +22,21 @@
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
             <?php
-	    
-	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
-	    
-	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
-	    }
-	    
-	    ?>
-             
+      
+      $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
+      
+      foreach($cssFiles as $file){
+      echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';
+      }
+      
+      ?>
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
             <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-     
             
         </head>
         <body>
             <div id="page">
-            <div id="header">
+               <div id="header">
                <?php
                    try{
                        $template->render('header.php');
@@ -59,18 +54,31 @@
                          </div><!-- end col-md-12 -->
                        </div><!-- end container -->
                     </div><!-- end row page header -->
-                    <div class="row u_row">
-                      <div class="col-md-4">
+                    <div class="row u_row search">
+                      <div class="col-md-4" >
                          <div class="row search_events">
-                             <input type="text" id="search_by_start_date" placeholder="Search by title"/> 
+                             <form role="form" name="search_events">
+                               <label for="search_by_title">Search by title</label>
+                               <input type="text" class="form-control" id="search_by_title" placeholder="Event title"/> 
+                               <input type="submit" value="Search" class="btn btn-default submit"/>
+                             </form><!-- end search_event -->
                          </div><!-- end row search_events -->
+                         <div class="row other">
+                              <!-- content not yet defined -->
+                         </div><!-- end row other -->
                       </div><!-- end col-md-4 -->
                       <div class="col-md-8">
                         <div class="row search_events">
-                           <form name="search_events">
-                             <input type="text" id="search_by_start_date" placeholder="Search by start date"/>
-                             <input type="text" id="search_by_end_date" placeholder="Search by end date"/>
-                             <input type="submit" id="submit" value="Search"/>
+                           <form role="form" name="search_events">
+                             <div class="col-md-6">
+                               <label for="search_by_begin_date">Search by begin date</label>
+                               <input type="date" id="search_by_begin_date" placeholder="Begin date" class="form-control"/>
+                             </div><!-- end of col -->
+                             <div  class="col-md-6">
+                               <label for="search_by_end_date">Search by end date</label>
+                               <input type="date" id="search_by_end_date" placeholder="End date" class="form-control"/>
+                               <input type="submit" value="Search" class="btn btn-default submit"/>
+                             </div>
                            </form><!-- end search_event -->
                         </div><!-- end row for search boxes-->
                         <div class="row">
@@ -78,12 +86,15 @@
                              if(isset($community_project) && is_array($community_project)){
                                foreach($community_project as $project){
                                    echo '<div class="event">';
-                                      echo '<span class="event_tag"></span><span class="event_title">'.$project['title'].'</span>';
-                                      //echo '<span class="event_title">'.$event['category'].'</span>';
+                                      echo '<div class="event-wrapper">';
+                                      echo '<span class="event_tag"></span><span class="event_title"><a href="';
+                                      echo URL .'projects/community_project/'.urlencode($project['id']).'">'.$project['title'].'</a></span>';
                                       echo '<span class="event_tag">Description </span><span class="event_description">'.$project['description'].'</span>';
-                                      echo '<span class="event_more"><a href="#">Read more</a></span>';
+                                      echo '<span class="event_more"><a href="'.URL .'projects/community_project/'.urlencode($project['id']).'">Read more</a></span>';
                                       echo '<span class="event_tag">Begin Date </span><span class="event_time">'.$project['begin_date'].'</span>';
-                                      echo '<span class="event_tag">Initiated By </span><span class="event_publisher">Amos Nzaga</span>';
+                                      echo '<span class="event_tag">Initiated By </span><span class="event_publisher">';
+                                      echo $project['first_name'].' '.$project['last_name'].'</span>';
+                                      echo '</div>';
                                    echo '</div>';
                                 }
                              }
@@ -103,7 +114,7 @@
                              echo "Message: ".$e->getMessage();
                           }
                       ?>
-                    </div><!-- end of content -->
+                    </div>
                 
             </div>
         </body>

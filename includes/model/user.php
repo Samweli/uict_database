@@ -78,8 +78,9 @@
    	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
                  global $db;
 
-                 if($db->db_query($sql)){
-		   
+
+                if($db->db_query($sql)){
+
 
                   return $db->db_last_insert_id();
                   }else{
@@ -114,7 +115,7 @@
          }
    	  }	
 
-   	  public function get_all_users(){
+   	  public function get_all(){
    	  	  $sql = "SELECT * FROM users";
    	  	  global $db;
           if($results = $db->db_query($sql)){
