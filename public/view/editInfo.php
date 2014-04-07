@@ -155,7 +155,7 @@ $template = new Template();
 		               <div class="form-group">
 				  <label class="col-sm-2 control-label" >Mailing Address:</label>
 				  <div class="col-sm-6">
-				    <input class="form-control" name="mailing_address" type="text"/>
+				    <input class="form-control" name="mailing_address" type="text" value="<?php echo $_SESSION['mailing_address'];?>"/>
 				  </div>
 				</div>
 			       <div class="form-group">

@@ -96,10 +96,10 @@ class HomeController extends Controller{
         
         $user->last_name = $_POST['lastname'];
         $user->reg_number= $_POST['reg_number'];
-        //$user-> = $_POST['degree_program'];
+        //$user->program_id= $_POST['selected_program'];
         $user->gender = $_POST['gender'];
         $user->status = $_POST['maritial_status'];
-        //$user-> = $_POST['mailing_address'];
+        $user->mailing_address = $_POST['mailing_address'];
         $user->email_address = $_POST['email'];
         $user->phone_number = $_POST['phonenumber'];
         
@@ -131,6 +131,7 @@ class HomeController extends Controller{
                 }
             }
          }
+
     }
 
     public function editUser(){
