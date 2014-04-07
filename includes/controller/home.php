@@ -3,7 +3,7 @@
 
 
 class HomeController extends Controller{
-
+    
     public function index(){
         try{
         $this->loader->view('index.php');
@@ -71,10 +71,7 @@ class HomeController extends Controller{
         }catch(Exception $e){
             echo 'Message:'.$e->getMessage();
         }
-        
-        
-        
-       
+      
     }
     
     public function userProfile(){
@@ -85,9 +82,7 @@ class HomeController extends Controller{
     public function editInfo(){
         require('./public/view/editInfo.php');
     }
-    public function profile(){
-        require('./public/view/home.php');
-    }
+    
     public function register(){
         $loader = new Loader();
         
@@ -168,6 +163,16 @@ class HomeController extends Controller{
             require('./public/view/welcome.php');
         
      } 
+    }
+    
+    public function denied($error){
+           $loader = new Loader();
+           try{
+            $loader->view('denied.php',$error);
+           }catch(Exception $e){
+            echo 'Message'.$e->getMessage();
+           }
+        
     }
 
 }

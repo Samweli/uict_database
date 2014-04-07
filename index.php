@@ -18,6 +18,7 @@ if (file_exists('vendor/autoload.php')) {
 // load application class
 require 'libs/application.php';
 require 'libs/controller.php';
+require 'libs/security.php';
 
 // start the application
 $app = new Application();

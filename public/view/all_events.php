@@ -31,17 +31,18 @@ $template = new Template();
 <title>Home | UICT Community</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <?php
+           <?php
 	  
 	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
 	    
 	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
+	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
+	    }
 	    
 	    ?>
              
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
+<link rel="stylesheet" type=`"text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
 
  <body>
 	<div id="page">
@@ -64,7 +65,7 @@ $template = new Template();
 			 <a href="profile.php" title="Checkout Profile" >Samweli Twesa</a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
-            <div class="list-group">
+                    <div class="list-group">
 				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
 				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
 				 <a href="<?php echo URL;?>user/all_events" class="list-group-item active"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	

@@ -23,7 +23,18 @@ class Application
      */
     public function __construct()
     {
+        
+        //check whether user is authorized to access the url
+        
+        $security = new Security();
+        
+        if(isset($_GET['url'])){
+            $url = $this->removeParams($_GET['url']);
+        
+        if($security->authorizeUrl($url)){
+        
         // create array with URL parts in $url
+        
         $this->splitUrl();
 
         // check for controller: does such a controller exist ?
@@ -66,6 +77,17 @@ class Application
             $home = new HomeController();
             $home->index();
         }
+        }else{
+            require './includes/controller/home.php';
+           $home = new HomeController();
+           $home->denied($security->error);
+        }
+        }else{
+             require './includes/controller/home.php';
+            $home = new HomeController();
+            $home->index();
+        }
+        
     }
 
     /**
@@ -97,5 +119,12 @@ class Application
             // echo 'Parameter 2: ' . $this->url_parameter_2 . '<br />';
             // echo 'Parameter 3: ' . $this->url_parameter_3 . '<br />';
         }
+    }
+    
+    private function removeParams($url){
+        while(substr_count($url,"/") > 2){
+        $url = substr($url,0,strripos($url,"/"));
+        }
+        return $url;
     }
 }
