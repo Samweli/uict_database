@@ -16,6 +16,7 @@ try{
    $loader->service('Template.php');
    $loader->service('CurrentPage.php');
 $members = $data;
+
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -65,7 +66,7 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../../public/img/profile_photo.jpg" alt="profile picture" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
+			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo $members->first_name." ".$members->last_name;?></a>
 
 
 			 <div class="col-lg-6 col-md-offset-3">

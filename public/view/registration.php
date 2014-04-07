@@ -87,7 +87,6 @@ $template = new Template();
 				 <input name="lastname" type="text" class="form-control" />
 			       </div>
 			     </div>
-<<<<<<< HEAD
 			     
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label" >Registration NO:</label>
@@ -95,21 +94,8 @@ $template = new Template();
 					<input name="reg_number" type="text" class="form-control" />
 				      </div>
 				    </div>
-<!--
-=======
 
-
->>>>>>> 2c18fd1b502d80866a8d190b419375935d9a8506
-			     <div class="form-group">
-			       <label class="col-sm-2 control-label" >Registration NO:</label>
-			       <div class="col-sm-6">
-				 <input name="reg_number" type="text" class="form-control" />
-			       </div>
-<<<<<<< HEAD
-			     </div>-->
-=======
 			     </div>
->>>>>>> 2c18fd1b502d80866a8d190b419375935d9a8506
 
 			     <div class="form-group">
 			       <label class="col-sm-2 control-label" >Degree Program</label>

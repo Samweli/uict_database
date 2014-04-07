@@ -159,8 +159,24 @@
               $this::$user_error = $db->last_query;
          
             }
+
  }
+
 }
+      public function get_user_by_firstname($user_request){
+        if(!empty($user_request)){
+          $sql = "SELECT id,first_name,last_name FROM users WHERE first_name LIKE '%".$user_request."%' ";
+         
+          global $db;
+          if($user = $db->db_query($sql)){
+            $array = $db->db_fetch_array($user);
+            return $array;
+          }
+
+        }else{
+          $this::$user_error = $db->last_query;
+        }
+      }
 }
 
 

@@ -169,6 +169,22 @@ class HomeController extends Controller{
         
      } 
     }
+    public function search(){
+      
+     $user = new User();
+
+        $array_results= $user->get_user_by_firstname($_GET['search_request']);
+       
+
+        if(isset($array_results)){
+            try{
+        $this->loader->view('userProfile.php',$array_results);
+        }catch(Exception $e){
+            echo 'Message '.$e->getMessage();
+        }
+        
+        }
+    }
 
 }
 ?>

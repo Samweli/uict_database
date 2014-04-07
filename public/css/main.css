@@ -381,14 +381,11 @@ border-top-left-radius: 4px;
     margin-left: 100px;
     margin-right: 100px;
 }
-<<<<<<< HEAD
-=======
 
 /* for customizing error message in login*/
 .error_message_login{
     color:#CE0C0C;
 }
->>>>>>> 2c18fd1b502d80866a8d190b419375935d9a8506
 
 .container_info{
     border-radius: 5px;
