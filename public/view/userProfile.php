@@ -61,12 +61,14 @@ $template = new Template();
 			 
 			 <div class="col-lg-3">
 				<img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
-			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
+			 <a href="<?php echo URL; ?>home/userProfile" title="Checkout Profile" ><?php 
+
+			 echo  $_SESSION['first_name']." ".$_SESSION['last_name'];?></a>
 			 </div>
 			 <div class="col-lg-6 col-md-offset-3">
 				<form action="<?php echo URL; ?>home/search" method="get">
 				       <div class="input-group">
-				       <input type="text" name="search_request" class="form-control-min" size="40" placeholder="Search a colleague"  />
+				       <input type="text" required= "" name="search_request" class="form-control-min" size="40" placeholder="Search a colleague"  />
 				       <span class="input-group-btn">
 				       <input type="submit" class="btn btn-primary" value="Search" />
 

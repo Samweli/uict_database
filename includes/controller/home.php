@@ -174,6 +174,7 @@ class HomeController extends Controller{
      $user = new User();
 
         $array_results= $user->get_user_by_firstname($_GET['search_request']);
+    
        
 
         if(isset($array_results)){
