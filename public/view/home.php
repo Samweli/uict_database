@@ -11,8 +11,8 @@
 <?php
 $loader = new Loader();
 
-
 try{
+
    $loader->service('Template.php');
    $loader->service('CurrentPage.php');
 $members = $data;
@@ -22,7 +22,6 @@ catch(Exception $e){
  echo 'Message: '. $e->getMessage();
 }
 
-CurrentPage::$currentPage = "userhome";
 
 $template = new Template();
 
@@ -61,87 +60,56 @@ $template = new Template();
 	      </div>
 	<div class="container">
 	 <div class="row u_row">
-		<div class="col-lg-6">
-		  <div class="row ">
-			 
-			 <div class="col-lg-3">
-				<img class="img img-thumbnail" src="../../public/img/profile_photo.jpg" alt="profile picture" />
-			 <?php echo '<a href="'.URL.'home/userProfile/'.$members->id.'" title="Checkout Profile" >
-			  '.$members->first_name.''.$members->last_name.' </a>' ;?>
-          
 
-			 <div class="col-lg-6 col-md-offset-3">
-				<form action="../controller/search.php" method="get">
-				       <div class="input-group">
-				       <input type="text" class="form-control-min" size="40" placeholder="Search a colleague"  />
-				       <span class="input-group-btn">
-				       <input type="submit" class="btn btn-primary" value="Search" />
-				       </span>
-				       </div>
-				</form>
-				
-			 </div>
-			 <div class="container">
-		       <div class="col-lg-3 pull-right recent">
-				<div class="recent_activity">
-				 <h3>Recent Activities</h3> 
-				</div>
-				<ul class="nav">
-				       <li class="activity_li">Today: <a>Shared OOP book</a></li>
-				       <li class="activity_li">Yesterday: <a>Joined Project Logo</a></li>
-				       <li class="activity_li">Yesterday: <a>Commented on Charity Event</a></li>
-				       <li class="activity_li">Last Week: <a>Left Project Together</a></li>
-				       
-				</ul>
-			 </div>
-		       </div>
-		       
-		  </div>
-		  <div class="row u_row lower_row">
-		       <div class="col-lg-6">
-			 <ul class="nav navigation-menu" >
-				<li  class="active-menu list-menu"><a><i class="diff glyphicon glyphicon-pushpin"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-book"></i> OnGoing Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-map-marker"></i> Enrolled Projects</a></li>
-				<li  class="list-menu"><a><i class="diff glyphicon glyphicon-bookmark"></i> Enrolled Projects</a></li>
-			 </ul>
-		       </div>
-		   <div class="col-md-offset-6">
-			 <div class="main_content user_form">
-				<div class="a_content">
-				   
-				  <form role="form" action="#" method="post">
-				    <label for="title"></label>
-				    <input type="text" name="title" class="form-control" required id="title" placeholder="Project title" />
-				    <label for="description"></label>
-				    <textarea name="description" class="form-control" id="description" placeholder="Project description"></textarea>
-				    <label for="begin_date"></label>
-				    <input type="date" name="begin_date" class="form-control" required id="begin_date"/>
-				    <label for="initiator"></label>
-				    <select class="form-control" name="initiator_id" id="initiator">
-				       <option value="0">--Project Initiator--</option>
-				       <?php
-				          foreach($members as $member){
-				          	echo '<option value="'.$member[id];
-				          	
-				          	if(defined($_POST)){
-                               if($member['id'] == $_POST['initiator_id']){
-                                  echo 'selected="selected">'.$member['first_name'].' '.$member['last_name'].'</option>';
-                               }
-				          	}else{
-				          	   echo '">'.$member['first_name'].' '.$member['last_name'].'</option>';
-				            }
-				          }
-				       ?>
-				    </select>
-				    <input type="reset" value="Clear" class="btn btn-primary" required />
-				    <input type="submit" value="Add Project" class="btn btn-primary" required />
-				  </form>
-				 
-				</div>
-			 </div>
-			 </div>
-			      <!-- end u_main_content -->
+         <div class="col-md-3">
+             <div class="row user_photo">
+             <img class="img img-thumbnail" src="../../public/img/profile_photo.jpg" />
+			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
+		 </div><!-- end of row for profile pictire -->
+		 <div class="row user_nav">
+            <div class="list-group">
+				 <a href="" class="list-group-item"><span class="glyphicon glyphicon-briefcase"></span> My Account</a>
+				 <a href="<?php echo URL;?>user/all_projects" class="list-group-item active"><span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
+				 <a href="<?php echo URL;?>user/all_events" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Up comming Events</a>	
+				 <a href="<?php echo URL;?>user/all_members" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Community Members</a>
+				 <a href="<?php echo URL;?>user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>
+				 <a href="<?php echo URL;?>user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>	
+			</div>
+		 </div><!-- end of row for info -->
+
+         </div><!-- end of col-md-3 -->
+         <div class="col-md-6">
+             <div class="row">
+	             <div class="col-lg-12">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search for member">
+				      <span class="input-group-btn">
+				        <button class="btn btn-primary" type="button">Search <span class="glyphicon glyphicon-search"></span></button>
+				      </span>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+			 </div><!-- end of row for search bar -->
+
+			 <div class="row user_form">
+			    <!-- All Events list-->
+                 
+
+
+
+			 </div><!-- end of row for user form -->
+
+         </div><!-- end of col-md-6 -->
+         <div class="col-md-3">
+            <div class="list-group">
+				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
+				 <a href="#" class="list-group-item">Yesterday:</a>	
+				 <a href="#" class="list-group-item">Last Week:</a>	
+				 <a href="#" class="list-group-item">Last Week:</a>	
+			</div>
+         </div><!-- end of col-md-3 -->
+
+			 </div><!-- end u_main_content -->
+
 			    </div>
 		       </div>
 		</div>
@@ -160,5 +128,3 @@ $template = new Template();
 	      </div>
 	</div>
  </body>
-
-</html>

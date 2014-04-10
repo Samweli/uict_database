@@ -14,7 +14,10 @@ $loader = new Loader();
 try{
 $loader->service('Template.php');
 $loader->service('CurrentPage.php');
-$members = $data;
+$income = $data['income'];
+$expenses = $data['expenses'];
+$total_income = $data['total_income'];
+$total_expenses = $data['total_expenses'];
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -94,36 +97,53 @@ $template = new Template();
 
 			 <div class="row user_form">
 			    <!-- All Events list-->
-                 <?php
-                    foreach($members as $member){
-                      echo '<div class="content_list">';
-                        echo '<h3 class="title"><span><img src="../public/img/members/leader.jpg" class="img col-sm-2" title="Project Title"/></span>';
-                        echo $member['first_name'].' '.$member['last_name'].'</h3>';
-                        echo '<span class="tag">'.$member['program'];
+                <div class="col-md-6 income">
 
-                        if($member['year_of_study'] == 1){
-                             echo ' - First Year</span>';
-                        }else if($member['year_of_study'] == 2){
-                             echo ' - Second Year</span>';
-                        }else if($member['year_of_study'] == 3){
-                        	echo ' - Third Year</span>';
-                        }else{
-                        	echo ' - Fourth Year</span>';
-                        }
-                        
-                        //echo '<p class="_description"></p>';
-                        //echo '<p class="initiator"><span class="tag">Published By </span>';
-                        //echo $event['first_name'].' '.$event['last_name'].'<span class="tag"> Up Coming On </span>'.$event['event_date'].'</p>'; 
-                        echo '<ul class="nav nav-pills content_nav">';
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>';
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Profile</a></li>'; 
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Subscribe</a></li>';
-                        echo '</ul>';
-                      echo '</div>';
-                    }
-                 ?> 
-
-
+                   <div class="panel panel-default">
+                      <div class="panel-heading">Income</div>
+                      <div class="panel-body">
+                          <ul>
+                      	  <?php
+                            foreach($income as $cash){
+                             echo '<li>Tsh ';
+                              echo $cash['amount'].' /=';
+                              echo '<span class="tag">From ';
+                              if($cash['donor_name'] != NULL){
+                                 echo '<span>'.$cash['donor_name'].'</span>';
+                              }else{
+                                 echo '<span>'.$cash['first_name'].' '.$cash['last_name'].' </span>';
+                              }
+                              echo '</span>';
+                              echo '<span class="tag">For <span class="cash_category">'.$cash['category'].'</span></span>';
+                              echo '</li>';
+                            }
+                          ?>
+                          </ul>
+                      </div><!-- end of panel-body -->
+                      <div class="panel-footer">Total Income: <?php echo $total_income;?></div>
+                   </div><!-- end of panel -->
+  
+                </div><!-- end income report -->
+                <div class="col-md-6 expenses">
+                   <div class="panel panel-default">
+	                   <div class="panel-heading">Expenses</div>
+	                      <div class="panel-body">
+	                         <ul>
+	                      	 <?php
+	                             foreach($expenses as $cash){
+	                               echo '<li>Tsh ';
+	                               echo $cash['amount'].' /=';
+	                               echo '<span class="tag">For ';
+	                               echo '<span>'.$cash['description'].'</span>';
+	                               echo '</span></li>';
+	                             }
+	                         ?>
+                             </ul>
+	                      </div><!-- end of panel-body -->
+	                      <div class="panel-footer">Total Expenses: <?php echo $total_expenses;?></div>
+                   </div><!-- end of panel -->
+                   
+                </div><!-- end expenses report -->
 
 			 </div><!-- end of row for user form -->
 

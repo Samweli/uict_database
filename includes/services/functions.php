@@ -1,8 +1,7 @@
 <?php
-   function redirect($controller="",$action=""){
-      if($controller != NULL && $action!=NULL ){
-	 
-         header('Location:'.URL.$controller.$action);
+   function redirect($location = NULL){
+      if($location != NULL){
+         header('Location:'.URL.$location);
          exit;
       }
    }

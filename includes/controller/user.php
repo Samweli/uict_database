@@ -12,26 +12,7 @@ class UserController extends Controller{
 	}
     
     public function index(){
-        require('./public/view/home.php');
-        
-    }
-
-    public function add_project(){
-        $this->loader->model('project.php');
-        $project = new Project();
-
-        $project->title = $this->db->db_escape_values('Robotics Design');
-        $project->description = $this->db->db_escape_values('Electronics task for designing objects lifting robot');
-        //$project->category = $this->db->db_escape_values('electronics');
-        $project->begin_date = $this->db->db_escape_values('04/13/2014');
-        $project->initiator_id = $this->db->db_escape_values(1);
-
-        if($project->add_project()){
-        	echo "Project added successfully";
-          // redirect(URL.'projects');
-        }else{
-        	echo "Error occured";
-        }
+        $this->loader->view('home.php');  
     }
 
     public function add_new_project(){
@@ -63,6 +44,22 @@ class UserController extends Controller{
     public function all_members(){
     	$users = $this->user->get_all();
     	$this->loader->view('all_members.php',$users);
+    }
+
+    public function add_income(){
+    	$users = $this->user->get_all();
+    	$this->loader->model('finance.php');
+    	$finance = new Finance();
+    	$income_categories = $finance->get_income_categories();
+    	$data = array(
+                   'users'=>$users,
+                   'income_categories'=>$income_categories
+    		    );
+    	$this->loader->view('add_income.php',$data);
+    }
+
+     public function add_expense(){
+    	$this->loader->view('add_expense.php');
     }
    
 }

@@ -98,7 +98,7 @@ require_once('./includes/services/Loader.php');
                                       echo '<span class="event_tag">Description </span><span class="event_description">'.$event['description'].'</span>';
                                       echo '<span class="event_more"><a href="community-event.php?id=';
                                       echo urlencode($event['id']).'">Read more</a></span>';
-                                      echo '<span class="event_tag">Date & Time </span><span class="event_time">'.$event['date'].'</span>';
+                                      echo '<span class="event_tag">Date & Time </span><span class="event_time">'.$event['event_date'].'</span>';
                                       echo '<span class="event_tag">Posted By </span><span class="event_publisher">'.$event['first_name'];
                                       echo ' '.$event['last_name'].'</span>';
                                       echo '</div>';

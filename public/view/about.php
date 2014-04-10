@@ -154,6 +154,7 @@ require_once('./includes/services/Loader.php');
                                 echo 'Message: '. $e->getMessage();
                             }
                         ?>
+		      </div>
                       <!-- content -->
                       <div class="content">
                       <?php

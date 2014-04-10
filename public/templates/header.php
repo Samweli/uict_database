@@ -19,6 +19,8 @@ if (session_status() == PHP_SESSION_NONE) {
 			    echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	
 	          }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
 			 echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	   
+		  }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
+			 echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';    
 		  }
 		  else{
 	             echo '<a h ref="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../public/img/uict.jpg" alt="uict logo"/></a>';  	
@@ -29,7 +31,15 @@ if (session_status() == PHP_SESSION_NONE) {
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                
                      <ul class="nav navbar-nav navbar-right">
-                            <li class= "<?php echo CurrentPage::$currentPage == "home"?'active':'list'; ?>" ><a href="<?php echo URL; ?>index.php">Home</a></li>
+                            <li class= "<?php echo CurrentPage::$currentPage == "home"?'active':'list'; ?>" >
+			    <?php
+			         if(!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']== true)){
+			            echo '<a href="'.URL.'index.php">Home</a>';
+				 }elseif(isset($_SESSION['user_id'])){
+			            echo '<a href="'.URL.'home/userhome/'.$_SESSION['user_id'].'">Home</a>';	  
+				 }
+	                    ?>
+			    </li>
                             <li class= "<?php echo CurrentPage::$currentPage == "projects"?'active':'list'; ?>"><a href="<?php echo URL; ?>project/index" >Projects</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "events"?'active':'list'; ?>"><a href="<?php echo URL; ?>event/index">Events</a></li>
                             <li class= "<?php echo CurrentPage::$currentPage == "about"?'active':'list'; ?>"><a href="<?php echo URL; ?>home/about">About</a></li>

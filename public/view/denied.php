@@ -29,6 +29,8 @@ $template = new Template();
           	    foreach($cssFiles as $file){
 		     if(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
           	       echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    
+		     }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==1){
+			echo '<link rel="stylesheet" type="text/css" href="./public/css/'.$file.'" />';
 		     }else{
 			echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    
 		     }

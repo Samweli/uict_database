@@ -94,37 +94,24 @@ $template = new Template();
 
 			 <div class="row user_form">
 			    <!-- All Events list-->
-                 <?php
-                    foreach($members as $member){
-                      echo '<div class="content_list">';
-                        echo '<h3 class="title"><span><img src="../public/img/members/leader.jpg" class="img col-sm-2" title="Project Title"/></span>';
-                        echo $member['first_name'].' '.$member['last_name'].'</h3>';
-                        echo '<span class="tag">'.$member['program'];
+                <form role="form" action="<?php echo URL;?>finance/add_expense" method="post"> 
+                   <label for="amount"></label>
+                   <div class="input-group">
+                     <span class="input-group-btn">
+                       <button class="btn btn-default">TSH</button>
+                     </span>
+                     <input type="number" min="0" step="500" name="amount" class="form-control" placeholder="Expense amount" id="amount" />
+                     <span class="input-group-btn">
+                       <button class="btn btn-default">/=</button>
+                     </span>
+                   </div><!-- end input group -->
+                   <label for="description"></label>
+                   <textarea name="description" required class="form-control" id="description" placeholder="Expense description"></textarea>
+                   <input type="hidden" name="publisher_id" value="<?php echo $_SESSION['user_id']; ?>" />
 
-                        if($member['year_of_study'] == 1){
-                             echo ' - First Year</span>';
-                        }else if($member['year_of_study'] == 2){
-                             echo ' - Second Year</span>';
-                        }else if($member['year_of_study'] == 3){
-                        	echo ' - Third Year</span>';
-                        }else{
-                        	echo ' - Fourth Year</span>';
-                        }
-                        
-                        //echo '<p class="_description"></p>';
-                        //echo '<p class="initiator"><span class="tag">Published By </span>';
-                        //echo $event['first_name'].' '.$event['last_name'].'<span class="tag"> Up Coming On </span>'.$event['event_date'].'</p>'; 
-                        echo '<ul class="nav nav-pills content_nav">';
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>';
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Profile</a></li>'; 
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Subscribe</a></li>';
-                        echo '</ul>';
-                      echo '</div>';
-                    }
-                 ?> 
-
-
-
+				   <input type="submit" value="Add Expence" class="btn btn-primary" required />
+				   <input type="reset" value="Clear" class="btn btn-default" required />
+                </form>
 			 </div><!-- end of row for user form -->
 
          </div><!-- end of col-md-6 -->
