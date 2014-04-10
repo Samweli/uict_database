@@ -16,11 +16,11 @@ class Security{
                                   'uict_database/home/login','uict_database/home/registration','uict_database/home/projects',
                                   'uict_database/home/charity','uict_database/home/sports','uict_database/login/index','uict_database/login/auth',
                                   'uict_database/login/denied','uict_database/logout/auth','uict_database/user/add_new_project','uict_database/user/add_new_event',
-                                  'uict_database/user/add_income','uict_database/user/add_expense');
+                                  'uict_database/user/add_income','uict_database/user/add_expense','uict_database/home/register');
         
         $this->privateUrls = array('uict_database/home/userhome','uict_database/home/userProfile','uict_database/home/editInfo',
-                                   'uict_database/home/register','uict_database/home/editUser','uict_database/user/all_events',
-                                   'uict_database/user/all_projects','uict_database/user/all_members','uict_database/user','uict_database/user/profile.php');
+                                   'uict_database/home/editUser','uict_database/user/all_events',
+                                   'uict_database/user/all_projects','uict_database/user/all_members','uict_database/user','uict_database/user/profile');
         
         $this->projectManagerUrls = array('uict_database/project/add_project');
         
