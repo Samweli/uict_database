@@ -104,20 +104,33 @@ class HomeController extends Controller{
         $loader = new Loader();
         
         $user = new User();
-        $user->first_name= $_POST['firstname'];
         
-        $user->last_name = $_POST['lastname'];
-        $user->reg_number= $_POST['reg_number'];
-
-        $user->program_id= $_POST['selected_course'];
-
-        $user->gender = $_POST['gender'];
-        $user->status = $_POST['maritial_status'];
-        $user->mailing_address = $_POST['mailing_address'];
-        $user->email_address = $_POST['email'];
-        $user->phone_number = $_POST['phonenumber'];
-           
-        $user->set_password($_POST['password']);
+        if(isset($_POST['firstname'])){
+        $user->first_name= $_POST['firstname'];
+        }
+        if(isset($_POST['lastname'])){
+        $user->last_name = $_POST['lastname'];  
+        }
+        if(isset($_POST['reg_number'])){
+        $user->reg_number= $_POST['reg_number'];   
+        }
+        if(isset($_POST['gender'])){
+        $user->gender = $_POST['gender'];  
+        }
+        if(isset($_POST['maritial_status'])){
+          $user->status = $_POST['maritial_status'];  
+        }
+        if(isset($_POST['email'])){
+           $user->email_address = $_POST['email']; 
+        }
+        if(isset($_POST['phonenumber'])){
+            $user->phone_number = $_POST['phonenumber'];
+       
+        }
+        if(isset($_POST['password'])){
+          $user->set_password($_POST['password']);  
+        }
+        
        
          if($user->add_user()){
             
@@ -143,36 +156,62 @@ class HomeController extends Controller{
 
     }
 
-    public function editUser(){
+    public function editUser($id){
 
         $user = new User();
+        $user = $user->get_user($id);
+       
+        if(isset($_POST['firstname'])){
         $user->first_name= $_POST['firstname'];
+        }
+        if(isset($_POST['lastname'])){
+        $user->last_name = $_POST['lastname'];  
+        }
+        if(isset($_POST['reg_number'])){
+        $user->reg_number= $_POST['reg_number'];   
+        }
+        if(isset($_POST['gender'])){
+        $user->gender = $_POST['gender'];  
+        }
+        if(isset($_POST['maritial_status'])){
+          $user->status = $_POST['maritial_status'];  
+        }
+        if(isset($_POST['email'])){
+           $user->email_address = $_POST['email']; 
+        }
+        if(isset($_POST['phonenumber'])){
+            $user->phone_number = $_POST['phonenumber'];
+       
+        }
+        if(isset($_POST['skills'])){
+         $skill = $_POST['skills'];
+        }
+        if(isset($_POST['hobbies'])){
+            $hobbies = $_POST['hobbies'];
+        }
+        if(isset($_POST['password'])){
+          $user->set_password($_POST['password']);  
+        }
         
-        $user->last_name = $_POST['lastname'];
-        $user->reg_number= $_POST['reg_number'];
+     
+        
         //$user-> = $_POST['degree_program'];
-        $user->gender = $_POST['gender'];
-        $user->status = $_POST['maritial_status'];
+        
+        
         //$user-> = $_POST['mailing_address'];
-        $user->email_address = $_POST['email'];
-        $user->phone_number = $_POST['phonenumber'];
-        $skill = $_POST['skills'];
-        $hobbies = $_POST['hobbies'];
+        
        // $user->password = $_POST['password'];
         //$user->set_password($_POST['password']);
        
         //$repeatPassword = $_POST['repeatedPassword'];
 
-      
-        
-        $query_user = $user->get_user_by_reg_number($user->reg_number);
-
-        $user->edit_user($query_user->id);
-        
-         
+         $session = new Session();
+       
          $loader = new Loader();
-         if(true){
-            header('Location:'.URL.'home/userProfile/'.$query_user->id);
+         if($user->edit_user($id)){
+            
+             $session->login($user);
+            header('Location:'.URL.'home/userProfile/'.$id);
            
         
      } 

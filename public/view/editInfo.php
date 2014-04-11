@@ -64,7 +64,7 @@ $template = new Template();
                       <!-- header -->
                      <div class="row">
 
-			<form action="<?php echo URL?>home/editUser" method="post" class="form-horizontal u_row" role="form">
+			<form <?php echo 'action="'.URL.'home/editUser/'.$member->id.'"'; ?>method="post" class="form-horizontal u_row" role="form">
 
 			<div class="col-lg-6 u_row">
 				

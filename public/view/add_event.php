@@ -115,8 +115,8 @@ $template = new Template();
 				          }
 				       ?>
 				    </select>
-				    <input type="submit" value="Publish Project" class="btn btn-primary" required />
-				    <input type="reset" value="Clear" class="btn btn-default" required />
+				    <input type="submit" value="Publish Project" class="btn btn-primary" required="" />
+				    <input type="reset" value="Clear" class="btn btn-default" required="" />
 				  </form>
 			 </div><!-- end of row for user form -->
 
