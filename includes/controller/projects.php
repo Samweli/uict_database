@@ -6,14 +6,14 @@
 
        public function __construct(){
            $this->loader = new Loader();
-           $this->loader->model('project');
+           $this->loader->model('project.php');
            $this->project = new Project();
        }
 
    	   public function index(){
           $community_project = $this->project->get_all();
           try{
-   	   	     $this->loader->view('projects',$community_project);
+   	   	     $this->loader->view('projects.php',$community_project);
           }catch(Exception $e){
              echo "Message: ".$e->getMessage();
           }
@@ -23,7 +23,7 @@
           if(!empty($id)){
               try{
                  $community_project = $this->project->get_project($id);
-                 $this->loader->model('comment');
+                 $this->loader->model('comment.php');
                  $comment = new Comment();
                  $comment->source_id = $id;
                  $comment->category = "project";
@@ -32,7 +32,7 @@
                             'community_project'=>$community_project,
                             'comments'=>$comments
                        );
-                 $this->loader->view('community-project',$data);
+                 $this->loader->view('community-project.php',$data);
               }catch(Exception $e){
                  echo "Message: ".$e->getMessage();
               }

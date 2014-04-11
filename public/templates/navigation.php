@@ -19,14 +19,14 @@
                     <span class="glyphicon glyphicon-user"></span> Community Members</a>
                     
                     
-       <?php if(isset($_SESSION["position"]) && $_SESSION["position"]=='project_manager'){
+       <?php if(isset($_SESSION["role"]) && $_SESSION["role"]=='project_manager'){
         echo '<a href="'.URL.'user/add_new_project" class="list-group-item"><span class="glyphicon glyphicon-tasks"></span> Publish Project</a>';
        }?>
        <?php if(isset($_SESSION["position"]) && $_SESSION["position"]=='event_manager'){
         echo '<a href="'.URL.'user/add_new_event" class="list-group-item"><span class="glyphicon glyphicon-globe"></span> Publish Event</a>';
        }
        ?>
-       <?php if(isset($_SESSION["position"]) && $_SESSION["position"]=='finance_manager'){
+       <?php if(isset($_SESSION["role"]) && $_SESSION["role"]=='finance_manager'){
         
         echo '<a href="'.URL.'user/add_income" class="list-group-item"><span class="glyphicon glyphicon-plus"></span> Income</a>';
         echo '<a href="'.URL.'user/add_expense" class="list-group-item"><span class="glyphicon glyphicon-minus"></span> Expenses</a>';	

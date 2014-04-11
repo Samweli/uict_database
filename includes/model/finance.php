@@ -46,6 +46,7 @@
      	  	  $sql = "SELECT SUM(amount) FROM expenses";
      	  	  global $db;
      	  	  if($total = $db->db_query($sql)){
+		    $total = $db->db_first_row($total);
                  return $total;
      	  	  }
      	  }
@@ -58,6 +59,7 @@
               global $db;
               if($result = $db->db_query($sql)){
                  $income = $db->db_fetch_array($result);
+		 
                  return $income;
               }
      	  }

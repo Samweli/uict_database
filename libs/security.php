@@ -22,9 +22,9 @@ class Security{
                                    'uict_database/home/editUser','uict_database/user/all_events','uict_database/forum',
                                    'uict_database/user/all_projects','uict_database/user/all_members','uict_database/user','uict_database/user/profile');
         
-        $this->projectManagerUrls = array('uict_database/project/add_project');
+        $this->projectManagerUrls = array('uict_database/project/add_project','uict_database/projects/add_project');
         
-        $this->finincialUrls = array('');
+        $this->finincialUrls = array('uict_database/finance/add_income','uict_database/finance/report','uict_database/finance/add_expense');
     }
     
     public function authorizeUrl($url){
@@ -43,7 +43,7 @@ class Security{
             }
         }
         if(in_array($url,$this->projectManagerUrls)){
-            if(isset($_SESSION['position']) && $_SESSION['position']=="project_manager"){
+            if(isset($_SESSION['role']) && $_SESSION['role']=="project_manager"){
                 return true;
             }
             else{
@@ -52,11 +52,11 @@ class Security{
             }
         }
         if(in_array($url,$this->finincialUrls)){
-            if(isset($_SESSION['position']) && $_SESSION['position']=="finincial"){
+            if(isset($_SESSION['role']) && $_SESSION['role']=="finance_manager"){
                 return true;
             }
             else{
-                $this->error = "You need to be finincial manager to access that page";
+                $this->error = "You need to be finance manager to access that page";
                 return false;
             }
         }
