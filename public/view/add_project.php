@@ -33,16 +33,13 @@ $template = new Template();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <?php
 	  
-	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
+	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","font.css");
 	    
 	    foreach($cssFiles as $file){
 	    echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';	    }
 	    
 	    ?>
-             
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-
+            
  <body>
 	<div id="page">
 	<div id="header">
@@ -60,7 +57,7 @@ $template = new Template();
 	 <div class="row u_row">
          <div class="col-md-3">
              <div class="row user_photo">
-             <img class="img img-thumbnail" src="../public/img/profile_photo.jpg" />
+             <img class="img img-thumbnail" src="<?php  echo '../../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
 			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">

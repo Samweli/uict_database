@@ -13,7 +13,7 @@
    	   public function index(){
           $events = $this->event->get_all();
           try{
-   	   	     $this->loader->view('events.php',$events);
+   	   	 $this->loader->view('events.php',$events);
           }catch(Exception $e){
              echo "Message: ".$e->getMessage();
           }
@@ -29,6 +29,12 @@
           if($this->event->add_project()){
               redirect(URL.'user/all_events');
           }
+       }
+       
+       public function community_event(){
+        
+         $this->loader->view('community-event.php');
+        
        }
    }
 ?>

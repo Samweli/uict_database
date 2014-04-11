@@ -26,15 +26,13 @@
    <title>Registration</title>
    <?php
       
-	$cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css");
+	$cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","font.css");
 	
 	foreach($cssFiles as $file){
 	echo '<link rel="stylesheet" type="text/css" href="../public/css/'.$file.'" />';
 	}
 	
 	?>
-   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
    </head>
    <body>
    <div id="page">

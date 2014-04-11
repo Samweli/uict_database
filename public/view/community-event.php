@@ -1,9 +1,15 @@
 <?php
-    require_once('../../includes/model/event.php');
-    require_once('../../includes/services/functions.php');
-    require_once('../../includes/services/Template.php');
-    require_once('../../includes/model/comment.php');
-
+    $loader = new Loader();
+    try{
+	
+	$loader->service('Template.php');
+	$loader->service('CurrentPage.php');
+	$loader->model('comment.php');
+    }catch(Exception $e){
+	echo 'Message:'.$e->getMessage();
+    }
+    
+    if(isset($_GET['id'])){
     if(urldecode($_GET['id'])){
     	$event_id = urldecode($_GET['id']);
         $com_event = $event->get_event($event_id);
@@ -15,6 +21,7 @@
 		    echo "Messsage: ".$e->getMessage();
 		}
 	}
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,20 +29,21 @@
         <head>
             <meta charset="utf-8" />
             <title>UICT COMMUNITY</title>
-            <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-            <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet"> 
-
-            <link rel="stylesheet" type="text/css" href="../css/style.css" />
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-            <link rel="stylesheet" type="text/css" href="../css/events.css"/>
+            <?php
+	  
+	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css","font.css");
+	    
+	    foreach($cssFiles as $file){
+	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    }
+	    
+	    ?>
             
         </head>
         <body>
             <div id="page">
                <div id="header">
                <?php
+	       $template = new Template();
                    try{
                        $template->render('header.php');
                    }catch(Exception $e){
@@ -48,7 +56,15 @@
                     <div class="row">
                        <div class="container">
                          <div class="col-md-12 header_events">
-                           <h3><a href="events.php">Events</a> >> <?php echo $com_event['title']; ?></h3>
+                           <h3><a href="events.php">Events</a> >>
+			    <?php
+			    if(isset($com_event)){
+			    echo $com_event['title'];
+			    }
+			    else{
+				echo 'Event information have not yet been added';
+			    }
+				?></h3>
                          </div><!-- end col-md-12 -->
                        </div><!-- end container -->
                     </div><!-- end row page header -->

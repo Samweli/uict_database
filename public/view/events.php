@@ -27,7 +27,7 @@ require_once('./includes/services/Loader.php');
             <title>UICT COMMUNITY</title>
             <?php
       
-      $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css");
+      $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","events.css","font.css");
       
       foreach($cssFiles as $file){
 	
@@ -36,9 +36,6 @@ require_once('./includes/services/Loader.php');
       }
       
       ?>
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            
         </head>
         <body>
             <div id="page">
@@ -96,7 +93,7 @@ require_once('./includes/services/Loader.php');
                                       echo '<span class="event_tag"></span><span class="event_title"><a href="';
                                       echo 'community-event.php?id='.urlencode($event['id']).'">'.$event['title'].'</a></span>';
                                       echo '<span class="event_tag">Description </span><span class="event_description">'.$event['description'].'</span>';
-                                      echo '<span class="event_more"><a href="community-event.php?id=';
+                                      echo '<span class="event_more"><a href="community_event/id=';
                                       echo urlencode($event['id']).'">Read more</a></span>';
                                       echo '<span class="event_tag">Date & Time </span><span class="event_time">'.$event['event_date'].'</span>';
                                       echo '<span class="event_tag">Posted By </span><span class="event_publisher">'.$event['first_name'];

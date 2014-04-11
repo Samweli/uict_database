@@ -458,6 +458,7 @@ border-top-left-radius: 4px;
 
 .content_list{
     border-left: 8px solid steelblue;
+    padding-left:5px;
 
 
 }
@@ -498,7 +499,17 @@ border-top-left-radius: 4px;
     color: #444;
 }
 
+/* for the navigation list*/
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+     background-repeat: repeat-x;
+    border-color: #3278B3;
+    text-shadow: 0 -1px 0 #3071A9;
+}
 
+/* overriding bootstrap setting on p description class*/
+._description{
+    margin:0px;
+}
 
 
 
