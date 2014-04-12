@@ -25,14 +25,13 @@ $template = new Template();
 <title>Home | UICT Community</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <?php
-	  
-	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","font.css");
-	    
-	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    }
-	    
-	    ?>
+         <?php
+		  try{
+		      $template->render('resources.php');
+		  }catch(Exception $e){
+		      echo 'Message'.$e->getMessage();
+		  }
+	   ?>
              
  <body>
 	<div id="page">
@@ -52,7 +51,7 @@ $template = new Template();
 
          <div class="col-md-3">
              <div class="row user_photo">
-             <img class="img img-thumbnail" src="<?php  echo '../../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
+             
 			 <a href="<?php echo URL.'home/userProfile/'.$_SESSION['user_id'] ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		<!-- end of row for info -->

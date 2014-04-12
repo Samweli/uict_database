@@ -3,15 +3,13 @@
         <head>
             <meta charset="utf-8" />
             <title>UICT | COMMUNITY</title>
-            <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-            <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet"> 
-
-            <link rel="stylesheet" type="text/css" href="../css/style.css" />
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine" />
-            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gafata" />
-            <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-			<link rel="stylesheet" type ="text/css" href="../css/login.css">
-            
+            <?php
+		  try{
+		      $template->render('resources.php');
+		  }catch(Exception $e){
+		      echo 'Message'.$e->getMessage();
+		  }
+		   ?>
         </head>
 <body>
  <header class="navbar navbar-static-top bs-docs-nav u_header" id="top" role="banner">

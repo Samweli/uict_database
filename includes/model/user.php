@@ -27,11 +27,13 @@
    	  public $role;
    	  public $status;
    	  private $password;
+	  public $profile_picture;
 	  
 	  public static $user_error;
 	  
 	  public function __construct($id="",$first_name="",$last_name="",$reg_number="",$grad_year="",$program_id="",
-				      $year_of_study="",$active_status="",$gender="",$mailing_address="",$email_address="",$phone_number="",$role="",$status=""){
+				      $year_of_study="",$active_status="",$gender="",$mailing_address="",$email_address="",
+				      $phone_number="",$role="",$status="",$profile_picture=""){
 					  
 	      $this->id = $id;
 	      $this->first_name = $first_name;
@@ -42,11 +44,13 @@
 	      $this->year_of_study = $year_of_study;
 	      $this->active_status = $active_status;
 	      $this->gender = $gender;
-        $this->mailing_address = $mailing_address;
+              $this->mailing_address = $mailing_address;
 	      $this->email_address = $email_address;
 	      $this->phone_number = $phone_number;
 	      $this->role = $role;
 	      $this->status = $status;
+	      $this->profile_picture = $profile_picture;
+	      
 	      
 	  }
 

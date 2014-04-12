@@ -25,15 +25,13 @@ $template = new Template();
             <meta charset="utf-8" />
             <title>Registration</title>
 	    
-	    <?php
-	  
-	    $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","font.css");
-	    
-	    foreach($cssFiles as $file){
-	    echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';
-	    }
-	    
-	    ?>
+	         <?php
+		  try{
+		      $template->render('resources.php');
+		  }catch(Exception $e){
+		      echo 'Message'.$e->getMessage();
+		  }
+		   ?>
 	    
             
         </head>

@@ -140,6 +140,7 @@ class HomeController extends Controller{
             $reg_number = $db->db_escape_values($_POST['reg_number']);
 	    $password = $db->db_escape_values($_POST['password']);
             
+            // code to immediately put user on session after signing up
             
             $member = $user->authenticate($reg_number,$password);
          
