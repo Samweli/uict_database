@@ -60,10 +60,12 @@ CurrentPage::$currentPage = "userhome";
 	 <div class="row u_row">
 
          <div class="col-md-3">
+	  
              <div class="row user_photo">
-             <img class="img img-thumbnail" src="<?php  echo '../../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
-			 <a href="<?php echo URL.'home/userProfile/'.$_SESSION['user_id'] ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
-		 </div><!-- end of row for profile pictire -->
+             <img class="img img-thumbnail" src="<?php  echo '../../public/img/userImages/'.$data['user']->profile_picture; ?>" />
+			 
+			 <a href="<?php echo URL.'home/userProfile/'.$data['user']->id ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
+		 </div><!-- end of row for profile picture -->
 		 <div class="row user_nav">
             <?php
 		    try{
@@ -100,7 +102,7 @@ CurrentPage::$currentPage = "userhome";
             <div class="list-group">
 				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
 				 <a href="#" class="list-group-item">Yesterday:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
+				 <a href="#" class="list-group-item">This Week:</a>	
 				 <a href="#" class="list-group-item">Last Week:</a>	
 			</div>
          </div><!-- end of col-md-3 -->

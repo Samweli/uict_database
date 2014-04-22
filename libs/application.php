@@ -46,6 +46,10 @@ class Application
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require './includes/controller/' . $this->url_controller . '.php';
             
+            
+            
+            
+            
             $constructForController = $this->url_controller.'Controller';
             
             $this->url_controller = new $constructForController();
@@ -108,9 +112,10 @@ class Application
             $this->url_controller = (isset($url[1]) ? $url[1] : null);
             
             $this->url_action = (isset($url[2]) ? $url[2] : null);
-            $this->url_parameter_1 = (isset($url[3]) ? $url[3] : null);
+            $this->url_parameter_1 = (isset($url[3]) ? $url[3] : null);            
             $this->url_parameter_2 = (isset($url[4]) ? $url[4] : null);
             $this->url_parameter_3 = (isset($url[5]) ? $url[5] : null);
+            
 
             // for debugging. uncomment this if you have problems with the URL
             // echo 'Controller: ' . $this->url_controller . '<br />';
@@ -127,4 +132,12 @@ class Application
         }
         return $url;
     }
+    
+    //private function splitParameters($str){
+    //  if(strpos($str,'&') !== false) { 
+    //  $array = explode('&',$str);// explode the str parameter with &
+    //  }else{
+    //    $array = explode('=',str)
+    //  }
+    //}
 }

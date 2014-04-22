@@ -5,6 +5,8 @@ require_once('./includes/services/Loader.php');
 require_once('./includes/model/user.php');
 require_once('./includes/model/session.php');
 require_once('./includes/services/functions.php');
+require_once('./includes/services/ImageService.php');
+
 
 
 // load the (optional) Composer auto-loader

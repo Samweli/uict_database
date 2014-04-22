@@ -14,6 +14,7 @@
                         }
             }
             elseif(substr_count($_GET['url'],'/') == 3){
+                        
                $cssFiles = array("bootstrap.min.css","bootstrap-theme.css","style.css","main.css","font.css");
                   foreach($cssFiles as $file){
                      echo '<link rel="stylesheet" type="text/css" href="../../public/css/'.$file.'" />';	    

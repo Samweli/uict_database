@@ -16,7 +16,7 @@ class Security{
                                   'uict_database/home/login','uict_database/home/registration','uict_database/home/projects',
                                   'uict_database/home/charity','uict_database/home/sports','uict_database/login/index','uict_database/login/auth',
                                   'uict_database/login/denied','uict_database/logout/auth','uict_database/user/add_new_project','uict_database/user/add_new_event',
-                                  'uict_database/user/add_income','uict_database/user/add_expense','uict_database/home/register','uict_database/event/community_event');
+                                  'uict_database/home/register','uict_database/event/community_event');
         
         $this->privateUrls = array('uict_database/home/userhome','uict_database/home/userProfile','uict_database/home/editInfo',
                                    'uict_database/home/editUser','uict_database/user/all_events','uict_database/forum',
@@ -24,7 +24,7 @@ class Security{
         
         $this->projectManagerUrls = array('uict_database/project/add_project','uict_database/projects/add_project');
         
-        $this->finincialUrls = array('uict_database/finance/add_income','uict_database/finance/report','uict_database/finance/add_expense');
+        $this->finincialUrls = array('uict_database/finance/add_income','uict_database/finance/report','uict_database/finance/add_expense','uict_database/user/add_income','uict_database/user/add_expense');
     }
     
     public function authorizeUrl($url){
@@ -42,7 +42,9 @@ class Security{
                 return false;
             }
         }
+        
         if(in_array($url,$this->projectManagerUrls)){
+            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
             if(isset($_SESSION['role']) && $_SESSION['role']=="project_manager"){
                 return true;
             }
@@ -50,8 +52,15 @@ class Security{
                 $this->error = "You need to be project manager to access that page";
                 return false;
             }
+            }else{
+                $this->error = "You are not authorized to view the requested page";
+                return false;
+            }
         }
+        
         if(in_array($url,$this->finincialUrls)){
+            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
+                
             if(isset($_SESSION['role']) && $_SESSION['role']=="finance_manager"){
                 return true;
             }
@@ -59,8 +68,12 @@ class Security{
                 $this->error = "You need to be finance manager to access that page";
                 return false;
             }
+            }else{
+                $this->error = "You are not authorized to view the requested page";
+                return false;
+            }
         }
-        $this->error = 'The page you are looking for is not available'.$url;
+        $this->error = 'The page you are looking for is not available';
         return false;
         
     }

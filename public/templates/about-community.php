@@ -14,12 +14,12 @@
                         
                            <div class="col-md-3">
                               <div class="u_heading">
-                            <h4>Sport and Socialization</h4>
+                            <h4>Study Tours</h4>
                             </div>
-                              <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/sports.jpg" alt="sports image"  width="225" height="150"/>':
-                       '<img  src="../public/img/sports.jpg" alt="sports image"  width="225" height="150"/>';
+                              <?php echo (CurrentPage::$currentPage == "home")?'<img  src="./public/img/study_tours.jpg" alt="sports image"  width="225" height="150"/>':
+                       '<img  src="../public/img/study_tours.jpg" alt="study image"  width="225" height="150"/>';
              ?>
-                              <p>Have fun and grow your network outside class by joining in our sports bonanza </p>
+                              <p>Join your fellow students in different study and knowledge tours, you dont want to miss this </p>
                               <a href="<?php echo URL; ?>home/sports">Read More</a>
                             </div>
                         <div class="col-md-3">

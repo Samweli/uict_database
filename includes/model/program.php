@@ -3,7 +3,7 @@ class Program{
     public $id;
     public $program;
 
-    public function __construct($id,$program){
+    public function __construct($id="",$program=""){
          $this->id = $id;
          $this->program = $program;
     }	

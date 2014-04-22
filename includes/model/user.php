@@ -78,20 +78,17 @@
 
    	  public function add_user(){
    	  	 $sql = "INSERT INTO users (first_name,last_name,reg_number,grad_year,program_id,year_of_study,";
-   	  	 $sql .= "gender,mailing_address,email_address,phone_number,role,status,password) VALUES('".$this->first_name."',";
+   	  	 $sql .= "gender,mailing_address,email_address,phone_number,role,status,password,profile_picture) VALUES('".$this->first_name."',";
    	  	 $sql .= "'".$this->last_name."','".$this->reg_number."','".$this->grad_year."','".$this->program_id."',";
    	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->mailing_address."','".$this->email_address."','".$this->phone_number."',";
-   	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."')";
+   	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."','".$this->profile_picture."')";
                  global $db;
 
 
                 if($db->db_query($sql)){
-
-
                   return $db->db_last_insert_id();
-                  }else{
-		     $this::$user_error = $db->last_query;
-		     
+                }else{
+		     $this::$user_error = $db->last_query;  
 		 }
        }
 
@@ -105,9 +102,8 @@
 	  	 	 if($db->db_query($sql)){
 	  	 		return $db->db_affected_rows();
 	  	 	 }else{
-         $this::$user_error = $db->last_query;
-         
-     }
+                                $this::$user_error = $db->last_query;
+                         }
   	 	}
    	  }	
 
@@ -142,7 +138,7 @@
 		 
 		 $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
 			      $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
-			      $array['gender'],$array['mailing_address'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
+			      $array['gender'],$array['mailing_address'],$array['email_address'],$array['phone_number'],$array['role'],$array['status'],$array['profile_picture']); 
 	          
 		 
 		  
@@ -161,7 +157,7 @@
 
                  $returnedUser = new User($array['id'],$array['first_name'],$array['last_name'],$array['reg_number'],
             $array['grad_year'],$array['program_id'],$array['year_of_study'],$array['active_status'],
-            $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status']); 
+            $array['gender'],$array['email_address'],$array['phone_number'],$array['role'],$array['status'],$array['profile_picture']); 
 
             return $returnedUser;
 	          }else{

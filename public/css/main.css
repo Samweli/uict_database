@@ -164,6 +164,9 @@ list-style:none;
 .u_row{
    margin-top:35px;
 }
+.u_row_form{
+    margin-top:15px;
+}
 .u_row_lg{
     margin-top:70px;
 }
@@ -375,16 +378,21 @@ border-top-left-radius: 4px;
 }
 #line1
 {
-    margin-left: 65px;
-    margin-right: 65px;
+    margin-left: 19px;
+ 
 }
 #line2
 {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 85px;  
+}
+#line3{
+    margin-left: 57px;
+}
+#line4{
+    margin-left:10px;
 }
 
-/* for customizing error message in login*/
+
 .error_message_login{
     color:#CE0C0C;
 }
@@ -511,6 +519,16 @@ border-top-left-radius: 4px;
 /* overriding bootstrap setting on p description class*/
 ._description{
     margin:0px;
+}
+
+/*for the registration error */
+.registrationError{
+    background-color:#F95959;
+    opacity:0.5;
+    color:white;
+    border-radius:4px;
+    
+    padding:10px 10px 10px 8px;
 }
 
 

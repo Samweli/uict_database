@@ -28,7 +28,8 @@
              $_SESSION['mailing_address'] = $user->mailing_address;
              $_SESSION['email_address'] = $user->email_address;
              $_SESSION['phone_number'] = $user->phone_number;
-	      $_SESSION['role'] = $user->role;
+	     $_SESSION['role'] = $user->role;
+	     $_SESSION['profile_picture'] = $user->profile_picture;
           }
        }
 

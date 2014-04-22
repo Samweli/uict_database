@@ -4,6 +4,8 @@
 
 class HomeController extends Controller{
     
+
+    
     public function index(){
         try{
         $this->loader->view('index.php');
@@ -28,9 +30,19 @@ class HomeController extends Controller{
         }
     }
 
-    public function registration(){
+    public function registration($data=""){
+      
         try{
-        $this->loader->view('registration.php');
+            if(isset($_GET['data'])){
+                echo 'data in params'.$_GET['data'];
+            }
+            $_GET['url'] ='uict_database/home/registration';
+            if(isset($data)){
+               $this->loader->view('registration.php',$data); 
+            }else{
+               $this->loader->view('registration.php'); 
+            }
+            
         }catch(Exception $e){
             echo 'Message '.$e->getMessage();
         }
@@ -64,10 +76,13 @@ class HomeController extends Controller{
     public function userhome($user_id=""){
          $loader = new Loader();
          $user = (new User())->get_user($user_id);
+         $data = array(
+                       "user" => $user,
+                       );
         
        
         try{
-        $loader->view('home.php',$user);
+        $loader->view('home.php',$data);
         }catch(Exception $e){
             echo 'Message:'.$e->getMessage();
         }
@@ -101,38 +116,24 @@ class HomeController extends Controller{
     }
     
     public function register(){
+        //this if statement checks whether there is post request
+        if(!isset($_POST['firstname'])){
+        
+            header('Location: '.URL.'home/registration');
+            exit();
+        }
+        
         $loader = new Loader();
+        $loader->service('MainService.php');
         
-        $user = new User();
+        // registering user using mainService the 
+        $mainService = new MainService();
         
-        if(isset($_POST['firstname'])){
-        $user->first_name= $_POST['firstname'];
-        }
-        if(isset($_POST['lastname'])){
-        $user->last_name = $_POST['lastname'];  
-        }
-        if(isset($_POST['reg_number'])){
-        $user->reg_number= $_POST['reg_number'];   
-        }
-        if(isset($_POST['gender'])){
-        $user->gender = $_POST['gender'];  
-        }
-        if(isset($_POST['maritial_status'])){
-          $user->status = $_POST['maritial_status'];  
-        }
-        if(isset($_POST['email'])){
-           $user->email_address = $_POST['email']; 
-        }
-        if(isset($_POST['phonenumber'])){
-            $user->phone_number = $_POST['phonenumber'];
-       
-        }
-        if(isset($_POST['password'])){
-          $user->set_password($_POST['password']);  
-        }
+        $user = $mainService->registration();
         
-       
-         if($user->add_user()){
+        if($user !=NULL){
+            
+          if($user->add_user()){
             
             $session = new Session();
             $db = new Database();
@@ -147,13 +148,19 @@ class HomeController extends Controller{
             if(isset($member)){
 		$session->login($member);
                 try{
-                  
                 $loader->view('welcome.php',$member);
                 }catch(Exception $e){
                     echo 'Message'.$e->getMessage();
                 }
             }
          }
+        }
+        
+        else{
+            $this->registration();
+            exit();
+        }
+         
 
     }
 

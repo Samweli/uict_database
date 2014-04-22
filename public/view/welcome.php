@@ -59,13 +59,22 @@ $template = new Template();
 			<!-- content-->	
 			<div id="left_panel">
 			<div id = "message">
-			 <span id="line1">Welcome</span> <br /><span id="line2">to</span> <br /><span id="line3">UICT Community</span>
+			 <span id="line1">Welcome</span> <br />
+			 <span id="line2">to</span> <br />
+			 <span id="line3">UICT</span><br>
+			 <span id="line4">Community</span><br>
 			 </div>
 
 			</div>			
 
 			<div id = "right_panel">
-            <img  src="../public/img/graduated.png" class="profIcon" alt="profile Icon"  width="200" height="200"/>
+            <img src="<?php
+	    if(isset($data->profile_picture)){
+	    echo '../public/img/userImages/'.$data->profile_picture;
+	    }else{
+	     echo '../public/img/avatars/graduated.png';
+	    }
+	    ?>" class="profIcon" alt="profile Icon"  width="200" height="200"/>
             
                                 <a href="<?php echo URL.'home/userhome/'.$data->id ?>" class="u_button u_button_welcome" >view profile</a>
             </div>
