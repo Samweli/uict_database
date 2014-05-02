@@ -1,12 +1,21 @@
 <div class="list-group">
-    <a <?php echo 'href="'.URL.'home/userhome/'.$_SESSION['user_id'].'" '; ?>
+    <?php
+        if(CurrentPage::$currentPage == "userprofile"){
+            echo '<a href="'.URL.'home/userhome/'.$_SESSION['user_id'].'"
+                   class="list-group-item active"
+                   >
+                <span class="glyphicon glyphicon-user"></span> Profile</a>';
+        }
+    ?>
+       <a <?php echo 'href="'.URL.'home/userhome/'.$_SESSION['user_id'].'" '; ?>
                    <?php echo 'class="list-group-item '.(CurrentPage::$currentPage == "userhome"?'active':'').'"';
                    ?>>
                 <span class="glyphicon glyphicon-home"></span> Home</a>
     
         <a href="<?php echo URL;?>user/all_projects"
                        <?php echo 'class="list-group-item '.(CurrentPage::$currentPage == "user_current_projects"?'active':'').'"';
-                       ?>>
+                       ?>
+                       >
                        <span class="glyphicon glyphicon-folder-open"></span> On Going Projects</a>	
         <a href="<?php echo URL;?>user/all_events"
                        <?php echo 'class="list-group-item '.(CurrentPage::$currentPage == "user_current_events"?'active':'').'"';

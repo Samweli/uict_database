@@ -93,8 +93,12 @@ class HomeController extends Controller{
         $user = (new User)->get_user($user_id);
 
         $loader = new Loader();
+        $data = array(
+                      "user" => $user
+                      );
+        
         try{
-            $loader->view('userProfile.php',$user);
+            $loader->view('userProfile.php',$data);
         }catch(Exception $e){
             echo 'Message'.$e->getMessage();
         }
@@ -133,18 +137,12 @@ class HomeController extends Controller{
         
         if($user !=NULL){
             
+            if($mainService->validate($user)){
+            
           if($user->add_user()){
             
+            $member = $mainService->add_user_in_session($user);
             $session = new Session();
-            $db = new Database();
-            
-            $reg_number = $db->db_escape_values($_POST['reg_number']);
-	    $password = $db->db_escape_values($_POST['password']);
-            
-            // code to immediately put user on session after signing up
-            
-            $member = $user->authenticate($reg_number,$password);
-         
             if(isset($member)){
 		$session->login($member);
                 try{
@@ -154,6 +152,12 @@ class HomeController extends Controller{
                 }
             }
          }
+         }
+         else{
+            $this->registration();
+            exit();
+         }
+         
         }
         
         else{

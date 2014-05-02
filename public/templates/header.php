@@ -8,27 +8,32 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <header class="navbar navbar-static-top bs-docs-nav u_header" id="top" role="banner">
               <div class="container">
-                 <div class="navbar-header">
+               
+		<button type="button" class="btn btn-primary btn-navbar hidden-bar pull-right" data-toggle="coll" data-target=".navbar-collapse">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+			    
                  <?php
 		
 		  if(CurrentPage::$currentPage == "home"){
-                     echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';
+                     echo '<a href="/index.php" class=""><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';
 		  }
 		  elseif(CurrentPage::$currentPage == "userhome"){
 
-			    echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	
+			    echo '<a href="/index.php" class=""><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	
 	          }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
-			 echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	   
+			 echo '<a href="/index.php" class=""><img class="logo img col-sm-4" src="../../public/img/uict.jpg" alt="uict logo"/></a>';  	   
 		  }elseif(isset($_GET['url']) && substr_count($_GET['url'],"/") ==3){
-			 echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';    
+			 echo '<a href="/index.php" class=""><img class="logo img col-sm-4" src="./public/img/uict.jpg" alt="uict logo"/></a>';    
 		  }
 		  else{
-	             echo '<a href="/index.php" class="navbar-brand"><img class="logo img col-sm-4" src="../public/img/uict.jpg" alt="uict logo"/></a>';  	
+	             echo '<a href="/index.php" class=""><img class="logo img col-sm-4" src="../public/img/uict.jpg" alt="uict logo"/></a>';  	
 		  }
 		 ?>
                  
-                </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                
+		 
+                <nav class="coll navbar-collapse" role="navigation">
                
                      <ul class="nav navbar-nav navbar-right">
                             <li class= "<?php echo CurrentPage::$currentPage == "home"?'active':'list'; ?>" >

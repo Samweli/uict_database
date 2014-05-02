@@ -68,8 +68,9 @@ $template = new Template();
 			</div>			
 
 			<div id = "right_panel">
-            <img src="<?php
-	    if(isset($data->profile_picture)){
+            <img src="
+	    <?php
+	    if($data->profile_picture != NULL){
 	    echo '../public/img/userImages/'.$data->profile_picture;
 	    }else{
 	     echo '../public/img/avatars/graduated.png';

@@ -1,7 +1,7 @@
 <?php
 $loader = new Loader();
 if(isset($data)){
-$user = $data;
+$user = $data['user'];
 }else{
 	$users = null;
 	$result_not_found = "results not found";
@@ -14,7 +14,7 @@ catch(Exception $e){
  echo 'Message: '. $e->getMessage();
 }
 
-
+CurrentPage::$currentPage = "userprofile";
 $template = new Template();
 
 ?>
@@ -51,39 +51,49 @@ $template = new Template();
 
          <div class="col-md-3">
              <div class="row user_photo">
-             <img class="img img-thumbnail" src="<?php  echo '../../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
-			 <a href="<?php echo URL.'home/userProfile/'.$_SESSION['user_id'] ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
-		 </div><!-- end of row for profile pictire -->
+                 <img class="img img-thumbnail" src="<?php  echo '../../public/img/userImages/'.$data['user']->profile_picture; ?>" />
+			 <a href="<?php echo URL.'home/userProfile/'.$data['user']->id; ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
+		 </div>
+	     <!-- end of row for profile picture -->
 		<!-- end of row for info -->
+		<div class="row user_nav">
+                   <?php
+		    try{
+		     $template->render('navigation.php');
+		    }catch(Exception $e){
+		     echo 'Message:'.$e->getMessage();
+		    }
+		  ?>
+		 </div>
 
          </div><!-- end of col-md-3 -->
          <div class="col-md-6">
              <div class="row">
 	             <div class="col-lg-12">
-				    <div class="input-group">
-				      <input type="text" class="form-control" placeholder="Search for member">
-				      <span class="input-group-btn">
-				        <button class="btn btn-primary" type="button">Search <span class="glyphicon glyphicon-search"></span></button>
-				      </span>
-				    </div><!-- /input-group -->
-				  </div><!-- /.col-lg-6 -->
-				  
-				  <div class="results">
-					<?php if(isset($users)&& $users!=NULL){
-						echo '<h4>Results</h4>';
-						foreach ($users as $user ) {
-							
-							echo '<a href="'.URL.'home/userhome/'.$user->id.'" >'.$user->first_name.' '.$user->last_name.'</a><br />';
-						}
-					}
-					?>
-				</div>
+			   <div class="input-group">
+			     <input type="text" class="form-control" placeholder="Search for member">
+			     <span class="input-group-btn">
+			       <button class="btn btn-primary" type="button">Search <span class="glyphicon glyphicon-search"></span></button>
+			     </span>
+			   </div><!-- /input-group -->
+			 </div><!-- /.col-lg-6 -->
+			 
+			 <div class="results">
+			       <?php if(isset($users)&& $users!=NULL){
+				       echo '<h4>Results</h4>';
+				       foreach ($users as $user ) {
+					       
+					       echo '<a href="'.URL.'home/userhome/'.$user->id.'" >'.$user->first_name.' '.$user->last_name.'</a><br />';
+				       }
+			       }
+			       ?>
+		       </div>
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
 			    <!-- All Events list-->
                            	<h3>Personal info</h3> 
-               <ul class="nav">
+                                 <ul class="nav">
 				       <li class="activity_li">Registration Number: <a><?php echo  $_SESSION['reg_number'];?></a></li>
 				       <li class="activity_li">Degree program: <a>Computer Science</a></li>
 				       <li class="activity_li">Email: <a><?php echo $_SESSION['email_address'];?></a></li>

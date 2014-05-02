@@ -248,6 +248,12 @@
    </div>
    </div>
    <div class="form-group">
+   <label class="col-sm-2 control-label" >Enter Activation Code</label>
+   <div class="col-sm-6">
+   <input type="text" class=""  name="activationCode" required="" />
+   </div>
+   </div>
+   <div class="form-group">
    <label class="col-sm-2 control-label" >Upload Picture:</label>
    <div class="col-sm-6">
    <input type="file" class="" id="file" name="file" />

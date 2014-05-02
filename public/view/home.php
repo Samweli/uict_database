@@ -67,7 +67,7 @@ CurrentPage::$currentPage = "userhome";
 			 <a href="<?php echo URL.'home/userProfile/'.$data['user']->id ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile picture -->
 		 <div class="row user_nav">
-            <?php
+                   <?php
 		    try{
 		     $template->render('navigation.php');
 		    }catch(Exception $e){
@@ -99,12 +99,15 @@ CurrentPage::$currentPage = "userhome";
 
          </div><!-- end of col-md-6 -->
          <div class="col-md-3">
-            <div class="list-group">
-				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
-				 <a href="#" class="list-group-item">Yesterday:</a>	
-				 <a href="#" class="list-group-item">This Week:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-			</div>
+            <?php
+		try{
+		  $template->render('left_side_menu.php');
+		}
+		catch(Exception $e){
+		  echo 'Message: '. $e->getMessage();
+		}
+	      
+	      ?>
          </div><!-- end of col-md-3 -->
 
 			 </div><!-- end u_main_content -->

@@ -119,14 +119,17 @@
 
    	  public function get_all(){
    	  	  $sql = "SELECT users.id,users.first_name,users.last_name,users.email_address,users.phone_number,users.reg_number,";
-          $sql .= "users.active_status,users.grad_year,users.gender,users.role,users.status,users.profile_picture,";
-          $sql .= "users.year_of_study,users.program_id,programs.program FROM users JOIN programs ON ";
+          $sql .= "users.active_status,users.grad_year,users.gender,users.mailing_address,users.role,users.status,users.profile_picture,";
+          $sql .= "users.year_of_study,users.program_id FROM users JOIN programs ON ";
           $sql .= "users.program_id = programs.id ORDER BY users.id ASC";
    	  	  global $db;
           if($results = $db->db_query($sql)){
               $result_users = $db->db_fetch_array($results);
               return $result_users;
-          }
+          }else{
+              $this::$user_error = $db->last_query;
+	      return NULL;
+            }
    	  }
 
    	  public function get_user($user_id = ""){

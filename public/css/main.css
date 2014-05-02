@@ -28,9 +28,29 @@ body{
     opacity:0.8;
     
 }
-.logo{
-  margin-top: -20px;
+
+.hidden-bar{
+    display:none;
 }
+
+.logo{
+  width:112px;
+}
+@media (max-width:766px){
+    .logo{
+        width:100px;
+    }
+    
+}
+@media (min-width:767px) and (max-width:1200px){
+    .logo{
+        width:110px;
+    }
+}
+
+
+
+
 .navigation{
   position:absolute;
   top:0px;
@@ -229,7 +249,7 @@ list-style:none;
 
 
 
-@media (max-width:990){
+@media (max-width:990px){
     .u_activity img{
         width:20px;
         height:100px;
@@ -530,6 +550,22 @@ border-top-left-radius: 4px;
     
     padding:10px 10px 10px 8px;
 }
+/* for the navigation menu*/
+@media (max-width:768px){
+
+   .hidden-bar{
+        display: block;
+        margin-top:5px;
+    }
+    .message span{
+        font-size:60px;
+    }
+    .navbar-collapse{
+        height:0px;
+        overflow: hidden !important;
+    }
+}
+
 
 
 
