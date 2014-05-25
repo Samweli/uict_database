@@ -75,9 +75,21 @@ class HomeController extends Controller{
 
     public function userhome($user_id=""){
          $loader = new Loader();
+         try{
+         $loader->model("story.php");
+         $loader->model("project.php");
+         }catch(Exception $e){
+            echo 'Message: '.$e.getMessage();
+         }
+         $stories = (new Story())->get_all();
          $user = (new User())->get_user($user_id);
+         $latestUsers = (new User())->get_latest_users(3);
+         $latestProjects = (new Project())->get_latest_projects(2);
          $data = array(
                        "user" => $user,
+                       "stories" => $stories,
+                       "latestUsers" =>$latestUsers,
+                       "latestProjects" => $latestProjects,
                        );
         
        

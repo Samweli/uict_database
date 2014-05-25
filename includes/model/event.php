@@ -15,9 +15,12 @@
        public $publisher_id;
        
        public function get_all(){
-       	  $sql = "SELECT events.id,events.title,events.description,events.event_date,events.publisher_id,users.first_name,users.last_name";
-          $sql .= " FROM events JOIN users ON events.publisher_id = users.id ORDER BY events.id DESC";
-       	  global $db;
+	  $sql = "SELECT * from events JOIN users ON events.publisher_id = users.id";
+	
+       //	  $sql = "SELECT events.id,events.title,events.description,events.event_date,events.publisher_id,users.first_name,users.last_name";
+       //   $sql .= " FROM events JOIN users ON events.publisher_id = users.id ORDER BY events.id DESC";
+       //
+       global $db;
        	  if($result = $db->db_query($sql)){
              $events = $db->db_fetch_array($result);
              return $events;

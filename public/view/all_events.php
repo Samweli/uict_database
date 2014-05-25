@@ -14,7 +14,7 @@ $loader = new Loader();
 try{
 $loader->service('Template.php');
 $loader->service('CurrentPage.php');
-$events = $data;
+$events = $data['events'];
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -57,7 +57,7 @@ $template = new Template();
 	 <div class="row u_row">
          <div class="col-md-3">
              <div class="row user_photo">
-              <img class="img img-thumbnail" src="<?php  echo './../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
+              <img class="img img-thumbnail" src="<?php  echo '../public/img/userImages/'.$data['user']->profile_picture; ?>" />
 			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
@@ -90,7 +90,7 @@ $template = new Template();
                  <?php
                     foreach($events as $event){
                       echo '<div class="content_list">';
-                        echo '<h3 class="title"><span><img src="../public/img/members/'.$event['id'].'.jpg" class="img col-sm-2" title="Project Title"/></span>';
+                        echo '<h3 class="title"><span><img src="../public/img/userImages/'.$event['profile_picture'].'" class="img col-sm-2" title="Project Title"/></span>';
                         echo $event['title'].'</h3>';
                         echo '<span class="tag tag-description">Description</span>';
                         echo '<p class="_description">'.$event['description'].'</p>';
@@ -110,12 +110,15 @@ $template = new Template();
 
          </div><!-- end of col-md-6 -->
          <div class="col-md-3">
-            <div class="list-group">
-				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
-				 <a href="#" class="list-group-item">Yesterday:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-			</div>
+            <?php
+		try{
+		  $template->render('left_side_menu.php');
+		}
+		catch(Exception $e){
+		  echo 'Message: '. $e->getMessage();
+		}
+	      
+	      ?>
          </div><!-- end of col-md-3 -->
 
 			 </div><!-- end u_main_content -->

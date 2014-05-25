@@ -14,7 +14,7 @@ $loader = new Loader();
 try{
 $loader->service('Template.php');
 $loader->service('CurrentPage.php');
-$members = $data;
+$members = $data['users'];
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -56,7 +56,7 @@ $template = new Template();
 	 <div class="row u_row">
          <div class="col-md-3">
              <div class="row user_photo">
-              <img class="img img-thumbnail" src="<?php  echo './../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg'; ?>" />
+                            <img class="img img-thumbnail" src="<?php  echo '../public/img/userImages/'.$data['user']->profile_picture; ?>" />
 			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
@@ -86,10 +86,15 @@ $template = new Template();
 			    <!-- All Events list-->
                  <?php
                     foreach($members as $member){
+		     if($member["id"]!=$_SESSION["user_id"]){
                       echo '<div class="content_list">';
-                        echo '<h3 class="title"><span><img src="../public/img/'.$member['first_name'].' '.$member['last_name'].'.jpg" class="img col-sm-2" title="Project Title"/></span>';
-                        echo $member['first_name'].' '.$member['last_name'].'</h3>';
-                        echo '<span class="tag">'.$member['program'];
+		      if($member['profile_picture']!=NULL){
+                        echo '<h3 class="title"><span><img src="../public/img/userImages/'.$member['profile_picture'].'" class="img col-sm-2" title="Project Title"/></span>';
+		      }else{
+		        echo '<h3 class="title"><span><img src="../public/img/avatars/profileImage.jpg" class="img col-sm-2" title="Project Title"/></span>';
+		      }
+			echo $member['first_name'].' '.$member['last_name'].'</h3>';
+                        echo '<span class="tag">'.$member['program_id'];
 
                         if($member['year_of_study'] == 1){
                              echo ' - First Year</span>';
@@ -107,10 +112,11 @@ $template = new Template();
                         echo '<ul class="nav nav-pills content_nav">';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Message</a></li>';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Profile</a></li>'; 
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Subscribe</a></li>';
+                          
                         echo '</ul>';
                       echo '</div>';
                     }
+		    }
                  ?> 
 
 
@@ -119,12 +125,15 @@ $template = new Template();
 
          </div><!-- end of col-md-6 -->
          <div class="col-md-3">
-            <div class="list-group">
-				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
-				 <a href="#" class="list-group-item">Yesterday:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-			</div>
+            <?php
+		try{
+		  $template->render('left_side_menu.php');
+		}
+		catch(Exception $e){
+		  echo 'Message: '. $e->getMessage();
+		}
+	      
+	      ?>
          </div><!-- end of col-md-3 -->
 
 			 </div><!-- end u_main_content -->

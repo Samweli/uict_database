@@ -52,6 +52,11 @@
               echo "Error occured";
             }
        }
+       
+       public function join_project($id=""){
+        $user = (new User)->get_user($_SESSION['id']);
+        
+       }
    }
 ?>
 

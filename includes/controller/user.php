@@ -31,19 +31,38 @@ class UserController extends Controller{
     	$this->loader->model('event.php');
     	$event = new Event();
     	$events = $event->get_all();
-    	$this->loader->view('all_events.php',$events);
+	$user = (new User())->get_user($_SESSION['user_id']);
+	
+	$data = array(
+		      'user' => $user,
+		      'events' => $events);
+	
+    	$this->loader->view('all_events.php',$data);
     }
 
     public function all_projects(){
     	$this->loader->model('project.php');
     	$project = new Project();
     	$projects = $project->get_all();
-    	$this->loader->view('all_projects.php',$projects);
+	$user = (new User())->get_user($_SESSION['user_id']);
+	
+      
+	
+	$data = array(
+		      'user' => $user,
+		      'projects' => $projects);
+	
+    	$this->loader->view('all_projects.php',$data);
     }
 
     public function all_members(){
     	$users = $this->user->get_all();
-    	$this->loader->view('all_members.php',$users);
+	$user = (new User())->get_user($_SESSION['user_id']);
+	
+	$data = array(
+		      'user' => $user,
+		      'users' => $users);
+    	$this->loader->view('all_members.php',$data);
     }
 
     public function add_income(){

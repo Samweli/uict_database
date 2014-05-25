@@ -567,6 +567,36 @@ border-top-left-radius: 4px;
 }
 
 
+.story_list{
+    border:1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom:10px;
+    padding:0px 10px 10px 8px;
+}
+.story_list .project{
+    border-left: 10px solid 
+}
+
+.story_list h4{
+    border-bottom:1px solid #3071A9;
+}
+
+.date{
+    border:1px solid #cccccc;
+    border-radius: 4px;
+    padding:5px 8px 4px 8px;
+    margin-bottom:12px;
+
+}
+.spanning{
+    text-shadow: 0px 1px 0px white;
+    color:steelblue;
+    font-size: 20px;
+    margin-bottom:10px;
+}
+
+
+
 
 
 

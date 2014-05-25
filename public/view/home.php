@@ -15,17 +15,17 @@ try{
 
    $loader->service('Template.php');
    $loader->service('CurrentPage.php');
-$members = $data;
-
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
 }
 
 
+
 $template = new Template();
 
 CurrentPage::$currentPage = "userhome";
+
 
 ?>
 <!DOCTYPE html>
@@ -62,8 +62,13 @@ CurrentPage::$currentPage = "userhome";
          <div class="col-md-3">
 	  
              <div class="row user_photo">
-             <img class="img img-thumbnail" src="<?php  echo '../../public/img/userImages/'.$data['user']->profile_picture; ?>" />
-			 
+	      <?php
+	      if($data['user']->profile_picture != NULL){
+                  echo '<img class="img img-thumbnail" src="../../public/img/userImages/'.$data['user']->profile_picture.'" />';
+	      }else{
+		      echo '<img class="img img-thumbnail" src="../../public/img/avatars/profileImage.jpg" />';
+	      }
+	      ?>
 			 <a href="<?php echo URL.'home/userProfile/'.$data['user']->id ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile picture -->
 		 <div class="row user_nav">
@@ -90,7 +95,44 @@ CurrentPage::$currentPage = "userhome";
 			 </div><!-- end of row for search bar -->
 
 			 <div class="row user_form">
-			    <!-- All Events list-->
+			    <!-- All Stroies list-->
+			    <?php
+			    $stories = $data['stories'];
+			    $latestUsers = $data['latestUsers'];
+			    $latestProjects = $data['latestProjects'];
+			    
+			    foreach($latestUsers as $user){
+			     if($user['id']!=$_SESSION['user_id']){
+			     echo '<div class="story_list">';
+			     echo '<h4>'.$user["first_name"].' '.$user["last_name"].'</h4>';
+			     echo '<p>'.$user["first_name"].'  has registered in '.substr($user['registered_date'],0,strlen($user['registered_date']) - 11).'</p>';
+			     echo '<div class="story_picture pull-right">';
+			     
+			     echo '</div>';
+			     echo '<ul class="nav">';
+			     echo '<li><span><i class="glyphicon glyphicon-file"></i><a>    View Profile</a></span></li>';
+			     echo '</ul>';
+			     echo '</div>';
+			     }
+			    }
+			    foreach($latestProjects as $project){
+			     echo '<div class="story_list project">';
+			     echo '<h4> '.strtoupper($project["title"]).'</h4>';
+			     echo '<p>Project '.$project["title"].' has been added recently</p>';
+			     echo '<p>'.$project["description"].'</p>';
+			     echo '<div class="story_picture pull-right">';
+			     
+			     echo '</div>';
+			     echo '<ul class="nav">';
+			     echo '<li><span><i class="glyphicon glyphicon-file"></i><a>    View</a></span></li>';
+			     echo '</ul>';
+			     echo '</div>';
+			    }
+			    foreach($stories as $story){
+			     
+			    
+			    
+			    ?>
                  
 
 

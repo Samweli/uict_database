@@ -99,6 +99,7 @@
           foreach($codes as $codeFromDb){
             if($codeFromDb[1] == $_POST['activationCode'] ){
               $bool = true;
+             
               break;
             }
           }
@@ -108,6 +109,8 @@
             
              if($code->usage == "notused"){
                 $user->role = $code->role;
+                $code->usage = "used";
+                $code->update_status();
              }else{
               $this->registrationError = "Activation code has already been used".Code::$code_error;
             $GLOBALS['registrationError'] = $this->registrationError;
@@ -138,6 +141,8 @@
            if(!$imageService->saveImage($_FILES['file']['tmp_name'])){
                $user->error = "problem saving picture"; 
             }
+        }else{
+          $user->profile_picture = "";
         }
         if($user->program_id == 1 || $user->program_id == 4 || $user->program_id == 5){
         $user->grad_year = date('Y') + (4 - $user->year_of_study);

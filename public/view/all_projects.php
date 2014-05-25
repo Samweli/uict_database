@@ -14,7 +14,8 @@ $loader = new Loader();
 try{
 $loader->service('Template.php');
    $loader->service('CurrentPage.php');
-$projects = $data;
+$projects = $data['projects'];
+
 }
 catch(Exception $e){
  echo 'Message: '. $e->getMessage();
@@ -57,8 +58,8 @@ CurrentPage::$currentPage = "user_current_projects";
 	 <div class="row u_row">
          <div class="col-md-3">
              <div class="row user_photo">
-              <img class="img img-thumbnail" src="<?php  echo './../public/img/'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'.jpg' ?>" />
-			 <a href="profile.php" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
+              <img class="img img-thumbnail" src="<?php  echo '../public/img/userImages/'.$data['user']->profile_picture; ?>" />
+			 <a href="<?php echo URL.'home/userProfile/'.$data['user']->id ?>" title="Checkout Profile" ><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']; ?></a>
 		 </div><!-- end of row for profile pictire -->
 		 <div class="row user_nav">
                   <?php
@@ -88,7 +89,7 @@ CurrentPage::$currentPage = "user_current_projects";
                  <?php
                     foreach($projects as $project){
                       echo '<div class="content_list">';
-                        echo '<h3 class="title"><span><img src="../public/img/members/'.$project['id'].'.jpg" class="img col-sm-2" title="Project Title"/></span>';
+                        echo '<h3 class="title"><span><img src="../public/img/userImages/'.$project['profile_picture'].'" class="img col-sm-2" title="Project Title"/></span>';
                         echo $project['title'].'</h3>';
                         echo '<span class="tag tag-description">Description</span>';
                         echo '<p class="_description">'.$project['description'].'</p>';
@@ -97,7 +98,7 @@ CurrentPage::$currentPage = "user_current_projects";
                         echo '<ul class="nav nav-pills content_nav">';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-share"></span> Inform a friend</a></li>';
                           echo   '<li><a href="#"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>'; 
-                          echo   '<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Join a team</a></li>';
+                          echo   '<li><a href="'.URL.'home/"><span class="glyphicon glyphicon-ok"></span> Join a team</a></li>';
                         echo '</ul>';
                       echo '</div>';
                     }
@@ -109,12 +110,15 @@ CurrentPage::$currentPage = "user_current_projects";
 
          </div><!-- end of col-md-6 -->
          <div class="col-md-3">
-            <div class="list-group">
-				 <a href="#" class="list-group-item"><h3>Recent Activities</h3></a>
-				 <a href="#" class="list-group-item">Yesterday:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-				 <a href="#" class="list-group-item">Last Week:</a>	
-			</div>
+           <?php
+		try{
+		  $template->render('left_side_menu.php');
+		}
+		catch(Exception $e){
+		  echo 'Message: '. $e->getMessage();
+		}
+	      
+	      ?>
          </div><!-- end of col-md-3 -->
 
 			 </div><!-- end u_main_content -->

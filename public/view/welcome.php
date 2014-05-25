@@ -19,7 +19,6 @@ catch(Exception $e){
  echo 'Message: '. $e->getMessage();
 }
 
-
 $template = new Template();
 
 ?>
@@ -73,7 +72,7 @@ $template = new Template();
 	    if($data->profile_picture != NULL){
 	    echo '../public/img/userImages/'.$data->profile_picture;
 	    }else{
-	     echo '../public/img/avatars/graduated.png';
+	     echo '../public/img/avatars/profileImage.jpg';
 	    }
 	    ?>" class="profIcon" alt="profile Icon"  width="200" height="200"/>
             

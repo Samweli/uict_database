@@ -15,6 +15,8 @@
        public $category_id;
        public $begin_date;
        public $initiator_id;
+       
+       public static $project_error;
 
        public function add_project(){
           if($this->is_project_defined()){
@@ -28,14 +30,21 @@
        }
 
        public function get_all(){
-          $sql = "SELECT projects.id,projects.title,projects.description,users.first_name,users.last_name,projects.begin_date FROM ";
-          $sql .= "projects JOIN users ON projects.initiator_id = users.id";
-          $sql .= " ORDER BY projects.id DESC";
+          $sql = "SELECT * FROM projects";
+          $sql.=  " JOIN users ON projects.initiator_id = users.id";
+          //$sql = "SELECT projects.id,projects.title,projects.description,users.first_name,users.last_name,projects.begin_date FROM ";
+          //$sql .= "projects JOIN users ON projects.initiator_id = users.id";
+          //$sql .= " ORDER BY projects.id DESC";
           global $db;
           if($result = $db->db_query($sql)){
              $projects = $db->db_fetch_array($result);
+            
              return $projects;
-          }
+          }else{
+              $this::$project_error = $db->last_query;
+              echo $db->last_query;
+	      return NULL;
+            }
        }
 
        public function get_project($id=""){
@@ -77,6 +86,25 @@
               return FALSE;
           }
        }
+       
+       public function get_latest_projects($max_number=""){
+       if(!empty($max_number)){
+	      $sql = "SELECT * FROM projects LIMIT ".$max_number." ";
+       }else{
+	      $sql = "SELECT * FROM projects LIMIT 1";
+       }
+        global $db;
+          if($results = $db->db_query($sql)){
+              $result_projects = $db->db_fetch_array($results);
+              return $result_projects;
+          }else{
+              $this::$project_error = $db->last_query;
+	      return NULL;
+            }
+       
+      }
+       
+       
 
    }
 

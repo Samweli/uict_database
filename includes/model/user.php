@@ -28,6 +28,7 @@
    	  public $status;
    	  private $password;
 	  public $profile_picture;
+	  public $registered_date;
 	  
 	  public static $user_error;
 	  
@@ -50,6 +51,9 @@
 	      $this->role = $role;
 	      $this->status = $status;
 	      $this->profile_picture = $profile_picture;
+	      
+	      date_default_timezone_set('Africa/Dar_es_Salaam');
+	      $this->registered_date = date('l jS \of F Y h:i:s A');
 	      
 	      
 	  }
@@ -78,10 +82,10 @@
 
    	  public function add_user(){
    	  	 $sql = "INSERT INTO users (first_name,last_name,reg_number,grad_year,program_id,year_of_study,";
-   	  	 $sql .= "gender,mailing_address,email_address,phone_number,role,status,password,profile_picture) VALUES('".$this->first_name."',";
+   	  	 $sql .= "gender,mailing_address,email_address,phone_number,role,status,password,profile_picture,registered_date) VALUES('".$this->first_name."',";
    	  	 $sql .= "'".$this->last_name."','".$this->reg_number."','".$this->grad_year."','".$this->program_id."',";
    	  	 $sql .= "'".$this->year_of_study."','".$this->gender."','".$this->mailing_address."','".$this->email_address."','".$this->phone_number."',";
-   	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."','".$this->profile_picture."')";
+   	  	 $sql .= "'".$this->role."','".$this->status."','".sha1($this->password)."','".$this->profile_picture."','".$this->registered_date."')";
                  global $db;
 
 
@@ -120,7 +124,7 @@
    	  public function get_all(){
    	  	  $sql = "SELECT users.id,users.first_name,users.last_name,users.email_address,users.phone_number,users.reg_number,";
           $sql .= "users.active_status,users.grad_year,users.gender,users.mailing_address,users.role,users.status,users.profile_picture,";
-          $sql .= "users.year_of_study,users.program_id FROM users JOIN programs ON ";
+          $sql .= "users.year_of_study,users.program_id,users.registered_date FROM users JOIN programs ON ";
           $sql .= "users.program_id = programs.id ORDER BY users.id ASC";
    	  	  global $db;
           if($results = $db->db_query($sql)){
@@ -190,6 +194,22 @@
             $program = Program::get_program($program_id);
        
               return $program;
+      }
+      public function get_latest_users($max_number=""){
+       if(!empty($max_number)){
+	      $sql = "SELECT * FROM users LIMIT ".$max_number." ";
+       }else{
+	      $sql = "SELECT * FROM users LIMIT 1";
+       }
+        global $db;
+          if($results = $db->db_query($sql)){
+              $result_users = $db->db_fetch_array($results);
+              return $result_users;
+          }else{
+              $this::$user_error = $db->last_query;
+	      return NULL;
+            }
+       
       }
           
     }

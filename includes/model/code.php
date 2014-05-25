@@ -55,6 +55,20 @@ class Code{
 	}
      }
      
+     public function update_status(){
+	  $sql = "UPDATE code SET code.usage='".$this->usage."' WHERE id='".$this->id."' ";
+          global $db;
+       
+         if($db->db_query($sql)){
+            return $db->db_affected_rows();
+	   
+         }else{
+	    $this::$code_error = $db->last_query;
+	   
+	 }
+     
+     }
+     
 
 }
 
